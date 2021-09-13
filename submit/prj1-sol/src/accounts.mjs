@@ -67,12 +67,11 @@ export default function makeAccounts() {
 }
 makeAccounts.DEFAULT_COUNT = DEFAULT_COUNT; //for testing
 
-  accounts;
 
 class Accounts {
   constructor() {
     //TODO
-        this._accounts = {};
+        this._accounts =[] 
   }
 
   /** Return ID of a newly created account having holder ID set to
@@ -85,7 +84,7 @@ class Accounts {
   newAccount(params={}) {
     //TODO
     let newAccount = { id:genId() , holderId : params.holderId , balance : 0}
-    _accounts.push(newAccount);
+    this._accounts.push(newAccount);
 
     return newAccount.id;
       // return '';
@@ -141,7 +140,7 @@ class Account {
    */
   newAct(params={}) {
     //TODO
-    let act = new Transaction( date : params.date , amount : params.amount , memo: params.memo)
+    let act = new Transaction( params.amount , params.date  ,params.memo)
     let newAct = { id :genId() , ...act};
     transactions.push(newAct)
     return newAct.id;
@@ -226,7 +225,7 @@ class Transaction {
   constructor(params){
     this._amount =  params.amount;
     this._date = params.date;
-    this._memo = params.memo }
+    this._memo = params.memo 
   }
 }
 
