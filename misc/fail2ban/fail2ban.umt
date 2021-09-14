@@ -1,0 +1,42 @@
+     F a i l 2 b a n   C o n n e c t i v i t y   I s s u e s
+
+
+There is a security feature called fail2ban deployed on the CS machines
+which monitors login failures.  If there are .$N$ login failures from a
+particular IP address, then that IP is banned from logging in for the
+next 24 hours. .$N$ is a relatively small value like 3.
+
+The really bad aspect of the operation of fail2ban is that it fails silently
+and the login attempt just hangs without any explanation.  This can be
+extremely frustrating.
+
+Scenarious where fail2ban is triggered:
+
+  + You are confused about your password and try too many incorrect
+    passwords.
+
+  + Since the ban is by IP address, it could be triggered by someone
+    sharing your IP address.  So for example, if you are sharing your
+    internet connection with another CS student and your housemate's
+    login attempts fail, then your login could get banned.
+
+  + I once had a flaky key on my keyboard and was unknowingly typing
+    my password incorrectly.
+    
+The fixes I know of:
+
+  # Wait 24 hours (very frustrating).
+
+  # Try to use a different IP address:
+
+      + If you are using a home ISP, try logging in using your phone's
+        hotspot instead.
+
+      + .<https://www.google.com/search?q=forcing+different+IP+address+on+ISP>
+        "Restart/reboot your router".
+
+  # Use the
+    .<https://www.binghamton.edu/its/about/organization/operations-and-infrastructure/networking/off-campus-connecting.html>
+    "campus VPN" to connect.
+
+.<email-20210303.txt> "SysAdmin Email" from Mar 3, 2021.

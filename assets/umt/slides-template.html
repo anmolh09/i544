@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang='en-US'>
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="$HOME/assets/styles/article.css" rel="stylesheet" type="text/css" />
+  <title>CS 544: $TITLE</title>
+$HEAD
+</head>
+<body>
+    <nav>
+      <ul>
+	<li><a href="$HOME/index.html" class="material-icons">house</a></li>
+	<li><a href="$HOME/docs/index.html">Docs</a></li>
+	<li><a href="$HOME/exercises/index.html">Exercises</a></li>
+	<li><a href="$HOME/hw/index.html">Homework</a></li>
+	<li><a href="$HOME/misc/index.html">Misc</a></li>
+	<li><a href="$HOME/projects/index.html">Projects</a></li>
+	<li><a href="$HOME/slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+  <div class="slide-controls" style="display: none;">
+    <span class="float-left">
+      <span class="first-control">
+	<a href="#">
+	  <img src="$HOME/assets/images/go-first.png">
+	</a>
+      </span>
+      <span class="previous-control">
+	<a href="#">
+	  <img src="$HOME/assets/images/go-previous.png">
+	</a>
+      </span>
+    </span>
+    <span class="float-right">
+      <span class="next-control">
+	<a href="#">
+	  <img src="$HOME/assets/images/go-next.png">
+	</a>
+      </span>
+      <span class="last-control">
+	<a href="#">
+	  <img src="$HOME/assets/images/go-last.png">
+	</a>
+      </span>
+    </span>
+    <div class="slide-end">&nbsp;<br></div> <!-- hack -->
+  </div>
+<div class="content">
+$CONTENT
+</div> <!-- #content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="$HOME/assets/scripts/slide-controls.js"></script>
+<script src="$HOME/assets/scripts/loginAction.js"></script>
+</body>
+</html>

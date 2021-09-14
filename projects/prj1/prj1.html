@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 544: Project 1</title>
+    <link href="prj1/hl-fine_blue.css" rel="stylesheet"/><link href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+       rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async=""></script>    
+
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hw/index.html">Homework</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="prj1.umt:1:0"><h1 data-coord="prj1.umt:1:0">Project 1</h1><p data-coord="prj1.umt:3:0"><strong data-coord="prj1.umt:3:0">Due</strong>: Sep 21, before midnight.
+</p><p data-coord="prj1.umt:5:0"><strong data-coord="prj1.umt:5:0">Important Reminder</strong>: As per the course <em data-coord="prj1.umt:5:110"><a href="../../misc/academic-honesty-statement/academic-honesty-policy.html" data-coord="prj1.umt:5:110">Academic Honesty Statement</a></em>,
+cheating of any kind will minimally result in your letter grade
+for the entire course being reduced by one level.
+</p><p data-coord="prj1.umt:9:0">This document first provides the aims of this project, followed by a
+discussion of its background including relevance to future projects.
+It then lists the requirements as explicitly as possible.  It then
+hints at how these requirements can be met.
+</p><section data-coord="prj1.umt:14:0"><h2 data-coord="prj1.umt:14:0">Aims</h2><p data-coord="prj1.umt:17:0">The aims of this project are as follows:
+</p><ul data-coord="prj1.umt:19:0"><li data-coord="prj1.umt:19:0"><p data-coord="prj1.umt:19:4">To verify that you have GUI access to your VM.
+</p></li><li data-coord="prj1.umt:21:0"><p data-coord="prj1.umt:21:4">To expose you to programming in JavaScript.
+</p></li><li data-coord="prj1.umt:23:0"><p data-coord="prj1.umt:23:4">To encourage you to use advanced features of JavaScript in your code.
+</p></li><li data-coord="prj1.umt:25:0"><p data-coord="prj1.umt:25:4">To introduce you
+to <em data-coord="prj1.umt:25:89"><a href="https://en.wikipedia.org/wiki/Test-driven_development" data-coord="prj1.umt:25:89">Test-Driven Development TDD</a></em>.
+</p></li><li data-coord="prj1.umt:29:0"><p data-coord="prj1.umt:29:4">To familiarize you with the development environment on your VM.
+</p><section data-coord="prj1.umt:34:0"><h3 data-coord="prj1.umt:34:0">Future Projects</h3><p data-coord="prj1.umt:37:0">This project requires you to write a program to maintain one or more
+checking accounts in memory (all data disappears when the program
+terminates).  In future projects, we will be:
+</p><ol data-coord="prj1.umt:41:0"><li data-coord="prj1.umt:41:0"><p data-coord="prj1.umt:41:4">Storing the accounts in a persistent database so that data
+survives program termination.
+</p></li><li data-coord="prj1.umt:44:0"><p data-coord="prj1.umt:44:4">Making the accounts accessible via web services.
+</p></li><li data-coord="prj1.umt:46:0"><p data-coord="prj1.umt:46:4">Adding browser UI(s) which use the web services to access
+the accounts.
+</p></li></ol></section></li></ul></section><section data-coord="prj1.umt:50:0"><h2 data-coord="prj1.umt:50:0">Requirements</h2><p data-coord="prj1.umt:54:0">You must push a <samp data-coord="prj1.umt:54:16">submit/prj1-sol</samp> directory to your <samp data-coord="prj1.umt:54:52">main</samp> branch in
+your github repository such that typing <samp data-coord="prj1.umt:54:109">npm ci</samp> within that directory
+followed by <samp data-coord="prj1.umt:54:152">./index.mjs</samp> within that directory is sufficient to run
+your project.
+</p><p data-coord="prj1.umt:59:0">You are being provided with an <a href="prj1-sol/index.mjs?colorize=true" data-coord="prj1.umt:59:67">index.mjs</a> and <a href="prj1-sol/src/main.mjs?colorize=true" data-coord="prj1.umt:59:120">main.mjs</a> which
+provide the required input-output behavior.  What you specifically
+need to do is add code to the provided
+<a href="./prj1-sol/src/accounts.mjs?colorize=true" data-coord="prj1.umt:59:286">accounts.mjs</a> source
+file as per the requirements in that file.
+</p><p data-coord="prj1.umt:66:0">Your project should pass all the provided <a href="prj1-sol/test" data-coord="prj1.umt:66:59">tests.</a>
+</p><p data-coord="prj1.umt:68:0">Your emphasis in this project should be on correctness rather than
+efficiency. 
+</p><p data-coord="prj1.umt:71:0"><span id="log" data-coord="prj1.umt:71:7">The</span> behavior of your program is illustrated in an <em data-coord="prj1.umt:71:71"><a href="extras/LOG" data-coord="prj1.umt:71:71">annotated log</a></em>.  
+</p><p data-coord="prj1.umt:74:0">Additionally, your <samp data-coord="prj1.umt:74:19">submit/prj1-sol</samp> <strong data-coord="prj1.umt:74:37">must</strong> contain a <samp data-coord="prj1.umt:74:54">vm.png</samp>
+image file to verify that you have set up your VM correctly.  Specifically,
+the image must show an x2go client window running on your VM.  The captured
+x2go window must show a terminal window containing the output
+of the following commands:
+</p><pre>$ hostname<span class="hl opt">;</span> hostname <span class="hl kwb">-I</span>
+$ <span class="hl kwc">ls</span> ~<span class="hl opt">/</span>projects
+$ <span class="hl kwc">ls</span> ~<span class="hl opt">/</span>cs544
+$ <span class="hl kwc">ls</span> ~<span class="hl opt">/</span>i?<span class="hl num">44</span>
+$ crontab <span class="hl kwb">-l</span> | <span class="hl kwc">tail</span> <span class="hl kwb">-3</span></pre><p data-coord="prj1.umt:89:0">You will loose 10 points if you do not include the <samp data-coord="prj1.umt:89:51">vm.png</samp>.
+</p></section><section data-coord="prj1.umt:91:0"><h2 data-coord="prj1.umt:91:0">Provided Files</h2><p data-coord="prj1.umt:94:0">The <a href="./prj1-sol" data-coord="prj1.umt:94:18">prj1-sol</a> directory contains a start for your
+project.  It contains the following files:
+</p><dl data-coord="prj1.umt:97:0"><dt data-coord="prj1.umt:97:4"> <a href="./prj1-sol/src/accounts.mjs?colorize=true" data-coord="prj1.umt:97:46">accounts.mjs</a></dt><dd data-coord="prj1.umt:98:0"><p data-coord="prj1.umt:98:6">This skeleton file constitutes the guts of your project.  You
+will need to flesh out the skeleton, adding code as per the
+documentation.  You should feel free to add any auxiliary
+function or method definitions as required.
+</p></dd><dt data-coord="prj1.umt:103:4"> <em data-coord="prj1.umt:103:21"><a href="./prj1-sol/test/" data-coord="prj1.umt:103:21">Test files</a></em></dt><dd data-coord="prj1.umt:104:0"><p data-coord="prj1.umt:104:6">This directory contains tests for some of the project functionality
+using the <a href="https://mochajs.org/" data-coord="prj1.umt:104:114">mocha</a> testing framework
+and <a href="https://www.chaijs.com/" data-coord="prj1.umt:104:175">chai</a> assertions.  You may add
+your own tests in this directory.
+</p></dd><dt data-coord="prj1.umt:109:4"> <a href="./prj1-sol/index.mjs?colorize=true" data-coord="prj1.umt:109:39">index.mjs</a> and <a href="./prj1-sol/src/main.mjs?colorize=true" data-coord="prj1.umt:109:94">main.mjs</a></dt><dd data-coord="prj1.umt:110:0"><p data-coord="prj1.umt:110:6">These files provide the input-output behavior which is
+required by your program.  It imports
+<a href="./prj1-sol/src/accounts.mjs?colorize=true" data-coord="prj1.umt:110:156">accounts.mjs.</a>
+</p><p data-coord="prj1.umt:114:6">You should not need to modify these files.
+</p></dd><dt data-coord="prj1.umt:116:4"> <a href="./prj1-sol/src/util.mjs?colorize=true" data-coord="prj1.umt:116:42">util.mjs</a></dt><dd data-coord="prj1.umt:117:0"><p data-coord="prj1.umt:117:6">Utilities including validation and ID generation functions.
+You should not need to modify this file, but may find the
+provided function useful for your project.
+</p></dd><dt data-coord="prj1.umt:121:4"> <a href="./prj1-sol/README" data-coord="prj1.umt:121:22">README</a></dt><dd data-coord="prj1.umt:122:0"><p data-coord="prj1.umt:122:6">A README file which must be submitted along with your project.
+It contains an initial header which you must complete (replace
+the dummy entries with your name, B-number and email address at
+which you would like to receive project-related email).  After
+the header you may include any content which you would like read
+during the grading of your project.
+</p></dd></dl></section><section data-coord="prj1.umt:129:0"><h2 data-coord="prj1.umt:129:0">Course Library</h2><p data-coord="prj1.umt:132:0">Two packages have been installed in the <a href="../../lib" data-coord="prj1.umt:132:53">lib</a> directory:
+</p><dl data-coord="prj1.umt:134:0"><dt data-coord="prj1.umt:134:2"> <a href="../../lib/cs544-js-utils" data-coord="prj1.umt:134:29">cs544-js-utils</a> </dt><dd data-coord="prj1.umt:135:0"><p data-coord="prj1.umt:135:4">Utilities which are useful in any JavaScript environment;
+specifically utilities which are useful within both a
+browser and node environment.  Currently it contains
+a class <samp data-coord="prj1.umt:135:189">AppErrors</samp> for application errors.
+</p></dd><dt data-coord="prj1.umt:140:2"> <a href="../../lib/cs544-node-utils" data-coord="prj1.umt:140:31">cs544-node-utils</a> </dt><dd data-coord="prj1.umt:141:0"><p data-coord="prj1.umt:141:4">Utilities which are useful in a node environment.
+Currently it contains code to synchronously read
+a JSON file. 
+</p></dd></dl></section><section data-coord="prj1.umt:145:0"><h2 data-coord="prj1.umt:145:0">Design and Implementation</h2><p data-coord="prj1.umt:148:0">The following information may be useful when working on this project.
+</p><section data-coord="prj1.umt:150:0"><h3 data-coord="prj1.umt:150:0">Use of ES6 Classes</h3><p data-coord="prj1.umt:153:0">At the time of assigning this project, JavaScript objects and ES6
+classes will not have been covered in detail in the course.  However,
+you should be able to use ES6 <code><span class="hl kwa">class</span></code> syntax without needing to
+understand the finer points.
+</p><p data-coord="prj1.umt:158:0">Note that the <samp data-coord="prj1.umt:158:14">class</samp> syntax is a relatively recent addition to
+JavaScript and is syntactic sugar around JavaScript's more flexible
+object model.  Note that even though the use of this <samp data-coord="prj1.umt:158:185">class</samp> syntax
+may make students with a background in class-based OOPL's feel more
+comfortable, there are some differences worth pointing out:
+</p><ul data-coord="prj1.umt:164:0"><li data-coord="prj1.umt:164:0"><p data-coord="prj1.umt:164:4">All "instance variables" must be referenced
+through the <samp data-coord="prj1.umt:164:65">this</samp> pseudo-variable in both <samp data-coord="prj1.umt:164:96">constructor</samp> and
+methods.  For example, if we want to initialize an instance
+variable <samp data-coord="prj1.umt:164:191">_accounts</samp> in the <samp data-coord="prj1.umt:164:210">Accounts</samp> <samp data-coord="prj1.umt:164:221">constructor()</samp> we may have a statement
+like:
+</p><pre>    <span class="hl kwa">this</span><span class="hl opt">.</span>_accounts <span class="hl opt">= {};</span></pre></li><li data-coord="prj1.umt:174:0"><p data-coord="prj1.umt:174:4">There is no implicit <samp data-coord="prj1.umt:174:25">this</samp>.  If an instance method needs to call
+another instance method of the same object, the method <strong data-coord="prj1.umt:174:129">must</strong> be
+called through <samp data-coord="prj1.umt:174:158">this</samp>.
+</p></li><li data-coord="prj1.umt:178:0"><p data-coord="prj1.umt:178:4">There is no easy way to get private methods or data in the current
+language standard (though this should change very shortly).
+Instead a convention which is often used is to prefix private
+names with something like a underscore and trust <samp data-coord="prj1.umt:178:254">class</samp> clients
+to not misuse those names.
+</p></li></ul></section><section data-coord="prj1.umt:184:0"><h3 data-coord="prj1.umt:184:0">Pure Functions</h3><p data-coord="prj1.umt:187:1">Strive to make your functions pure.  That is:
+</p><ul data-coord="prj1.umt:189:0"><li data-coord="prj1.umt:189:0"><p data-coord="prj1.umt:189:4">They should not change any non-local state.
+</p></li><li data-coord="prj1.umt:191:0"><p data-coord="prj1.umt:191:4">They should not change their arguments.
+</p></li><li data-coord="prj1.umt:193:0"><p data-coord="prj1.umt:193:4">They should not change objects unless required by the API.
+</p></li></ul><p data-coord="prj1.umt:195:0">Note that you can use destructive assignment <strong data-coord="prj1.umt:195:45">within</strong> a function.  The
+purity requirement prevents any destructive effects being caused
+<strong data-coord="prj1.umt:195:136">outside</strong> the function.
+</p></section><section data-coord="prj1.umt:200:0"><h3 data-coord="prj1.umt:200:0">Tests</h3><p data-coord="prj1.umt:204:0">The provided code contains tests for the <samp data-coord="prj1.umt:204:41">accounts</samp> methods.  Most of
+these tests will initially fail.  As you develop your code, you will
+make the tests  succeed, thus practising TDD. You are welcome to add more
+tests (note that different tests than those provided here may be used
+when grading your project).
+</p><p data-coord="prj1.umt:210:0">If you set up your <samp data-coord="prj1.umt:210:19">package.json</samp> as instructed, typing <samp data-coord="prj1.umt:210:56">npm test</samp>
+should run all tests using the &lt;https://mochajs.org/&gt; mocha testing
+framework.
+</p><p data-coord="prj1.umt:214:0">Note that you can select which tests should run by qualifying <samp data-coord="prj1.umt:214:62">describe</samp>
+and <samp data-coord="prj1.umt:214:77">it</samp> with <samp data-coord="prj1.umt:214:87">.only</samp>; i.e. changing a <samp data-coord="prj1.umt:214:112">it(...</samp>) or <samp data-coord="prj1.umt:214:125">describe(...)</samp> to
+<samp data-coord="prj1.umt:214:144">it.only(...)</samp> or <samp data-coord="prj1.umt:214:162">describe.only(...)</samp> selects only those tests enclosed
+within those function calls to run.
+</p></section></section><section data-coord="prj1.umt:220:0"><h2 data-coord="prj1.umt:220:0">Representing Money</h2><p data-coord="prj1.umt:223:0">Since floating point arithmetic is only approximate, it is usually
+a bad idea to use floating point arithmetic for financial quantities.
+For example, adding 0.1 to 0 ten times does not result in a sum
+of 1:
+</p><pre><span class="hl opt">&gt;</span> Array<span class="hl opt">.</span><span class="hl kwa">from</span><span class="hl opt">({</span>length<span class="hl opt">:</span> <span class="hl num">10</span><span class="hl opt">}).</span><span class="hl kwd">fill</span><span class="hl opt">(</span><span class="hl num">0.1</span><span class="hl opt">)</span>
+    <span class="hl opt">.</span><span class="hl kwd">reduce</span><span class="hl opt">((</span>acc<span class="hl opt">,</span> a<span class="hl opt">) =&gt;</span> acc <span class="hl opt">+</span> a<span class="hl opt">)</span>
+<span class="hl num">0.9999999999999999</span>
+<span class="hl opt">&gt;</span> Array<span class="hl opt">.</span><span class="hl kwa">from</span><span class="hl opt">({</span>length<span class="hl opt">:</span> <span class="hl num">10</span><span class="hl opt">}).</span><span class="hl kwd">fill</span><span class="hl opt">(</span><span class="hl num">0.1</span><span class="hl opt">)</span>
+   <span class="hl opt">.</span><span class="hl kwd">reduce</span><span class="hl opt">((</span>acc<span class="hl opt">,</span> a<span class="hl opt">) =&gt;</span> acc <span class="hl opt">+</span> a<span class="hl opt">) ===</span> <span class="hl num">1</span>
+<span class="hl kwa">false</span>
+<span class="hl opt">&gt;</span></pre><p data-coord="prj1.umt:238:0">So money should be represented as integers provided they do
+not overflow.  JavaScript does not have integers, but the
+<samp data-coord="prj1.umt:238:118">Number</samp> type can represent integers exactly up till
+\(2^{53}\).
+</p><p data-coord="prj1.umt:243:0">So we can represent money in "cents".  As long as we are merely doing
+addition and subtraction the integers representable within <samp data-coord="prj1.umt:243:130">Number</samp>
+should suffice.  If that turns out not to be the case, then we can use
+the <samp data-coord="prj1.umt:243:214">BigInt</samp> class from the standard library.
+</p></section><section data-coord="prj1.umt:248:0"><h2 data-coord="prj1.umt:248:0">Hints</h2><ul data-coord="prj1.umt:252:0"><li data-coord="prj1.umt:252:0"><p data-coord="prj1.umt:252:4">You should feel free to use any of the functions from the standard
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" data-coord="prj1.umt:252:138">library;</a> in particular, functions provided by the
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" data-coord="prj1.umt:252:286">Array</a> and
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/" data-coord="prj1.umt:252:396">String,</a> objects may prove useful.  You should not use any nodejs
+library functions to make it possible to run this code within the
+browser in future projects.  You should also not need to include
+additional npm packages.
+</p></li><li data-coord="prj1.umt:263:0"><p data-coord="prj1.umt:263:4">The requirements in <a href="./prj1-sol/src/accounts.mjs?colorize=true" data-coord="prj1.umt:263:73">accounts.mjs</a> ask you to implement some methods on an <samp data-coord="prj1.umt:263:126">Accounts</samp>
+instance representing a collection of <samp data-coord="prj1.umt:263:179">Account</samp>'s, but most of
+your effort will be .  However, most of these methods operate on an
+individual account identifies by <samp data-coord="prj1.umt:263:313">params.id</samp>.
+</p><p data-coord="prj1.umt:269:4">Hence it is probably a good idea to define your own <samp data-coord="prj1.umt:269:56">Account</samp>
+class.  The methods implemented within <samp data-coord="prj1.umt:269:109">Accounts</samp> should merely
+pull up an <samp data-coord="prj1.umt:269:149">Account</samp> instance and delegate all work to methods
+on the <samp data-coord="prj1.umt:269:212">Account</samp> instance.
+</p></li></ul><p data-coord="prj1.umt:274:0">The following steps are not prescriptive in that you may choose to
+ignore them as long as you meet all project requirements.
+</p><ol data-coord="prj1.umt:277:0"><li data-coord="prj1.umt:277:0"><p data-coord="prj1.umt:277:4">If you have not already done so, set up your course VM as per the
+instructions specified in the <em data-coord="prj1.umt:277:145"><a href="../../misc/vm-setup/vm-setup.html" data-coord="prj1.umt:277:145">VM Setup</a></em> and <em data-coord="prj1.umt:277:198"><a href="../../misc/vm-setup/git-setup.html" data-coord="prj1.umt:277:198">Git Setup</a></em>
+documents.
+</p></li><li data-coord="prj1.umt:282:0"><p data-coord="prj1.umt:282:4">Understand the project requirements thoroughly including the
+comments in <a href="./prj1-sol/src/accounts.mjs?colorize=true" data-coord="prj1.umt:282:130">accounts.mjs.</a>  Verify your understanding by looking at the
+provided <em data-coord="prj1.umt:282:216"><a href="extras/LOG" data-coord="prj1.umt:282:216">interaction log</a></em>.
+</p><p data-coord="prj1.umt:287:4">Also look at the code in <a href="./prj1-sol/src/main.mjs?colorize=true" data-coord="prj1.umt:287:74">main.mjs.</a> You should study the code sufficiently to understand
+how typing a command on the command-line will result in your
+code being called.  Doing so will also allow you to use similar
+coding techniques to write your code.
+</p></li><li data-coord="prj1.umt:293:0"><p data-coord="prj1.umt:293:4">Look into debugging methods for your project.  Possibilities
+include:
+</p><ul data-coord="prj1.umt:296:0"><li data-coord="prj1.umt:296:0"><p data-coord="prj1.umt:296:8">Logging debugging information onto the terminal using
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/log" data-coord="prj1.umt:296:135">console.log()</a> or
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/error" data-coord="prj1.umt:296:220">console.error().</a>
+</p></li><li data-coord="prj1.umt:302:0"><p data-coord="prj1.umt:302:8">Use the chrome debugger as outlined in this
+<a href="https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27" data-coord="prj1.umt:302:164">article.</a>  Specifically, use the <samp data-coord="prj1.umt:302:196">--inspect-brk</samp> node option
+when starting your program and then visit <samp data-coord="prj1.umt:302:267">about://inspect</samp>
+in your chrome browser.
+</p><p data-coord="prj1.umt:308:1">Occasionally, there are problems getting all necessary files
+loaded in to the chrome debugger. When your program starts up
+under the debugger use the <em data-coord="prj1.umt:308:153">return from current function</em>
+control until the necessary source files are available in the
+debugger at which point you can insert necessary breakpoints.
+</p></li></ul><p data-coord="prj1.umt:314:4">It is well worth spending a few minutes setting up the chrome
+debugger as it could save you a lot of debugging time.
+</p></li><li data-coord="prj1.umt:318:0"><p data-coord="prj1.umt:318:4">Start your project by creating a new <samp data-coord="prj1.umt:318:41">prj1-sol</samp> branch of your
+<samp data-coord="prj1.umt:318:71">i444</samp> or <samp data-coord="prj1.umt:318:81">i544</samp> directory corresponding to your github
+repository. Then copy over all the provided files:
+</p><pre>    $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>i?<span class="hl num">44</span>
+    $ git checkout <span class="hl kwb">-b</span> prj1-sol <span class="hl slc">#create new branch</span>
+    $ mkdir <span class="hl kwb">-p</span> submit          <span class="hl slc">#ensure you have a submit dir</span>
+    $ <span class="hl kwb">cd</span> submit                <span class="hl slc">#enter project dir</span>
+    $ <span class="hl kwc">cp</span> <span class="hl kwb">-r</span> ~<span class="hl opt">/</span>cs544<span class="hl opt">/</span>projects<span class="hl opt">/</span>prj<span class="hl num">1</span><span class="hl opt">/</span>prj1-sol .  <span class="hl slc">#copy provided files</span>
+    $ <span class="hl kwb">cd</span> prj1-sol              <span class="hl slc">#change over to new project dir</span></pre></li><li data-coord="prj1.umt:333:0"><p data-coord="prj1.umt:333:4">Set up this project as an npm package:
+</p><pre>    npm init <span class="hl kwb">-y</span>              <span class="hl slc">#create package.json</span></pre></li><li data-coord="prj1.umt:341:0"><p data-coord="prj1.umt:341:4">Commit into git:
+</p><pre>    $ git add .   <span class="hl slc">#add contents of directory to git </span>
+    $ git commit <span class="hl kwb">-m</span> <span class="hl str">&apos;started prj1&apos;</span> <span class="hl slc">#commit locally</span>
+    $ git push <span class="hl kwb">-u</span> origin prj1-sol  <span class="hl slc">#push branch with changes</span>
+                                   <span class="hl slc">#to github</span></pre><p data-coord="prj1.umt:351:4">[To avoid loosing work, you should get into the habit of
+periodically <samp data-coord="prj1.umt:351:78">commit</samp>'ting your work and <samp data-coord="prj1.umt:351:106">push</samp>'ing it
+to github.]
+</p></li><li data-coord="prj1.umt:356:0"><p data-coord="prj1.umt:356:4">Replace the <samp data-coord="prj1.umt:356:16">XXX</samp> entries in the <samp data-coord="prj1.umt:356:37">README</samp> template and
+commit to github:
+</p><pre data-coord="prj1.umt:360:0">    $ git commit -a -m 'updated README'
+    $ git push
+</pre></li><li data-coord="prj1.umt:364:0"><p data-coord="prj1.umt:364:4">Capture an image to validate that you have set up your course VM
+as instructed.  Within a terminal window in your <samp data-coord="prj1.umt:364:122">x2go</samp> mainent
+window, type in the following commands:
+</p><pre>    $ hostname<span class="hl opt">;</span> hostname <span class="hl kwb">-I</span>
+    $ <span class="hl kwc">ls</span> ~<span class="hl opt">/</span>projects
+    $ <span class="hl kwc">ls</span> ~<span class="hl opt">/</span>cs544
+    $ <span class="hl kwc">ls</span> ~<span class="hl opt">/</span>i?<span class="hl num">44</span>
+    $ crontab <span class="hl kwb">-l</span> | <span class="hl kwc">tail</span> <span class="hl kwb">-3</span></pre><p data-coord="prj1.umt:377:4">Use an image capture program on your <strong data-coord="prj1.umt:377:41">workstation</strong> to capture an
+image of your <samp data-coord="prj1.umt:377:87">x2go</samp> mainent window into a file <samp data-coord="prj1.umt:377:121">vm.png</samp>.  The
+captured image should show the terminal window containing the
+output of the above commands as part of the <samp data-coord="prj1.umt:377:250">x2go</samp> mainent window.
+Move the <samp data-coord="prj1.umt:377:286">vm.png</samp> file from your workstation to your VM's
+<samp data-coord="prj1.umt:377:339">~/?44/submit/prj1-sol</samp> directory (you can use <samp data-coord="prj1.umt:377:386">scp</samp>; if your
+workstation cannot connect directly to your VM, then do a 2 step
+copy using <samp data-coord="prj1.umt:377:485">remote.cs</samp> as an intermediate).
+</p><p data-coord="prj1.umt:386:4">Add, commit and push the <samp data-coord="prj1.umt:386:29">vm.png</samp> file.
+</p></li><li data-coord="prj1.umt:388:0"><p data-coord="prj1.umt:388:4">Update your package.json to allow running automated tests:
+</p><ol data-coord="prj1.umt:390:0"><li data-coord="prj1.umt:390:0"><p data-coord="prj1.umt:390:8">Install testing packages:
+</p><pre>        npm <span class="hl kwc">install</span> <span class="hl kwb">-D</span> mocha chai</pre><ul data-coord="prj1.umt:397:0"><li data-coord="prj1.umt:397:0"><p data-coord="prj1.umt:397:5"><samp data-coord="prj1.umt:397:5">mocha</samp> is a popular JavaScript testing framework.  It
+requires using an external library for checking whether
+a test is successful.
+</p></li><li data-coord="prj1.umt:401:0"><p data-coord="prj1.umt:401:12"><samp data-coord="prj1.umt:401:12">chai</samp> is an external library which allows checking
+whether the result of a test is as expected.
+</p></li><li data-coord="prj1.umt:404:0"><p data-coord="prj1.umt:404:12">Since testing is a development time activity, the <samp data-coord="prj1.umt:404:62">-D</samp> option
+is used to install the packages as <strong data-coord="prj1.umt:404:114">development dependencies</strong>.
+Specifically, they will not be included within the project's
+<strong data-coord="prj1.umt:404:213">runtime dependencies</strong>.
+</p></li></ul></li><li data-coord="prj1.umt:409:0"><p data-coord="prj1.umt:409:8">Replace the <samp data-coord="prj1.umt:409:20">script</samp> property in your generated <samp data-coord="prj1.umt:409:56">package.json</samp>
+with the following:
+</p><pre>          <span class="hl kwc">&quot;scripts&quot;</span><span class="hl opt">:</span> <span class="hl kwa">{</span>
+            <span class="hl kwc">&quot;test&quot;</span><span class="hl opt">:</span> <span class="hl str">&quot;mocha test/&quot;</span><span class="hl opt">,</span>
+            <span class="hl kwc">&quot;debug-test&quot;</span><span class="hl opt">:</span> <span class="hl str">&quot;mocha --inspect-brk test/&quot;</span><span class="hl opt">,</span>
+            <span class="hl kwc">&quot;syntax-check&quot;</span><span class="hl opt">:</span>
+              <span class="hl str">&quot;shopt -s globstar; for f in **/*.mjs; do node -c $f; done;&quot;</span>
+          <span class="hl kwa">}</span><span class="hl opt">,</span></pre><ul data-coord="prj1.umt:422:0"><li data-coord="prj1.umt:422:0"><p data-coord="prj1.umt:422:14">The <samp data-coord="prj1.umt:422:18">"test"</samp> property specifies the test command.  You
+can run all the tests by simply running the command
+<samp data-coord="prj1.umt:422:135">npm test</samp>.  If you want to run only a particular
+test or test suite, change the <samp data-coord="prj1.umt:422:223">it</samp> or <samp data-coord="prj1.umt:422:231">describe</samp> to
+<samp data-coord="prj1.umt:422:252">it.only</samp> or <samp data-coord="prj1.umt:422:265">describe.only</samp> respectively.
+</p></li><li data-coord="prj1.umt:428:0"><p data-coord="prj1.umt:428:14">The <samp data-coord="prj1.umt:428:18">"debug-test"</samp> property allows attaching a debugger
+when testing.  You can run this script using the command
+<samp data-coord="prj1.umt:428:148">npm run debug-test</samp>.
+</p></li><li data-coord="prj1.umt:432:0"><p data-coord="prj1.umt:432:14">You may make changes in several files and then find
+tests are broken because of a syntax error in one of the
+files.  The error messages are not particularly useful
+in identifying the syntax error.  This <samp data-coord="prj1.umt:432:238">"syntax-check"</samp>
+property provides a script which runs syntax checks for
+all the <samp data-coord="prj1.umt:432:333">.mjs</samp> files in your project.  You can run this
+script using the command <samp data-coord="prj1.umt:432:413">npm run syntax-check</samp>.
+</p></li></ul></li></ol></li><li data-coord="prj1.umt:440:0"><p data-coord="prj1.umt:440:4">Install course library dependencies:
+</p><pre>    <span class="hl opt">$</span> npm install <span class="hl opt">~</span><span class="hl kwc">/cs544/li</span><span class="hl opt">b/</span>cs544<span class="hl opt">-</span>js<span class="hl opt">-</span>utils <span class="hl opt">\</span>
+                  <span class="hl opt">~</span><span class="hl kwc">/cs544/li</span><span class="hl opt">b/</span>cs544<span class="hl opt">-</span>node<span class="hl opt">-</span>utils</pre></li><li data-coord="prj1.umt:447:0"><p data-coord="prj1.umt:447:4">You should be able to run the project, but except for
+error checking performed by <samp data-coord="prj1.umt:447:90">main.mjs</samp>, any input will
+simply return empty results until you replace the TODO sections
+with suitable code.
+</p><pre>    <span class="hl opt">$ ./</span>index<span class="hl opt">.</span>mjs 
+    Allowed commands are
+       account id<span class="hl opt">=</span>ACCOUNT_ID
+    <span class="hl opt">...</span>
+    <span class="hl opt">&gt;&gt;</span></pre><p data-coord="prj1.umt:461:4">You should also be able to run the provided tests, but most tests
+will fail.
+</p><pre data-coord="prj1.umt:465:0">    $ npm test
+</pre></li><li data-coord="prj1.umt:469:0"><p data-coord="prj1.umt:469:4">Open your copy of the <samp data-coord="prj1.umt:469:26">accounts.mjs</samp> file in your project
+directory.  It contains
+</p><ol data-coord="prj1.umt:472:0"><li data-coord="prj1.umt:472:0"><p data-coord="prj1.umt:472:8">Imports of auxiliary modules.
+</p></li><li data-coord="prj1.umt:474:0"><p data-coord="prj1.umt:474:8">A comment documenting the data model.
+</p></li><li data-coord="prj1.umt:476:0"><p data-coord="prj1.umt:476:8">A default export of a <samp data-coord="prj1.umt:476:30">makeAccounts()</samp> function which is set
+up to return an instance of the <samp data-coord="prj1.umt:476:109">Accounts</samp> <code><span class="hl kwa">class</span></code>.
+</p></li><li data-coord="prj1.umt:479:0"><p data-coord="prj1.umt:479:8">Skeleton definitions for the <samp data-coord="prj1.umt:479:37">Accounts</samp>, <samp data-coord="prj1.umt:479:49">Account</samp>
+and <samp data-coord="prj1.umt:479:71">Transaction</samp> classes.
+</p></li></ol><p data-coord="prj1.umt:483:4">Some points worth making about the provided code:
+</p><ul data-coord="prj1.umt:485:0"><li data-coord="prj1.umt:485:0"><p data-coord="prj1.umt:485:8">The reason for having the exported <samp data-coord="prj1.umt:485:43">makeAccounts()</samp>
+function is to ensure that the <samp data-coord="prj1.umt:485:99">Accounts</samp> class is not
+exposed at all to the clients of the accounts module, except
+via the methods on its instances.
+</p></li><li data-coord="prj1.umt:490:0"><p data-coord="prj1.umt:490:8">For error handling, the convention used is that errors are
+returned by returning an object having an <samp data-coord="prj1.umt:490:117">errors</samp> property
+containing a list of error objects, each having a <samp data-coord="prj1.umt:490:193">message</samp>
+property giving a suitable error message and possibly a
+<samp data-coord="prj1.umt:490:275">options</samp> property.  A particularly important option is <samp data-coord="prj1.umt:490:331">code</samp>
+which returns a code associated with the error.
+</p><p data-coord="prj1.umt:497:8">The <a href="../../lib/cs544-js-utils/src/utils.mjs?colorize=true" data-coord="prj1.umt:497:69">utils.mjs</a> from the <samp data-coord="prj1.umt:497:88">cs544-js-utils</samp> library package provides an
+<samp data-coord="prj1.umt:497:134">AppErrors</samp> class which can be used to construct errors
+objects.
+</p></li></ul></li><li data-coord="prj1.umt:502:0"><p data-coord="prj1.umt:502:4">Implement the constructor for <samp data-coord="prj1.umt:502:34">Accounts</samp>.  You will need to
+track the contained <samp data-coord="prj1.umt:502:88">Account</samp> objects.
+</p></li><li data-coord="prj1.umt:505:0"><p data-coord="prj1.umt:505:4">Implement the constructor for <samp data-coord="prj1.umt:505:34">Account</samp>.  The <samp data-coord="prj1.umt:505:50">genId()</samp> function
+from <a href="./prj1-sol/src/util.mjs?colorize=true" data-coord="prj1.umt:505:119">util.mjs</a> can be used to generate
+the ID for a new account.  The instance will also need to track
+its <samp data-coord="prj1.umt:505:228">holderId</samp> and its transactions.
+</p></li><li data-coord="prj1.umt:510:0"><p data-coord="prj1.umt:510:4">Implement the <samp data-coord="prj1.umt:510:18">newAccount()</samp> method in the <samp data-coord="prj1.umt:510:47">Accounts</samp> class.  It
+will need to validate that <samp data-coord="prj1.umt:510:100">params.holderId</samp> is specified; if not
+it should return a <samp data-coord="prj1.umt:510:162">BAD_REQ</samp> error.  If everything is ok, it will
+need to create a new <samp data-coord="prj1.umt:510:234">Account</samp> instance and return its ID.  The
+<samp data-coord="prj1.umt:510:281">Accounts</samp> instance will also need to track the newly created
+<samp data-coord="prj1.umt:510:347">Account</samp> instance.
+</p></li><li data-coord="prj1.umt:517:0"><p data-coord="prj1.umt:517:4">Implement the <samp data-coord="prj1.umt:517:18">account()</samp> method in the <samp data-coord="prj1.umt:517:44">Accounts</samp> class.  It
+will need to verify that <samp data-coord="prj1.umt:517:95">params.id</samp> is specified returning a
+<samp data-coord="prj1.umt:517:136">BAD_REQ</samp> if that is not the case.  Otherwise, verify that
+<samp data-coord="prj1.umt:517:199">params.id</samp> specifies the ID of an existing account tracked
+by the <samp data-coord="prj1.umt:517:270">Accounts</samp> instance; if not return a <samp data-coord="prj1.umt:517:307">NOT_FOUND</samp> error,
+else return the existing account instance.
+</p></li><li data-coord="prj1.umt:524:0"><p data-coord="prj1.umt:524:4">Implement the <samp data-coord="prj1.umt:524:18">info()</samp> method in the <samp data-coord="prj1.umt:524:41">Account</samp> class.  For
+now, simply hardcode the returned balance as 0.  You should
+now be able to pass the tests in <a href="prj1-sol/test/basic-accounts.mjs?colorize=true" data-coord="prj1.umt:524:218">basic-accounts.mjs.</a>
+</p></li><li data-coord="prj1.umt:529:0"><p data-coord="prj1.umt:529:4">Before dealing with transactions, it may be a good idea to
+create a <samp data-coord="prj1.umt:529:76">Transaction</samp> class to encapsulate all
+<samp data-coord="prj1.umt:529:119">Transaction</samp> logic.  Internally within the <samp data-coord="prj1.umt:529:163">Transaction</samp>
+class you can represent the transaction amount in "cents", but
+you should set it up so that the amount is represented
+externally as a regular <samp data-coord="prj1.umt:529:332">Number</samp>.
+</p><p data-coord="prj1.umt:536:4">The <samp data-coord="prj1.umt:536:8">Transaction</samp> instance should also provide a way for
+comparing two transactions by <samp data-coord="prj1.umt:536:95">date</samp>
+</p></li><li data-coord="prj1.umt:539:0"><p data-coord="prj1.umt:539:4">Implement the <samp data-coord="prj1.umt:539:18">newAct()</samp> method.  After validating the parameters,
+create a new <samp data-coord="prj1.umt:539:88">Transaction</samp> and track it within the <samp data-coord="prj1.umt:539:126">Account</samp> instance.
+You may want to keep the transactions sorted by date.
+</p><p data-coord="prj1.umt:543:4">You should now be able to run most of the tests in
+<a href="prj1-sol/test/transactions.mjs?colorize=true" data-coord="prj1.umt:543:107">transactions.mjs.</a>
+</p></li><li data-coord="prj1.umt:546:0"><p data-coord="prj1.umt:546:4">Implement the account balance which was previously
+hardcoded to 0.  You can do so by simply adding
+up all the transaction amounts.  Note that the
+addition should be done using cents, but the
+final balance should be set to a <samp data-coord="prj1.umt:546:244">Number</samp>.
+</p><p data-coord="prj1.umt:552:4">You should now be able to run all the tests in
+<a href="prj1-sol/test/transactions.mjs?colorize=true" data-coord="prj1.umt:552:103">transactions.mjs.</a>
+</p></li><li data-coord="prj1.umt:555:0"><p data-coord="prj1.umt:555:4">Implement the <samp data-coord="prj1.umt:555:18">query()</samp> method.  First validate the provided
+parameters.  If they validate then use the provided parameters to
+filter the transactions.  Finally, return the transactions
+specified by the <samp data-coord="prj1.umt:555:219">index</samp> and <samp data-coord="prj1.umt:555:231">count</samp> parameters.
+</p><p data-coord="prj1.umt:560:4">You should now be able to run all the tests in
+<a href="prj1-sol/test/query.mjs?colorize=true" data-coord="prj1.umt:560:96">query.mjs.</a>
+</p></li><li data-coord="prj1.umt:563:0"><p data-coord="prj1.umt:563:4">Finally, implement the <samp data-coord="prj1.umt:563:27">statement()</samp> method.  This
+is very similar to the <samp data-coord="prj1.umt:563:82">query()</samp> method but has
+the additional requirement of computing the account
+balance after each transaction.
+</p></li><li data-coord="prj1.umt:568:0"><p data-coord="prj1.umt:568:4">Iterate until you meet all requirements and pass
+all tests.
+</p></li></ol><p data-coord="prj1.umt:571:0">It is a good idea to commit and push your project periodically
+whenever you have made significant changes.  When it is complete
+please follow the procedure given in the
+<em data-coord="prj1.umt:571:218"><a href="../../misc/vm-setup/git-setup.html#prj-submit" data-coord="prj1.umt:571:218">git setup</a></em> document
+to submit your project to the TA via github.
+</p></section></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>

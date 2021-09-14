@@ -1,0 +1,47 @@
+                      S l i d e s
+
+
+Course slides will usually be up around an hour before class.  If you
+would like to print them out, it is probably a good idea to wait
+around a week or so after the class which covered the slides as they
+may be corrected or enhanced.
+
+
+ ........................................................................................................................
+          Source                                                     HTML                                                         PDF
+ ------------------------------------------------------------------+------------------------------------------------------------+------------------------------------------------------------
+   .<./syllabus/syllabus.umt> syllabus.umt                           .<./syllabus/syllabus.html> syllabus.html                    .<./syllabus/syllabus.pdf> syllabus.pdf
+   .<./js-quick-start/js-quick-start.umt> js-quick-start.umt         .<./js-quick-start/js-quick-start.html> js-quick-start.html  .<./js-quick-start/js-quick-start.pdf> js-quick-start.pdf
+   .<./grep.js/grep.js.umt> grep.js.umt                              .<./grep.js/grep.js.html> grep.js.html                       .<./grep.js/grep.js.pdf> grep.js.pdf
+   .<./js-intro/js-intro.umt> js-intro.umt                           .<./js-intro/js-intro.html> js-intro.html                    .<./js-intro/js-intro.pdf> js-intro.pdf
+   .<./js-basics/js-basics.umt> js-basics.umt                        .<./js-basics/js-basics.html> js-basics.html                 .<./js-basics/js-basics.pdf> js-basics.pdf
+ ........................................................................................................................
+
+%%%
+
+   .<./destructuring/destructuring.umt> destructuring.umt            .<./destructuring/destructuring.html> destructuring.html     .<./destructuring/destructuring.pdf> destructuring.pdf
+   .<./regex/regex.umt> regex.umt                                    .<./regex/regex.html> regex.html                             .<./regex/regex.pdf> regex.pdf
+   .<./async/async.umt> async.umt                                    .<./async/async.html> async.html                             .<./async/async.pdf> async.pdf
+   .<./user-store/user-store.umt> user-store.umt                     .<./user-store/user-store.html> user-store.html              .<./user-store/user-store.pdf> user-store.pdf
+   .<./modules/modules.umt> modules.umt                              .<./modules/modules.html> modules.html                       .<./modules/modules.pdf> modules.pdf
+   .<./functions/functions.umt> functions.umt                        .<./functions/functions.html> functions.html                 .<./functions/functions.pdf> functions.pdf
+   .<./objects/objects.umt> objects.umt                              .<./objects/objects.html> objects.html                       .<./objects/objects.pdf> objects.pdf
+   .<./http/http.umt> http.umt                                       .<./http/http.html> http.html                                .<./http/http.pdf> http.pdf
+   .<./user-ws/user-ws.umt> user-ws.umt                              .<./user-ws/user-ws.html> user-ws.html                       .<./user-ws/user-ws.pdf> user-ws.pdf
+   .<./browser-tech/browser-tech.umt> browser-tech.umt               .<./browser-tech/browser-tech.html> browser-tech.html        .<./browser-tech/browser-tech.pdf> browser-tech.pdf
+   .<./auth/auth.umt> auth.umt                                       .<./auth/auth.html> auth.html                                .<./auth/auth.pdf> auth.pdf
+   .<./reactjs/reactjs.umt> reactjs.umt                              .<./reactjs/reactjs.html> reactjs.html                       .<./reactjs/reactjs.pdf> reactjs.pdf
+   .<./headers/headers.umt> headers.umt                              .<./headers/headers.html> headers.html                       .<./headers/headers.pdf> headers.pdf
+   .<./js-bad-parts/js-bad-parts.umt> js-bad-parts.umt               .<./js-bad-parts/js-bad-parts.html> js-bad-parts.html        .<./js-bad-parts/js-bad-parts.pdf> js-bad-parts.pdf
+   .<./reactjs2/reactjs2.umt> reactjs2.umt                              .<./reactjs2/reactjs2.html> reactjs2.html                       .<./reactjs2/reactjs2.pdf> reactjs2.pdf
+   .<./security/security.umt> security.umt                           .<./security/security.html> security.html                    .<./security/security.pdf> security.pdf
+   .<./misc/misc.umt> misc.umt                                       .<./misc/misc.html> misc.html                                .<./misc/misc.pdf> misc.pdf
+   .<./apparch/apparch.umt> apparch.umt                              .<./apparch/apparch.html> apparch.html                       .<./apparch/apparch.pdf> apparch.pdf
+
+.<./mustache/mustache.umt> mustache.umt                           .<./mustache/mustache.html> mustache.html                    .<./mustache/mustache.pdf> mustache.pdf
+   .<./users-ss/users-ss.umt> users-ss.umt                           .<./users-ss/users-ss.html> users-ss.html                    .<./users-ss/users-ss.pdf> users-ss.pdf
+   .<./jquery/jquery.umt> jquery.umt                                 .<./jquery/jquery.html> jquery.html                          .<./jquery/jquery.pdf> jquery.pdf
+   .<./users-app/users-app.umt> users-app.umt                        .<./users-app/users-app.html> users-app.html                 .<./users-app/users-app.pdf> users-app.pdf
+   .<./db/db.umt> db.umt                                             .<./db/db.html> db.html                                      .<./db/db.pdf> db.pdf
+%%%
+

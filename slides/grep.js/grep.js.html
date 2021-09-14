@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang='en-US'>
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" />
+  <title>CS 544: JavaScript Grep</title>
+<link href="grep.js/hl-fine_blue.css" rel="stylesheet"/>
+</head>
+<body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hw/index.html">Homework</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+  <div class="slide-controls" style="display: none;">
+    <span class="float-left">
+      <span class="first-control">
+	<a href="#">
+	  <img src="../../assets/images/go-first.png">
+	</a>
+      </span>
+      <span class="previous-control">
+	<a href="#">
+	  <img src="../../assets/images/go-previous.png">
+	</a>
+      </span>
+    </span>
+    <span class="float-right">
+      <span class="next-control">
+	<a href="#">
+	  <img src="../../assets/images/go-next.png">
+	</a>
+      </span>
+      <span class="last-control">
+	<a href="#">
+	  <img src="../../assets/images/go-last.png">
+	</a>
+      </span>
+    </span>
+    <div class="slide-end">&nbsp;<br></div> <!-- hack -->
+  </div>
+<div class="content">
+<section data-coord="grep.js.umt:1:0"><h1 data-coord="grep.js.umt:1:0">JavaScript Grep</h1><section class="umt-slide" data-coord="grep.js.umt:3:0"><h2 data-coord="grep.js.umt:3:0">Overview</h2><ul data-coord="grep.js.umt:6:0"><li data-coord="grep.js.umt:6:0"><p data-coord="grep.js.umt:6:4">Crude JS equivalent of Unix command-line utility.
+</p></li><li data-coord="grep.js.umt:8:0"><p data-coord="grep.js.umt:8:4">Illustrates multiple JS features including modules and
+asynchronicity which were not covered in the
+<em data-coord="grep.js.umt:8:152"><a href="../js-quick-start/js-quick-start.pdf" data-coord="grep.js.umt:8:152">Quick Start</a></em>.
+</p></li><li data-coord="grep.js.umt:12:0"><p data-coord="grep.js.umt:12:4">To keep simple, code duplication, no real error architecture.
+</p></li><li data-coord="grep.js.umt:14:0"><p data-coord="grep.js.umt:14:4">Command-line server-side program: fully synchronous.
+</p></li><li data-coord="grep.js.umt:16:0"><p data-coord="grep.js.umt:16:4">Browser based program: illustrates asynchronous code.
+</p></li><li data-coord="grep.js.umt:18:0"><p data-coord="grep.js.umt:18:4">Function <samp data-coord="grep.js.umt:18:13">jgrep(regex, content)</samp> is core of program and
+used by both server-side and browser programs.
+</p></li><li data-coord="grep.js.umt:21:0"><p data-coord="grep.js.umt:21:4"><samp data-coord="grep.js.umt:21:4">jgrep()</samp> function is pure.
+</p></li></ul></section><section class="umt-slide" data-coord="grep.js.umt:23:0"><h2 data-coord="grep.js.umt:23:0">Server Side Program Log</h2><p data-coord="grep.js.umt:26:0">Truncation of long lines indicated by <samp data-coord="grep.js.umt:26:38">...</samp>.
+</p><pre>$ .<span class="hl opt">/</span>main.mjs 
+main.mjs REGEX PATH
+
+$ .<span class="hl opt">/</span>main.mjs <span class="hl str">&apos;[a&apos;</span> main.mjs
+bad regex <span class="hl str">&quot;[a&quot;</span>
+
+$ .<span class="hl opt">/</span>main.mjs <span class="hl str">&apos;for&apos;</span> Main.mjs
+cannot <span class="hl kwb">read</span> Main.mjs<span class="hl opt">:</span> ENOENT<span class="hl opt">:</span> no such <span class="hl kwc">file</span> ...
+
+$ .<span class="hl opt">/</span>main.mjs <span class="hl str">&apos;for&apos;</span> main.mjs
+main.mjs<span class="hl opt">:</span><span class="hl num">47</span><span class="hl opt">:</span>   <span class="hl kwa">for</span> <span class="hl opt">(</span>const result of results<span class="hl opt">) {</span></pre></section><section class="umt-slide" data-coord="grep.js.umt:43:0"><h2 data-coord="grep.js.umt:43:0">Server Side Program Log Continued</h2><p data-coord="grep.js.umt:46:0">Truncation of long lines indicated by <samp data-coord="grep.js.umt:46:38">...</samp>.
+</p><pre>$ .<span class="hl opt">/</span>main.mjs <span class="hl str">&apos;\(\`&apos;</span> main.mjs
+main.mjs<span class="hl opt">:</span><span class="hl num">27</span><span class="hl opt">:</span>   <span class="hl kwa">if</span> <span class="hl opt">(!</span>regex<span class="hl opt">)</span> error<span class="hl opt">(</span><span class="hl str">`bad regex ...</span>
+<span class="hl str">main.mjs:41:     error(`</span>cannot <span class="hl kwb">read</span> <span class="hl kwd">${path}</span><span class="hl opt">:</span>...
+main.mjs<span class="hl opt">:</span><span class="hl num">49</span><span class="hl opt">:</span>     console.log<span class="hl opt">(</span><span class="hl str">`</span><span class="hl ipl">${path}</span><span class="hl str">:${line...</span>
+<span class="hl str">main.mjs:60:   error(`</span>$<span class="hl opt">{</span>Path.<span class="hl kwc">basename</span><span class="hl opt">(</span>proces...
+
+$ .<span class="hl opt">/</span>main.mjs <span class="hl str">&apos;\$\{.+\}&apos;</span> main.mjs
+main.mjs<span class="hl opt">:</span><span class="hl num">27</span><span class="hl opt">:</span>   <span class="hl kwa">if</span> <span class="hl opt">(!</span>regex<span class="hl opt">)</span> error<span class="hl opt">(</span><span class="hl str">`bad regex ...</span>
+<span class="hl str">main.mjs:41:     error(`</span>cannot <span class="hl kwb">read</span> <span class="hl kwd">${path}</span><span class="hl opt">:</span>...
+main.mjs<span class="hl opt">:</span><span class="hl num">49</span><span class="hl opt">:</span>     console.log<span class="hl opt">(</span><span class="hl str">`</span><span class="hl ipl">${path}</span><span class="hl str">:${line...</span>
+<span class="hl str">main.mjs:60:   error(`</span>$<span class="hl opt">{</span>Path.<span class="hl kwc">basename</span><span class="hl opt">(</span>proces...
+$</pre></section><section class="umt-slide" data-coord="grep.js.umt:64:0"><h2 data-coord="grep.js.umt:64:0">Server Side Program Implementation</h2><ul data-coord="grep.js.umt:68:0"><li data-coord="grep.js.umt:68:0"><p data-coord="grep.js.umt:68:4"><a href="./code/main.mjs?colorize=true" data-coord="grep.js.umt:68:37">main.mjs</a> main program.
+</p></li><li data-coord="grep.js.umt:70:0"><p data-coord="grep.js.umt:70:4"><a href="./code/jgrep.mjs?colorize=true" data-coord="grep.js.umt:70:38">jgrep.mjs</a> jgrep core
+used by both server-side and browser programs.
+</p></li><li data-coord="grep.js.umt:73:0"><p data-coord="grep.js.umt:73:4"><a href="./code/common.mjs?colorize=true" data-coord="grep.js.umt:73:39">common.mjs</a> trivial
+utilities used by both server-side and browser programs.
+</p></li></ul></section><section class="umt-slide" data-coord="grep.js.umt:77:0"><h2 data-coord="grep.js.umt:77:0">Server-Side Main Program Startup</h2><ul data-coord="grep.js.umt:80:0"><li data-coord="grep.js.umt:80:0"><p data-coord="grep.js.umt:80:4"><samp data-coord="grep.js.umt:80:4">#!</samp> shebang line is a Unix feature which allows
+script execution.
+</p></li><li data-coord="grep.js.umt:83:0"><p data-coord="grep.js.umt:83:4">The portion of the line after the <samp data-coord="grep.js.umt:83:38">#!</samp> is the absolute path for an
+interpreter which the kernel sets up to run with the script file
+passed in as input to the interpreter.
+</p></li><li data-coord="grep.js.umt:87:0"><p data-coord="grep.js.umt:87:4">Use <samp data-coord="grep.js.umt:87:8">/usr/bin/env</samp> as interpreter, so that it can find nodejs
+which may be in a non-standard location.
+</p></li><li data-coord="grep.js.umt:90:0"><p data-coord="grep.js.umt:90:4">When nodejs starts up, it reads file as program to be interpreted.
+</p></li><li data-coord="grep.js.umt:92:0"><p data-coord="grep.js.umt:92:4">Normally a <samp data-coord="grep.js.umt:92:15">#</samp> character would cause an error in a nodejs file.
+nodejs ignores it only when it is on the first line of a file.
+</p></li><li data-coord="grep.js.umt:95:0"><p data-coord="grep.js.umt:95:4"><samp data-coord="grep.js.umt:95:4">process.argv</samp> contains command-line args: <samp data-coord="grep.js.umt:95:47">argv[0]: nodejs path,
+    </samp>argv[1]: script path`.  "Real" script args start at argv[2].
+</p></li></ul></section><section class="umt-slide" data-coord="grep.js.umt:99:0"><h2 data-coord="grep.js.umt:99:0">Client Side Implementation</h2><ul data-coord="grep.js.umt:102:0"><li data-coord="grep.js.umt:102:0"><p data-coord="grep.js.umt:102:4">Illustrates the use of <samp data-coord="grep.js.umt:102:27">async</samp> and <samp data-coord="grep.js.umt:102:39">await</samp> for fetching
+remote content.
+</p></li><li data-coord="grep.js.umt:105:0"><p data-coord="grep.js.umt:105:4">Shows the use of anonymous functions for event handlers.
+</p></li><li data-coord="grep.js.umt:107:0"><p data-coord="grep.js.umt:107:4"><em data-coord="grep.js.umt:107:12"><a href="code" data-coord="grep.js.umt:107:12">Running app</a></em>.</p></li></ul></section></section>
+</div> <!-- #content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../assets/scripts/slide-controls.js"></script>
+<script src="../../assets/scripts/loginAction.js"></script>
+</body>
+</html>

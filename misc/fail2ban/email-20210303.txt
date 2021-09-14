@@ -1,0 +1,110 @@
+Subject:	[CS SYSADMIN]: LOGIN ISSUES - remote.cs
+Date:	Wed, 3 Mar 2021 12:57:17 -0500
+From:	CS Sysadmin <csadmin@binghamton.edu>
+To:	cs_classroom_users@cs.binghamton.edu
+
+All,
+
+Please read the following completely - as if there will be a quiz afteward...
+
+-CS Sysadmin
+-----
+We seem to be having a higher than usual number of remote.cs lockouts
+this semester, so I will share some information that should help:
+
+Passwords - When you get locked out of remote.cs, it is because you
+mis-typed your password too many times.  At the beginning of each
+semester, when your CS LDAP account is reactivated, you receive an
+email with a random password.  This password is difficult to remember
+and difficult to type correctly.  Also...  Computer Security Best
+Practices indicate that you should change this password immediately -
+any password sent by email is stored on at least one mail server and
+on your laptop/phone and is thus potentially compromised.  If you have
+not already done so, please go to http://sysadmin.cs.binghamton.edu
+and use the first two links to change or reset your password.
+
+Password Complexity:  The current complexity requirement for CS LDAP
+passwords is:
+9 or more charaters
+At least one character from each of the 4 character classes:
+uppercase (A-Z), lowercase (a-z), digit (0-9), and punctuation
+(!@#$%^&*-_=+) and all the others including parentheses.  
+
+Given this requirement, it should be easy to create a password that is
+easier to type and remember than the initial random password that is
+sent out.
+
+Testing your password: You can use the 'Change Password' link on the
+Sysadmin website to test your password.  When you click this link you
+must enter a valid userid and password to get the the next page.  If
+you get to the next page, the password you typed is valid.  It is not
+necessary to actually fill in the form to change your password.
+
+If you can't get to the next page, cancel out and use the 'Lost
+Password' link to reset your password.
+
+SSH Clients:
+Any 'well written' SSH client should work.  However, there is some
+evidence that some recent Windows SSH clients are maybe not so well
+written.  In particular, people seem to be having a lot of trouble
+with the command line SSH client included with the Windows Linux
+Environment.  I am also suspicious of the atom.io client, but I have
+not had time to test it.
+
+The problem with these clients is that if the password you type does
+not result in a successful login, the program sends it again, perhaps
+more than once.  It is these multiple failed login attempts that
+causes you to be blocked.  At this time, the Windows clients that I
+have confidence in are PUTTY, Bitvise, and WinSCP.  I have not seen
+any issues with SSH clients for Linux or Apple.
+
+Roommates - If you share a WiFi router with other CS students in an
+apartment our house...
+
+When you get locked out of remote.cs, the lock-out is based in the
+Public IPv4 Address that you are connecting from.  WiFi routers use a
+network function called NAT to make all connected devices appear to
+the outside network as a single Public IPv4 Address.  If somebody else
+using the same WiFi router gets locked out of remote.cs, you are also
+locked out until the Public IPv4 Address of your WiFi router is
+unblocked.  Connection Alternatives:
+
+If you are connected to the Campus VPN (Pulse Secure), password
+mistakes will not cause you to be locked out of remote.cs.  Thus, if
+you get locked out by direct connection, you can still get in by
+connecting to the VPN.
+
+In a pinch, you can also switch to the Mobile Hotspot on your phone.
+
+How to get help:
+
+If you need to contact me about remote.cs connection issues, please include:
+
+Your Public IPv4 Address - as reported by sites like
+http://findmyip.org or http://whatsmyipaddress.
+Which OS (Windows, Linux, Mac) and which SSH client you were using.
+Whether or not you were using the VPN, or if you were able to log
+into remote.cs when you were connected to the VPN.
+
+Why do I get locked out?
+
+The remote.cs SSH servers are actually under constant attack from
+malicious actors world-wide who try to guess a valid userid/password
+combination so they can get into our systems and cause trouble.  These
+are bot-style attacks that continuously initiate many login attempts
+per minute.
+
+Our current solution to this issue is to use a tool called Fail2Ban
+which is run on all of our remote.cs systems.  Fail2Ban monitors log
+files for the IP addresses of failed login attempts.  When a
+configurable threshold is met, Fail2Ban blocks the offending IP
+address by creating a Linux Firewall rule that remains for a
+configurable length of time.
+
+The Fail2Ban criteria we are currently using were negotiated with ITS
+Network Security.  Detection is based on 3 failed authentication
+attempts within 5 minutes.  The IP address block is for 24 hours.
+During that time, connection attempts are silently ignored.
+
+Using these criteria, there are currently about 350 IP addresses
+blocked for SSH to remote.cs.

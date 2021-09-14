@@ -1,0 +1,207 @@
+# run cli interface: prints help message on startup
+$ ./index.mjs 
+Allowed commands are
+  account id=ACCOUNT_ID
+      Return account { id, holderId, balance} for ACCOUNT_ID.
+  help: 
+      Print this help message.
+  new-account holderId=HOLDER_ID
+      Create a new account for holder HOLDER_ID, returning ID
+      of newly created account.
+  new-act id=ACCOUNT_ID amount=AMOUNT date=YYYY-MM-DD memo=MEMO
+      Add transaction to account ACCOUNT_ID and return ID of new
+      transaction.
+  query id=ACCOUNT_ID [date=YYYY-MM-DD] [count=COUNT] [index=INDEX]
+            [actId=ACT_ID] [memo=MEMO_SUBSTR]
+      Filter transactions for account specified by ACCOUNT_ID
+      by optional filter parameters data, actId, memo and
+      return at most COUNT (default 5) transactions 
+      starting at index INDEX (default 0).
+  statement id=ACCOUNT_ID fromDate=YYYY-MM-DD toDate=YYYYY-MM-DD
+      Return transactions for account ACCOUNT_ID between 
+      optional fromDate to toDate (inclusive).  Each transaction 
+      includes the account balance after that transaction.
+
+# missing holderId
+>> new-account 
+account holderId must be provided
+
+# all arguments must be provided as KEY=VALUE
+>> new-account zerksis
+invalid command argument at  zerksis
+
+# prints out ID of newly created account
+>> new-account holderId=zerksis
+"0.19"
+
+# must specify account ID to create a transaction
+>> new-act 
+account id must be provided
+
+# must also specify amount, date and memo
+>> new-act id=0.19
+bad amount "undefined": must be number with 2 decimals
+bad date "undefined"
+memo required
+
+# returns ID of new transaction
+>> new-act id=0.19 amount=1.11 date=2021-01-01 memo="Initial transaction"
+"1.24"
+
+# look up account: balance reflects single transaction
+>> account id=0.19
+{
+  "id": "0.19",
+  "holderId": "zerksis",
+  "balance": 1.11
+}
+
+# add another deposit
+>> new-act id=0.19 amount=2.22 date=2021-01-01 memo="another transaction"
+"2.94"
+
+# reflected in balance
+>> account id=0.19
+{
+  "id": "0.19",
+  "holderId": "zerksis",
+  "balance": 3.33
+}
+
+# bad amount and date
+>> new-act id=0.19 amount=2.2 date=2021-02-29 memo="another transaction"
+bad amount "2.2": must be number with 2 decimals
+bad date "2021-02-29"
+
+# add another deposit
+>> new-act id=0.19 amount=2.22 date=2021-02-28 memo="not a leap year"
+"3.74"
+
+# query must specify account ID
+>> query actId=2.94
+account id must be provided
+
+# query for specific transaction
+>> query id=0.19 actId=2.94
+[
+  {
+    "id": "2.94",
+    "amount": 2.22,
+    "date": "2021-01-01",
+    "memo": "another transaction"
+  }
+]
+
+# query for transactions on specific date
+>> query id=0.19 date=2021-01-01
+[
+  {
+    "id": "1.24",
+    "amount": 1.11,
+    "date": "2021-01-01",
+    "memo": "Initial transaction"
+  },
+  {
+    "id": "2.94",
+    "amount": 2.22,
+    "date": "2021-01-01",
+    "memo": "another transaction"
+  }
+]
+
+# query for transactions on specific date have memoText in memo
+# (case insensitive)
+>> query id=0.19 date=2021-01-01 memoText=init
+[
+  {
+    "id": "1.24",
+    "amount": 1.11,
+    "date": "2021-01-01",
+    "memo": "Initial transaction"
+  }
+]
+
+# statement over all transactions
+# as opposed to query, statement shows account balance after each transaction
+>> statement id=0.19
+[
+  {
+    "id": "1.24",
+    "amount": 1.11,
+    "date": "2021-01-01",
+    "memo": "Initial transaction",
+    "balance": 1.11
+  },
+  {
+    "id": "2.94",
+    "amount": 2.22,
+    "date": "2021-01-01",
+    "memo": "another transaction",
+    "balance": 3.33
+  },
+  {
+    "id": "3.74",
+    "amount": 2.22,
+    "date": "2021-02-28",
+    "memo": "not a leap year",
+    "balance": 5.55
+  }
+]
+
+# statement from opening account to specific date
+>> statement id=0.19 toDate=2021-01-31
+[
+  {
+    "id": "1.24",
+    "amount": 1.11,
+    "date": "2021-01-01",
+    "memo": "Initial transaction",
+    "balance": 1.11
+  },
+  {
+    "id": "2.94",
+    "amount": 2.22,
+    "date": "2021-01-01",
+    "memo": "another transaction",
+    "balance": 3.33
+  }
+]
+
+# statement from specific date to current
+>> statement id=0.19 fromDate=2021-02-01
+[
+  {
+    "id": "3.74",
+    "amount": 2.22,
+    "date": "2021-02-28",
+    "memo": "not a leap year",
+    "balance": 5.55
+  }
+]
+
+# withdraw some money
+>> new-act id=0.19 amount=-4.44 date=2021-02-15 memo="have to spend sometimes"
+"4.55"
+
+# withdrawal reflected in statement
+>> statement id=0.19 fromDate=2021-02-01
+[
+  {
+    "id": "4.55",
+    "amount": -4.44,
+    "date": "2021-02-15",
+    "memo": "have to spend sometimes",
+    "balance": -1.11
+  },
+  {
+    "id": "3.74",
+    "amount": 2.22,
+    "date": "2021-02-28",
+    "memo": "not a leap year",
+    "balance": 1.11
+  }
+]
+
+# use control-D to terminate program
+>> ^D
+$

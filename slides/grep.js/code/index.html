@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Online Grep</title>
+    <link rel="stylesheet" href="../../../assets/styles/projects.css"/>
+    <style>
+      .matchLine {
+	background: beige;
+      }
+      .matchContent {
+	background: cyan;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Online Grep</h1>
+    <div class="form">
+      <label for="regex">Regex</label>
+      <div>
+	<input id="regex"/><br/>
+	<span class="error"></span>
+      </div>
+      <label for="url">URL</label>
+      <div>
+	<input id="url"/><br/>
+	<span class="error"></span>
+      </div>
+      <label for="content">Content</label>
+      <pre contentEditable="true" id="content"></pre>
+    </div>
+    <script type="module" src="index.mjs"></script>
+  </body>
+</html>

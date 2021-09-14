@@ -1,0 +1,210 @@
+:root {
+  /*
+  --base-color: 68, 68, 204;
+  --nav-bg-color: rgba(var(--base-color), 1.0);
+  --hdr-color: rgba(var(--base-color), 1.0);
+  --color09: rgb(var(--base-color));
+  --color01: rgba(var(--base-color), 0.05);
+  --color02: rgba(var(--base-color), 0.1);
+  --color03: rgba(var(--base-color), 0.15);
+  --color04: rgba(var(--base-color), 0.3);
+ */
+  --nav-bg-color: #88f;
+  --hdr-color: rgb(68, 68, 204);
+  --max-width: 65rem;
+}
+
+
+body {
+  max-width: var(--max-width);
+  font-size: 100%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--nav-bg-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  max-width: var(--max-width);
+}
+
+
+
+
+nav li a {
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+nav li a:visited {
+  color: white;
+}
+
+nav li a:hover {
+  color: white;
+  background-color: #222;
+}
+
+nav li a.material-icons {
+  font-size: 110%;
+}
+
+.content {
+  margin: 1em;
+  padding-top: 3em;
+}
+
+h1 {
+  color: var(--hdr-color);
+  text-align: center;
+  font-size: 200%;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  color: #527bdd;
+  text-align: center;
+  font-size: 150%;
+  font-weight: bold;
+  padding-bottom: 0.5em;
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  color: #527bdd;
+  text-align: center;
+  font-size: 120%;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #336600;
+}
+
+a:hover {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+tt {
+  color: navy;
+}
+
+dt {
+  font-style: italic;
+  padding-left: 2ex;
+}
+
+ol ol {
+  list-style-type: lower-alpha;
+}
+
+#page {
+  margin: 0px auto;
+  text-align: left;
+  padding: 0px;
+  overflow: auto;
+  float: left;
+}
+
+#header {
+  padding: 0;
+  margin: 0;
+}
+
+#main {
+  padding-left: 12em;
+  background: #fff;
+}
+
+#content {
+  padding: 0px 15px 30em 15px;
+}
+
+#announce DT {
+  font-weight: bold;
+}
+
+code {
+  font-family: "Courier New" Courier monospace;
+  font-size: 90%;
+  font-weight: bold;
+}
+
+.important {
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.first-control, .previous-control, .next-control, .last-control {
+  #cursor: pointer;
+  padding: 1em;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.slide-controls {
+  clear: both;
+}
+
+.slide-end {
+  height: 4em;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-gap: 2vw;
+}
+
+.grid-form input {
+  width: 50%;
+}
+
+label {
+  font-weight: bold;
+  text-align: right;
+}
+
+
+.error {
+  color: red;
+}
+

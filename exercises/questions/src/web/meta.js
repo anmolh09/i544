@@ -1,0 +1,20 @@
+module.exports = {
+  id: 'web',
+  title: 'Web',
+  nested: [
+    require('./http-method-properties'),
+    require('./http-method-choice'),
+    require('./representations'),
+    require('./express-routes'),
+    require('./express-true-false'),
+    require('./dom-events'),
+    require('./descr-to-selector'),
+    require('./selector-to-descr'),
+    require('./react-true-false'),
+    require('./headers-true-false'),
+    require('./cache-true-false'),
+    require('./cookies-true-false'),
+    // require('./jquery-true-false'),
+    // require('./mustache-meta-chars'),
+  ],
+};

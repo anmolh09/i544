@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang='en-US'>
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" />
+  <title>CS 544: JavaScript Quick Start</title>
+<link href="js-quick-start/hl-fine_blue.css" rel="stylesheet"/>
+</head>
+<body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hw/index.html">Homework</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+  <div class="slide-controls" style="display: none;">
+    <span class="float-left">
+      <span class="first-control">
+	<a href="#">
+	  <img src="../../assets/images/go-first.png">
+	</a>
+      </span>
+      <span class="previous-control">
+	<a href="#">
+	  <img src="../../assets/images/go-previous.png">
+	</a>
+      </span>
+    </span>
+    <span class="float-right">
+      <span class="next-control">
+	<a href="#">
+	  <img src="../../assets/images/go-next.png">
+	</a>
+      </span>
+      <span class="last-control">
+	<a href="#">
+	  <img src="../../assets/images/go-last.png">
+	</a>
+      </span>
+    </span>
+    <div class="slide-end">&nbsp;<br></div> <!-- hack -->
+  </div>
+<div class="content">
+<section data-coord="js-quick-start.umt:1:0"><h1 data-coord="js-quick-start.umt:1:0">JavaScript Quick Start</h1><section class="umt-slide" data-coord="js-quick-start.umt:3:0"><h2 data-coord="js-quick-start.umt:3:0">Overview</h2><ul data-coord="js-quick-start.umt:6:0"><li data-coord="js-quick-start.umt:6:0"><p data-coord="js-quick-start.umt:6:4">Quick summary of the main features of JavaScript so
+that you can start work on programming projects.
+</p></li><li data-coord="js-quick-start.umt:9:0"><p data-coord="js-quick-start.umt:9:4">Details will be covered in subsequent classes.
+</p></li><li data-coord="js-quick-start.umt:11:0"><p data-coord="js-quick-start.umt:11:4">JavaScript primitive types.
+</p></li><li data-coord="js-quick-start.umt:13:0"><p data-coord="js-quick-start.umt:13:4">Variables and declarations.
+</p></li><li data-coord="js-quick-start.umt:15:0"><p data-coord="js-quick-start.umt:15:4">Arrays.
+</p></li><li data-coord="js-quick-start.umt:17:0"><p data-coord="js-quick-start.umt:17:4">Objects.
+</p></li><li data-coord="js-quick-start.umt:19:0"><p data-coord="js-quick-start.umt:19:4">Regular expressions.
+</p></li><li data-coord="js-quick-start.umt:21:0"><p data-coord="js-quick-start.umt:21:4">Control statements summary.
+</p></li><li data-coord="js-quick-start.umt:23:0"><p data-coord="js-quick-start.umt:23:4">Functions.
+</p></li><li data-coord="js-quick-start.umt:25:0"><p data-coord="js-quick-start.umt:25:4">Classes.
+</p></li><li data-coord="js-quick-start.umt:27:0"><p data-coord="js-quick-start.umt:27:4">Dynamic language.
+</p></li><li data-coord="js-quick-start.umt:29:0"><p data-coord="js-quick-start.umt:29:4">JS literals vs JSON.
+</p></li></ul><ul data-coord="js-quick-start.umt:35:0"><li data-coord="js-quick-start.umt:35:0"><p data-coord="js-quick-start.umt:35:4">Gotchas.
+</p></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:38:0"><h2 data-coord="js-quick-start.umt:38:0">Numbers</h2><p data-coord="js-quick-start.umt:41:0">All primitive numbers are floating point; no primitive integer types.
+Examples under nodejs (typed command <samp data-coord="js-quick-start.umt:41:107">node</samp>).
+</p><pre><span class="hl opt">&gt;</span> <span class="hl num">1</span> <span class="hl opt">+</span> <span class="hl num">3</span><span class="hl opt">*</span><span class="hl num">2</span><span class="hl opt">**</span><span class="hl num">2</span><span class="hl opt">**</span><span class="hl num">3</span>   <span class="hl slc">//power ** high precedence, right assoc</span>
+<span class="hl num">769</span>
+<span class="hl opt">&gt; -</span><span class="hl num">5</span> <span class="hl opt">%</span> <span class="hl num">3</span>       <span class="hl slc">//remainder; has sign of first operand</span>
+<span class="hl opt">-</span><span class="hl num">2</span>
+<span class="hl opt">&gt;</span> <span class="hl num">3</span> <span class="hl opt">&lt;&lt;</span> <span class="hl num">2</span>       <span class="hl slc">//left shift equiv mult by power-of-2</span>
+<span class="hl num">12</span>
+<span class="hl opt">&gt;</span> <span class="hl num">15</span> <span class="hl opt">&gt;&gt;</span> <span class="hl num">2</span>      <span class="hl slc">//right shift equiv divsn by power-of-2</span>
+<span class="hl num">3</span>
+<span class="hl opt">&gt;</span> <span class="hl num">0xf</span> <span class="hl opt">&amp;</span> <span class="hl num">0x32</span>   <span class="hl slc">//bitwise and</span>
+<span class="hl num">2</span>
+<span class="hl opt">&gt;</span> <span class="hl num">0xf</span> <span class="hl opt">|</span> <span class="hl num">0x32</span>   <span class="hl slc">//bitwise or</span>
+<span class="hl num">63</span>
+<span class="hl opt">&gt; (</span><span class="hl num">0xf</span> <span class="hl opt">^</span> <span class="hl num">0x32</span><span class="hl opt">).</span><span class="hl kwd">toString</span><span class="hl opt">(</span><span class="hl num">16</span><span class="hl opt">)</span>  <span class="hl slc">//xor; hex literals</span>
+<span class="hl str">&apos;3d&apos;</span>
+<span class="hl opt">&gt;</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:62:0"><h2 data-coord="js-quick-start.umt:62:0">Strings</h2><ul data-coord="js-quick-start.umt:65:0"><li data-coord="js-quick-start.umt:65:0"><p data-coord="js-quick-start.umt:65:4">Strings are immutable.
+</p></li><li data-coord="js-quick-start.umt:67:0"><p data-coord="js-quick-start.umt:67:4">String literals can be enclosed within single quotes
+as <code><span class="hl str">&apos;hello&apos;</span></code> or double-quotes as <code><span class="hl str">&quot;world&quot;</span></code>.  Absolutely
+equivalent; I prefer using <code><span class="hl str">&apos;string&apos;</span></code> as easier to type
+on my keyboard.
+</p></li><li data-coord="js-quick-start.umt:72:0"><p data-coord="js-quick-start.umt:72:4">Above string literals can contain <samp data-coord="js-quick-start.umt:72:38">\</samp>-escape sequences.  They
+cannot contain literal newlines but can contain escaped
+newlines.
+</p></li><li data-coord="js-quick-start.umt:76:0"><p data-coord="js-quick-start.umt:76:4"><samp data-coord="js-quick-start.umt:76:4">+</samp> used for string concatenation.
+</p></li><li data-coord="js-quick-start.umt:78:0"><p data-coord="js-quick-start.umt:78:4"><em data-coord="js-quick-start.umt:78:95"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" data-coord="js-quick-start.umt:78:95">Rich set of methods.</a></em>
+</p></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:80:0"><h2 data-coord="js-quick-start.umt:80:0">String Examples</h2><pre><span class="hl opt">&gt;</span> <span class="hl kwa">const</span> str <span class="hl opt">=</span> <span class="hl str">&apos;hello</span><span class="hl esc">\n\t</span><span class="hl str">world&apos;</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> console<span class="hl opt">.</span><span class="hl kwd">log</span><span class="hl opt">(</span>str<span class="hl opt">)</span>
+hello
+        world
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> text <span class="hl opt">=</span> <span class="hl str">&quot;echo a</span> <span class="hl esc">\\\n\t</span> <span class="hl str">b c&quot;</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> console<span class="hl opt">.</span><span class="hl kwd">log</span><span class="hl opt">(</span>text<span class="hl opt">)</span>
+echo a <span class="hl opt">\</span>
+         b c
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> str <span class="hl opt">+</span> text
+<span class="hl str">&apos;hello</span><span class="hl esc">\n\t</span><span class="hl str">worldecho a</span> <span class="hl esc">\\\n\t</span> <span class="hl str">b c&apos;</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:100:0"><h2 data-coord="js-quick-start.umt:100:0">Template String Literals</h2><ul data-coord="js-quick-start.umt:103:0"><li data-coord="js-quick-start.umt:103:0"><p data-coord="js-quick-start.umt:103:4">Enclosed within backquotes.
+</p></li><li data-coord="js-quick-start.umt:105:0"><p data-coord="js-quick-start.umt:105:4">Can contain literal newlines.
+</p></li><li data-coord="js-quick-start.umt:107:0"><p data-coord="js-quick-start.umt:107:4">Can interpolate arbitrary expressions enclosed within
+<samp data-coord="js-quick-start.umt:107:62">${...}</samp>.
+</p></li><li data-coord="js-quick-start.umt:110:0"><p data-coord="js-quick-start.umt:110:4">Extremely powerful.
+</p></li></ul><pre><span class="hl opt">&gt;</span> <span class="hl str">`The value of PI is</span> <span class="hl ipl">${Math.PI}</span><span class="hl str"></span><span class="hl esc">\n</span><span class="hl str">`</span>
+<span class="hl str">&apos;The value of PI is 3.141592653589793</span><span class="hl esc">\n</span><span class="hl str">&apos;</span>
+<span class="hl opt">&gt;</span> <span class="hl str">`Mult-line</span>
+<span class="hl str">... string`</span>
+<span class="hl str">&apos;Mult-line</span><span class="hl esc">\n</span><span class="hl str">string&apos;</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:121:0"><h2 data-coord="js-quick-start.umt:121:0">Variables and Declarations</h2><ul data-coord="js-quick-start.umt:124:0"><li data-coord="js-quick-start.umt:124:0"><p data-coord="js-quick-start.umt:124:4">It is possible to use a variable without declaring it.
+<strong data-coord="js-quick-start.umt:124:63">Do not do so</strong>; this is a bad idea and creates a
+"global" variable.  Modern JS environments disallow
+this.
+</p></li><li data-coord="js-quick-start.umt:129:0"><p data-coord="js-quick-start.umt:129:4">Do not use legacy <code><span class="hl kwa">var</span></code> declarations; surprising semantics.
+</p></li><li data-coord="js-quick-start.umt:131:0"><p data-coord="js-quick-start.umt:131:4">Modern code declares block-scoped variables using <code><span class="hl kwa">const</span></code> or
+<code><span class="hl kwa">let</span></code>.  Less surprising semantics.
+</p></li><li data-coord="js-quick-start.umt:134:0"><p data-coord="js-quick-start.umt:134:4">No types in declarations.  Variables do not have types,
+values have types.
+</p></li><li data-coord="js-quick-start.umt:137:0"><p data-coord="js-quick-start.umt:137:4">Always try to initialize variable in declaration.  When possible,
+prefer <code><span class="hl kwa">const</span></code> to <code><span class="hl kwa">let</span></code>.
+</p></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:140:0"><h2 data-coord="js-quick-start.umt:140:0">Variables and Declarations: Examples</h2><pre><span class="hl opt">&gt;</span> <span class="hl kwa">let</span> a <span class="hl opt">=</span> <span class="hl num">22</span><span class="hl opt">;</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">let</span> a<span class="hl opt">;</span>
+<span class="hl opt">...</span> Identifier <span class="hl str">&apos;a&apos;</span> has already been declared
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> b<span class="hl opt">;</span>  <span class="hl slc">//doesn&apos;t make sense without initializer</span>
+<span class="hl opt">...</span> Missing initializer <span class="hl kwa">in const</span> declaration
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> b <span class="hl opt">=</span> <span class="hl num">22</span><span class="hl opt">;</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> <span class="hl opt">[</span>c<span class="hl opt">,</span> d<span class="hl opt">,</span> e<span class="hl opt">] = [</span><span class="hl num">88</span><span class="hl opt">,</span> <span class="hl num">22</span><span class="hl opt">,</span> <span class="hl num">15</span><span class="hl kwc">/3]; /</span><span class="hl opt">/</span>destructuring
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> </pre></section><section class="umt-slide" data-coord="js-quick-start.umt:158:0"><h2 data-coord="js-quick-start.umt:158:0">Arrays</h2><p data-coord="js-quick-start.umt:161:0">Array literals are comma-separated expressions within square brackets;
+last item can optionally be followed by a comma.
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">const</span> arr <span class="hl opt">= [</span><span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl str">&apos;hello&apos;</span><span class="hl opt">.</span>length<span class="hl opt">, ];</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> arr
+<span class="hl opt">[</span> <span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">[</span><span class="hl num">1</span><span class="hl opt">]</span>
+<span class="hl num">2</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span>length
+<span class="hl num">3</span>
+<span class="hl slc">//arrays are objects and can have properties</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span>_name <span class="hl opt">=</span> <span class="hl str">&apos;arr&apos;</span>
+<span class="hl str">&apos;arr&apos;</span>
+<span class="hl opt">&gt;</span> arr
+<span class="hl opt">[</span> <span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> _name<span class="hl opt">:</span> <span class="hl str">&apos;arr&apos;</span> <span class="hl opt">]</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:180:0"><h2 data-coord="js-quick-start.umt:180:0">Array Methods</h2><p data-coord="js-quick-start.umt:183:0"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" data-coord="js-quick-start.umt:183:90">MDN</a>
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">const</span> arr <span class="hl opt">= [</span><span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl str">&apos;hello&apos;</span><span class="hl opt">.</span>length<span class="hl opt">, ];</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">[</span><span class="hl num">1</span><span class="hl opt">]</span>
+<span class="hl num">2</span>
+<span class="hl opt">&gt;</span> arr
+<span class="hl opt">[</span> <span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span>length
+<span class="hl num">3</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">slice</span><span class="hl opt">(-</span><span class="hl num">2</span><span class="hl opt">)</span>
+<span class="hl opt">[</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">indexOf</span><span class="hl opt">(</span><span class="hl num">5</span><span class="hl opt">)</span>
+<span class="hl num">2</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">indexOf</span><span class="hl opt">(</span><span class="hl num">6</span><span class="hl opt">)</span>
+<span class="hl opt">-</span><span class="hl num">1</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">push</span><span class="hl opt">(</span><span class="hl num">7</span><span class="hl opt">,</span> <span class="hl num">9</span><span class="hl opt">)</span>
+<span class="hl num">5</span>
+<span class="hl opt">&gt;</span> arr
+<span class="hl opt">[</span> <span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">7</span><span class="hl opt">,</span> <span class="hl num">9</span> <span class="hl opt">]</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:206:0"><h2 data-coord="js-quick-start.umt:206:0">Array Methods Continued</h2><pre><span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">shift</span><span class="hl opt">()</span>
+<span class="hl num">1</span>
+<span class="hl opt">&gt;</span> arr
+<span class="hl opt">[</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">7</span><span class="hl opt">,</span> <span class="hl num">9</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">pop</span><span class="hl opt">()</span>
+<span class="hl num">9</span>
+<span class="hl opt">&gt;</span> arr
+<span class="hl opt">[</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">7</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">unshift</span><span class="hl opt">(</span><span class="hl num">22</span><span class="hl opt">);</span> arr<span class="hl opt">.</span><span class="hl kwd">push</span><span class="hl opt">(-</span><span class="hl num">1</span><span class="hl opt">)</span>
+<span class="hl num">5</span>
+<span class="hl opt">&gt;</span> arr
+<span class="hl opt">[</span> <span class="hl num">22</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">7</span><span class="hl opt">, -</span><span class="hl num">1</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">sort</span><span class="hl opt">()</span>
+<span class="hl opt">[ -</span><span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">22</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">7</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> arr<span class="hl opt">.</span><span class="hl kwd">sort</span><span class="hl opt">((</span>a<span class="hl opt">,</span> b<span class="hl opt">) =&gt;</span> a<span class="hl opt">-</span>b<span class="hl opt">)</span>
+<span class="hl opt">[ -</span><span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">7</span><span class="hl opt">,</span> <span class="hl num">22</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> </pre></section><section class="umt-slide" data-coord="js-quick-start.umt:230:0"><h2 data-coord="js-quick-start.umt:230:0">Objects</h2><p data-coord="js-quick-start.umt:233:0">Objects are maps of <code>String</code> properties to arbitrary values, with OO
+pixie dust sprinkled in.  Very powerful <samp data-coord="js-quick-start.umt:233:110">{ }</samp>-literal notation:
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">let</span> obj <span class="hl opt">= {</span> a<span class="hl opt">:</span> <span class="hl num">22</span><span class="hl opt">,</span> b<span class="hl opt">:</span> <span class="hl num">33</span><span class="hl opt">,</span> c<span class="hl opt">:</span> <span class="hl num">44</span> <span class="hl opt">}</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> obj<span class="hl opt">.</span>c
+<span class="hl num">44</span>
+<span class="hl opt">&gt;</span> obj<span class="hl opt">[</span><span class="hl str">&apos;c&apos;</span><span class="hl opt">]</span>
+<span class="hl num">44</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> c <span class="hl opt">=</span> <span class="hl num">88</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> obj <span class="hl opt">= {</span> c<span class="hl opt">,</span> <span class="hl str">&apos;hello world&apos;</span><span class="hl opt">:</span> c <span class="hl opt">}</span>
+<span class="hl opt">{</span> c<span class="hl opt">:</span> <span class="hl num">88</span><span class="hl opt">,</span> <span class="hl str">&apos;hello world&apos;</span><span class="hl opt">:</span> <span class="hl num">88</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> obj <span class="hl opt">= {</span> c<span class="hl opt">,</span> <span class="hl str">&apos;hello world&apos;</span><span class="hl opt">:</span> c<span class="hl opt">, [</span><span class="hl str">&apos;hello&apos;</span><span class="hl opt">.</span>length<span class="hl opt">]:</span> obj<span class="hl opt">}</span>
+<span class="hl opt">{</span> <span class="hl str">&apos;5&apos;</span><span class="hl opt">: {</span> c<span class="hl opt">:</span> <span class="hl num">88</span><span class="hl opt">,</span> <span class="hl str">&apos;hello world&apos;</span><span class="hl opt">:</span> <span class="hl num">88</span> <span class="hl opt">},</span> c<span class="hl opt">:</span> <span class="hl num">88</span><span class="hl opt">,</span> <span class="hl str">&apos;hello world&apos;</span><span class="hl opt">:</span> <span class="hl num">88</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:252:0"><h2 data-coord="js-quick-start.umt:252:0">Object Methods</h2><p data-coord="js-quick-start.umt:255:0"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" data-coord="js-quick-start.umt:255:91">MDN</a>
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">let</span> obj <span class="hl opt">=</span> Object<span class="hl opt">.</span><span class="hl kwd">assign</span><span class="hl opt">({}, {</span>a<span class="hl opt">:</span> <span class="hl num">22</span><span class="hl opt">,</span> b<span class="hl opt">:</span> <span class="hl num">33</span><span class="hl opt">}, {</span>a<span class="hl opt">:</span> <span class="hl num">44</span><span class="hl opt">,</span> c<span class="hl opt">:</span> <span class="hl num">99</span><span class="hl opt">})</span>
+<span class="hl kwb">undefined</span>
+<span class="hl opt">&gt;</span> obj
+<span class="hl opt">{</span> a<span class="hl opt">:</span> <span class="hl num">44</span><span class="hl opt">,</span> b<span class="hl opt">:</span> <span class="hl num">33</span><span class="hl opt">,</span> c<span class="hl opt">:</span> <span class="hl num">99</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> Object<span class="hl opt">.</span><span class="hl kwd">keys</span><span class="hl opt">(</span>obj<span class="hl opt">)</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;a&apos;</span><span class="hl opt">,</span> <span class="hl str">&apos;b&apos;</span><span class="hl opt">,</span> <span class="hl str">&apos;c&apos;</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> Object<span class="hl opt">.</span><span class="hl kwd">values</span><span class="hl opt">(</span>obj<span class="hl opt">)</span>
+<span class="hl opt">[</span> <span class="hl num">44</span><span class="hl opt">,</span> <span class="hl num">33</span><span class="hl opt">,</span> <span class="hl num">99</span> <span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> Object<span class="hl opt">.</span><span class="hl kwd">entries</span><span class="hl opt">(</span>obj<span class="hl opt">)</span>
+<span class="hl opt">[ [</span> <span class="hl str">&apos;a&apos;</span><span class="hl opt">,</span> <span class="hl num">44</span> <span class="hl opt">], [</span> <span class="hl str">&apos;b&apos;</span><span class="hl opt">,</span> <span class="hl num">33</span> <span class="hl opt">], [</span> <span class="hl str">&apos;c&apos;</span><span class="hl opt">,</span> <span class="hl num">99</span> <span class="hl opt">] ]</span>
+<span class="hl opt">&gt;</span> Object<span class="hl opt">.</span><span class="hl kwd">fromEntries</span><span class="hl opt">(</span>Object<span class="hl opt">.</span><span class="hl kwd">entries</span><span class="hl opt">(</span>obj<span class="hl opt">).</span><span class="hl kwd">slice</span><span class="hl opt">(</span><span class="hl num">1</span><span class="hl opt">))</span>
+<span class="hl opt">{</span> b<span class="hl opt">:</span> <span class="hl num">33</span><span class="hl opt">,</span> c<span class="hl opt">:</span> <span class="hl num">99</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> </pre></section><section class="umt-slide" data-coord="js-quick-start.umt:273:0"><h2 data-coord="js-quick-start.umt:273:0">Regular Expressions</h2><p data-coord="js-quick-start.umt:276:0">Invaluable tool for string matching,  JS supports regex literals
+enclosed within <samp data-coord="js-quick-start.umt:276:81">/.../</samp>.
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">const</span> <span class="hl opt">[</span>var1<span class="hl opt">,</span> var2<span class="hl opt">] = [</span><span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">]</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">let</span> str <span class="hl opt">=</span> <span class="hl str">`var1*var2 =</span> <span class="hl ipl">${var1*var2}</span><span class="hl str">`</span>
+<span class="hl opt">&gt;</span> str
+<span class="hl str">&apos;var1*var2 = 15&apos;</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/=/)        /</span><span class="hl opt">/</span>first match <span class="hl kwa">for</span> <span class="hl str">&apos;=&apos;</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;=&apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">10</span><span class="hl opt">, ... ]</span> <span class="hl slc">//at index 10</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(/</span> <span class="hl kwc">/)        /</span><span class="hl opt">/</span>look <span class="hl kwa">for</span> space
+<span class="hl opt">[</span> <span class="hl str">&apos; &apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">9</span><span class="hl opt">, ... ]</span>  <span class="hl slc">//at index 9</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/\s/</span><span class="hl opt">)</span>       <span class="hl slc">//specify using special regex</span>
+<span class="hl opt">[</span> <span class="hl str">&apos; &apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">9</span><span class="hl opt">, ... ]</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/\w/</span><span class="hl opt">)</span>       <span class="hl slc">//word char: [a-zA-Z0-9_]</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;v&apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">0</span><span class="hl opt">, ... ]</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/[A-Z]/</span><span class="hl opt">)</span>    <span class="hl slc">//char class: match one char in class</span>
+<span class="hl kwa">null</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:296:0"><h2 data-coord="js-quick-start.umt:296:0">Regular Expressions Continued</h2><pre><span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/[a-z]/</span><span class="hl opt">)</span>   <span class="hl slc">//match lowercase letters</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;v&apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">0</span><span class="hl opt">, ... ]</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/[a-z]+/</span><span class="hl opt">)</span> <span class="hl slc">//+ means one-or-more </span>
+<span class="hl opt">[</span> <span class="hl str">&apos;var&apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">0</span><span class="hl opt">, ... ]</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/\w+/</span><span class="hl opt">)</span>  <span class="hl slc">//one-or-more word chars</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;var1&apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">0</span><span class="hl opt">, ... ]</span>
+<span class="hl opt">&gt;</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/\d+/</span><span class="hl opt">)</span>  <span class="hl slc">//one-or-more digits</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;1&apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">3</span><span class="hl opt">, ... ]</span>
+<span class="hl opt">&gt;</span> m <span class="hl opt">=</span> str<span class="hl opt">.</span><span class="hl kwd">match</span><span class="hl opt">(</span><span class="hl kwc">/(\w+)\W+(\w+)/</span><span class="hl opt">)</span> <span class="hl slc">//capturing paren</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;var1*var2&apos;</span><span class="hl opt">,</span><span class="hl str">&apos;var1&apos;</span><span class="hl opt">,</span> <span class="hl str">&apos;var2&apos;</span><span class="hl opt">,</span> index<span class="hl opt">:</span> <span class="hl num">0</span><span class="hl opt">, ... ]</span>
+<span class="hl opt">&gt; [</span>m<span class="hl opt">[</span><span class="hl num">0</span><span class="hl opt">],</span> m<span class="hl opt">[</span><span class="hl num">1</span><span class="hl opt">],</span> m<span class="hl opt">[</span><span class="hl num">2</span><span class="hl opt">]]</span>  <span class="hl slc">//m[1], m[2] captured text</span>
+<span class="hl opt">[</span> <span class="hl str">&apos;var1*var2&apos;</span><span class="hl opt">,</span> <span class="hl str">&apos;var1&apos;</span><span class="hl opt">,</span> <span class="hl str">&apos;var2&apos;</span> <span class="hl opt">]</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:314:0"><h2 data-coord="js-quick-start.umt:314:0">Control Statements</h2><ul data-coord="js-quick-start.umt:317:0"><li data-coord="js-quick-start.umt:317:0"><p data-coord="js-quick-start.umt:317:4">C-style <code><span class="hl kwa">if</span></code>-<code><span class="hl kwa">else</span></code>, <code><span class="hl kwa">for</span></code>, <code><span class="hl kwa">while</span></code>, <code><span class="hl kwa">do</span></code>-<code><span class="hl kwa">while</span></code>,
+<code><span class="hl kwa">switch</span></code>-<code><span class="hl kwa">case</span></code>.
+</p></li><li data-coord="js-quick-start.umt:320:0"><p data-coord="js-quick-start.umt:320:4">For iterating through an array always use <code><span class="hl kwa">for</span></code>-<code><span class="hl kwa">of</span></code>.
+</p><pre>    <span class="hl kwa">const</span> arr <span class="hl opt">= [</span><span class="hl num">33</span><span class="hl opt">,</span> <span class="hl num">53</span><span class="hl opt">,</span> <span class="hl num">36</span><span class="hl opt">];</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwa">for</span> <span class="hl opt">(</span><span class="hl kwa">const</span> a <span class="hl kwa">of</span> arr<span class="hl opt">) {</span> console<span class="hl opt">.</span><span class="hl kwd">log</span><span class="hl opt">(</span>a<span class="hl opt">); }</span>
+    <span class="hl num">33</span>
+    <span class="hl num">53</span>
+    <span class="hl num">36</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwa">for</span> <span class="hl opt">(</span><span class="hl kwa">const</span> <span class="hl opt">[</span>i<span class="hl opt">,</span> a<span class="hl opt">]</span> <span class="hl kwa">of</span> arr<span class="hl opt">.</span><span class="hl kwd">entries</span><span class="hl opt">()) {</span>
+        console<span class="hl opt">.</span><span class="hl kwd">log</span><span class="hl opt">(</span>a<span class="hl opt">*</span>i<span class="hl opt">);</span>
+      <span class="hl opt">}</span>
+    <span class="hl num">0</span>
+    <span class="hl num">53</span>
+    <span class="hl num">72</span></pre></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:336:0"><h2 data-coord="js-quick-start.umt:336:0">Functions</h2><ul data-coord="js-quick-start.umt:339:0"><li data-coord="js-quick-start.umt:339:0"><p data-coord="js-quick-start.umt:339:4">Traditional functions.  Example factorial:
+</p><pre>    <span class="hl opt">&gt;</span> <span class="hl kwa">function</span> <span class="hl kwd">fact</span><span class="hl opt">(</span>n<span class="hl opt">) {</span>
+        <span class="hl kwa">return</span> <span class="hl opt">(</span>n <span class="hl opt">&lt;</span> <span class="hl num">1</span><span class="hl opt">) ?</span> <span class="hl num">1</span> <span class="hl opt">:</span> n<span class="hl opt">*</span><span class="hl kwd">fact</span><span class="hl opt">(</span>n<span class="hl opt">-</span><span class="hl num">1</span><span class="hl opt">);</span>
+      <span class="hl opt">}</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwd">fact</span><span class="hl opt">(</span><span class="hl num">4</span><span class="hl opt">)</span>
+    <span class="hl num">24</span></pre></li><li data-coord="js-quick-start.umt:349:0"><p data-coord="js-quick-start.umt:349:4">Anonymous functions stored in a variable:
+</p><pre>    <span class="hl kwa">const</span> <span class="hl kwd">add</span> <span class="hl opt">=</span> <span class="hl kwa">function</span> <span class="hl opt">(</span>a<span class="hl opt">,</span> b<span class="hl opt">) {</span> <span class="hl kwa">return</span> a<span class="hl opt">+</span>b<span class="hl opt">; }</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwd">add</span><span class="hl opt">(</span><span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">6</span><span class="hl opt">)</span>
+    <span class="hl num">9</span></pre></li><li data-coord="js-quick-start.umt:357:0"><p data-coord="js-quick-start.umt:357:4">Fat arrow anonymous functions:
+</p><pre>    <span class="hl opt">&gt;</span> <span class="hl kwa">const</span> mult <span class="hl opt">= (</span>a<span class="hl opt">,</span> b<span class="hl opt">) =&gt;</span> a <span class="hl opt">*</span> b<span class="hl opt">;</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwd">mult</span><span class="hl opt">(</span><span class="hl num">6</span><span class="hl opt">,</span> <span class="hl num">7</span><span class="hl opt">)</span>
+    <span class="hl num">42</span></pre></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:365:0"><h2 data-coord="js-quick-start.umt:365:0">Variable Args</h2><p data-coord="js-quick-start.umt:368:0">If last formal parameter is preceeded by <samp data-coord="js-quick-start.umt:368:41">...</samp>, then all remaining
+arguments are collected into that <strong data-coord="js-quick-start.umt:368:101">rest parameter</strong> as an array.
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">function</span> <span class="hl kwd">polyEval</span><span class="hl opt">(</span>x<span class="hl opt">, ...</span>coeffs<span class="hl opt">) {</span>
+    <span class="hl kwa">let</span> pow <span class="hl opt">=</span> <span class="hl num">1</span><span class="hl opt">;</span>
+    <span class="hl kwa">let</span> sum <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span>
+    <span class="hl kwa">for</span> <span class="hl opt">(</span><span class="hl kwa">const</span> coeff <span class="hl kwa">of</span> coeffs<span class="hl opt">) {</span>
+      sum <span class="hl opt">+=</span> pow<span class="hl opt">*</span>coeff<span class="hl opt">;</span>
+      pow <span class="hl opt">*=</span> x<span class="hl opt">;</span>
+    <span class="hl opt">}</span>
+    <span class="hl kwa">return</span> sum<span class="hl opt">;</span>
+  <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> <span class="hl kwd">polyEval</span><span class="hl opt">(</span><span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">1</span><span class="hl opt">,</span> <span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">4</span><span class="hl opt">)</span>
+<span class="hl num">49</span>
+<span class="hl opt">&gt;</span> <span class="hl num">1</span><span class="hl opt">*</span><span class="hl num">2</span><span class="hl opt">**</span><span class="hl num">0</span> <span class="hl opt">+</span> <span class="hl num">2</span><span class="hl opt">*</span><span class="hl num">2</span><span class="hl opt">**</span><span class="hl num">1</span> <span class="hl opt">+</span> <span class="hl num">3</span><span class="hl opt">*</span><span class="hl num">2</span><span class="hl opt">**</span><span class="hl num">2</span> <span class="hl opt">+</span> <span class="hl num">4</span><span class="hl opt">*</span><span class="hl num">2</span><span class="hl opt">**</span><span class="hl num">3</span>
+<span class="hl num">49</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:387:0"><h2 data-coord="js-quick-start.umt:387:0">First-Class Functions</h2><p data-coord="js-quick-start.umt:390:0">Functions are <strong data-coord="js-quick-start.umt:390:14">first-class values</strong>; i.e., they can be treated like any
+other values:
+</p><ul data-coord="js-quick-start.umt:393:0"><li data-coord="js-quick-start.umt:393:0"><p data-coord="js-quick-start.umt:393:4">Can be stored in data-structures.
+</p><pre>    <span class="hl kwa">let</span> fns <span class="hl opt">= [</span> add<span class="hl opt">,</span> mult<span class="hl opt">, ];</span>
+    <span class="hl opt">&gt; [</span> fns<span class="hl opt">[</span><span class="hl num">0</span><span class="hl opt">](</span><span class="hl num">2</span><span class="hl opt">,</span> <span class="hl num">3</span><span class="hl opt">),</span> fns<span class="hl opt">[</span><span class="hl num">1</span><span class="hl opt">](</span><span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">6</span><span class="hl opt">) ]</span>
+    <span class="hl opt">[</span> <span class="hl num">5</span><span class="hl opt">,</span> <span class="hl num">30</span> <span class="hl opt">]</span></pre></li><li data-coord="js-quick-start.umt:401:0"><p data-coord="js-quick-start.umt:401:4">Can be passed and returned from functions.
+</p><pre>    <span class="hl opt">&gt;</span> <span class="hl kwa">const</span> fn <span class="hl opt">=</span>
+        <span class="hl opt">(</span>cond<span class="hl opt">,</span> fn1<span class="hl opt">,</span> fn2<span class="hl opt">) =&gt;</span> cond <span class="hl opt">?</span> fn1 <span class="hl opt">:</span> fn2<span class="hl opt">;</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwd">fn</span><span class="hl opt">(</span><span class="hl kwa">false</span><span class="hl opt">,</span> add<span class="hl opt">,</span> mult<span class="hl opt">)(</span><span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">6</span><span class="hl opt">)</span>
+    <span class="hl num">18</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwd">fn</span><span class="hl opt">(</span><span class="hl kwa">true</span><span class="hl opt">,</span> add<span class="hl opt">,</span> mult<span class="hl opt">)(</span><span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">6</span><span class="hl opt">)</span>
+    <span class="hl num">9</span></pre></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:412:0"><h2 data-coord="js-quick-start.umt:412:0">Classes</h2><p data-coord="js-quick-start.umt:415:0">JS does not really have classes in the sense of other OO languages.
+Syntactic sugar introduced relatively recently.
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">class</span> Point2 <span class="hl opt">{</span>
+    <span class="hl kwa">constructor</span><span class="hl opt">(</span>x<span class="hl opt">,</span> y<span class="hl opt">) {</span>
+      Object<span class="hl opt">.</span><span class="hl kwd">assign</span><span class="hl opt">(</span><span class="hl kwa">this</span><span class="hl opt">, {</span>x<span class="hl opt">,</span> y<span class="hl opt">});</span>
+    <span class="hl opt">}</span>
+    <span class="hl kwd">dist0</span><span class="hl opt">() {</span> <span class="hl slc">//method</span>
+      <span class="hl kwa">return</span> Math<span class="hl opt">.</span><span class="hl kwd">sqrt</span><span class="hl opt">(</span><span class="hl kwa">this</span><span class="hl opt">.</span>x<span class="hl opt">**</span><span class="hl num">2</span> <span class="hl opt">+</span> <span class="hl kwa">this</span><span class="hl opt">.</span>y<span class="hl opt">**</span><span class="hl num">2</span><span class="hl opt">);</span>
+    <span class="hl opt">}</span>
+  <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> p <span class="hl opt">=</span> <span class="hl kwa">new</span> <span class="hl kwd">Point2</span><span class="hl opt">(</span><span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">4</span><span class="hl opt">)</span>
+<span class="hl opt">&gt;</span> p
+Point2 <span class="hl opt">{</span> x<span class="hl opt">:</span> <span class="hl num">3</span><span class="hl opt">,</span> y<span class="hl opt">:</span> <span class="hl num">4</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> p<span class="hl opt">.</span><span class="hl kwd">dist0</span><span class="hl opt">()</span>
+<span class="hl num">5</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:434:0"><h2 data-coord="js-quick-start.umt:434:0">First Class Classes</h2><p data-coord="js-quick-start.umt:437:0">Classes are merely syntactic sugar for functions; hence they
+too are first-class.
+</p><pre><span class="hl opt">&gt;</span> <span class="hl kwa">const</span> obj <span class="hl opt">= {</span>
+    point<span class="hl opt">:</span> Point2<span class="hl opt">,</span>
+    name<span class="hl opt">:</span> <span class="hl kwa">class</span> <span class="hl opt">{</span>
+      <span class="hl kwa">constructor</span><span class="hl opt">(</span>first<span class="hl opt">,</span> last<span class="hl opt">) {</span>
+        <span class="hl kwa">this</span><span class="hl opt">.</span>first <span class="hl opt">=</span> first<span class="hl opt">;</span> <span class="hl kwa">this</span><span class="hl opt">.</span>last <span class="hl opt">=</span> last<span class="hl opt">;</span>
+      <span class="hl opt">}</span>
+      <span class="hl kwd">fullName</span><span class="hl opt">() {</span>
+        <span class="hl kwa">return</span> <span class="hl str">`</span><span class="hl ipl">${this.first} ${this.last}</span><span class="hl str">`</span><span class="hl opt">;</span>
+      <span class="hl opt">}</span>
+    <span class="hl opt">}</span>
+  <span class="hl opt">}</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:454:0"><h2 data-coord="js-quick-start.umt:454:0">First Class Classes Continued</h2><pre><span class="hl opt">&gt;</span> <span class="hl kwa">const</span> p1 <span class="hl opt">=</span> <span class="hl kwa">new</span> obj<span class="hl opt">.</span><span class="hl kwd">point</span><span class="hl opt">(</span><span class="hl num">12</span><span class="hl opt">,</span> <span class="hl num">5</span><span class="hl opt">)</span>
+<span class="hl opt">&gt;</span> p1
+Point2 <span class="hl opt">{</span> x<span class="hl opt">:</span> <span class="hl num">12</span><span class="hl opt">,</span> y<span class="hl opt">:</span> <span class="hl num">5</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> p1<span class="hl opt">.</span><span class="hl kwd">dist0</span><span class="hl opt">()</span>
+<span class="hl num">13</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> n <span class="hl opt">=</span> <span class="hl kwa">new</span> obj<span class="hl opt">.</span><span class="hl kwd">name</span><span class="hl opt">(</span><span class="hl str">&apos;bill&apos;</span><span class="hl opt">,</span> <span class="hl str">&apos;smith&apos;</span><span class="hl opt">);</span>
+<span class="hl opt">&gt;</span> n
+name <span class="hl opt">{</span> first<span class="hl opt">:</span> <span class="hl str">&apos;bill&apos;</span><span class="hl opt">,</span> last<span class="hl opt">:</span> <span class="hl str">&apos;smith&apos;</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> n<span class="hl opt">.</span><span class="hl kwd">fullName</span><span class="hl opt">()</span>
+<span class="hl str">&apos;bill smith&apos;</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:470:0"><h2 data-coord="js-quick-start.umt:470:0">Dynamic Language</h2><pre><span class="hl opt">&gt;</span> p<span class="hl opt">.</span>label <span class="hl opt">=</span> <span class="hl str">&apos;first&apos;</span><span class="hl opt">;</span> p1<span class="hl opt">.</span>label <span class="hl opt">=</span> <span class="hl str">&apos;second&apos;</span><span class="hl opt">;</span>
+<span class="hl str">&apos;second&apos;</span>
+<span class="hl opt">&gt;</span> p
+Point2 <span class="hl opt">{</span> x<span class="hl opt">:</span> <span class="hl num">3</span><span class="hl opt">,</span> y<span class="hl opt">:</span> <span class="hl num">4</span><span class="hl opt">,</span> label<span class="hl opt">:</span> <span class="hl str">&apos;first&apos;</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> p1
+Point2 <span class="hl opt">{</span> x<span class="hl opt">:</span> <span class="hl num">12</span><span class="hl opt">,</span> y<span class="hl opt">:</span> <span class="hl num">5</span><span class="hl opt">,</span> label<span class="hl opt">:</span> <span class="hl str">&apos;second&apos;</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">delete</span> p1<span class="hl opt">.</span>label
+<span class="hl kwa">true</span>
+<span class="hl opt">&gt;</span> p1
+Point2 <span class="hl opt">{</span> x<span class="hl opt">:</span> <span class="hl num">12</span><span class="hl opt">,</span> y<span class="hl opt">:</span> <span class="hl num">5</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> Point2<span class="hl opt">.</span>descr <span class="hl opt">=</span> <span class="hl str">&apos;2D Point&apos;</span>
+<span class="hl str">&apos;2D Point&apos;</span>
+<span class="hl opt">&gt;</span> Point2
+<span class="hl opt">[</span><span class="hl kwa">class</span> Point2<span class="hl opt">] {</span> descr<span class="hl opt">:</span> <span class="hl str">&apos;2D Point&apos;</span> <span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> </pre></section><section class="umt-slide" data-coord="js-quick-start.umt:491:0"><h2 data-coord="js-quick-start.umt:491:0">JavaScript Literals</h2><p data-coord="js-quick-start.umt:494:0">JavaScript has very rich notation for
+<em data-coord="js-quick-start.umt:494:97"><a href="https://www.sitepoint.com/es6-enhanced-object-literals/" data-coord="js-quick-start.umt:494:97">literal
+data</a></em>:
+</p><p data-coord="js-quick-start.umt:498:0">A primitive JS literal value is one of:
+</p><ul data-coord="js-quick-start.umt:500:0"><li data-coord="js-quick-start.umt:500:0"><p data-coord="js-quick-start.umt:500:4">An integer (including <samp data-coord="js-quick-start.umt:500:26">0xAf</samp> and octal <samp data-coord="js-quick-start.umt:500:43">072</samp> literals),
+floating point literal like <samp data-coord="js-quick-start.umt:500:92">1.23e-2</samp> or <samp data-coord="js-quick-start.umt:500:105">1E4</samp>.
+</p></li><li data-coord="js-quick-start.umt:503:0"><p data-coord="js-quick-start.umt:503:4">A string literal delimited by single or double-quotes or by
+backquotes for template literals.
+</p></li><li data-coord="js-quick-start.umt:506:0"><p data-coord="js-quick-start.umt:506:4">Anonymous functions using either the <code><span class="hl kwa">function</span></code> keyword, or
+fat-arrow.
+</p></li><li data-coord="js-quick-start.umt:509:0"><p data-coord="js-quick-start.umt:509:4">Anonymous classes.
+</p></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:511:0"><h2 data-coord="js-quick-start.umt:511:0">JavaScript Literals Continued</h2><p data-coord="js-quick-start.umt:514:0">A compound JS literal value is one of:
+</p><ul data-coord="js-quick-start.umt:516:0"><li data-coord="js-quick-start.umt:516:0"><p data-coord="js-quick-start.umt:516:4">Arrays of comma-separated literal data enclosed within <samp data-coord="js-quick-start.umt:516:59">[ ]</samp>.
+</p></li><li data-coord="js-quick-start.umt:518:0"><p data-coord="js-quick-start.umt:518:4">Object literals consisting of comma-separated <samp data-coord="js-quick-start.umt:518:50">key: value</samp>
+pairs enclosed within <samp data-coord="js-quick-start.umt:518:89">{ }</samp>.
+</p><ul data-coord="js-quick-start.umt:521:0"><li data-coord="js-quick-start.umt:521:0"><p data-coord="js-quick-start.umt:521:8">Keys can be specified as strings or simple identifiers.
+</p></li><li data-coord="js-quick-start.umt:523:0"><p data-coord="js-quick-start.umt:523:8">Dynamic key values can be specified within <samp data-coord="js-quick-start.umt:523:51">[ ]</samp>.
+</p></li><li data-coord="js-quick-start.umt:525:0"><p data-coord="js-quick-start.umt:525:8">If a key-value is simply the name of a variable <samp data-coord="js-quick-start.umt:525:56">var</samp>, then it
+is equivalent to the key-value <samp data-coord="js-quick-start.umt:525:110">var: var</samp>.
+</p></li><li data-coord="js-quick-start.umt:528:0"><p data-coord="js-quick-start.umt:528:8">If a key-value looks like <samp data-coord="js-quick-start.umt:528:34">id(...) { ... }</samp>, then it
+is equivalent to <samp data-coord="js-quick-start.umt:528:86">id: function (...) { ... }</samp>.
+</p></li></ul></li></ul><p data-coord="js-quick-start.umt:531:0">Both object and array literals permit an optional trailing <samp data-coord="js-quick-start.umt:531:59">,</samp> after
+the last item.
+</p></section><section class="umt-slide" data-coord="js-quick-start.umt:534:0"><h2 data-coord="js-quick-start.umt:534:0">Complex JavaScript Literal Example</h2><pre><span class="hl kwa">const</span> <span class="hl opt">[</span> n1<span class="hl opt">,</span> n2 <span class="hl opt">] = [</span> <span class="hl num">42</span><span class="hl opt">,</span> <span class="hl num">33</span> <span class="hl opt">];</span>
+<span class="hl opt">&gt;</span> <span class="hl kwa">const</span> <span class="hl opt">[</span> str1<span class="hl opt">,</span> str2 <span class="hl opt">] = [</span> <span class="hl str">&apos;hello&apos;</span><span class="hl opt">,</span> <span class="hl str">&apos;world&apos;</span> <span class="hl opt">];</span>
+<span class="hl opt">&gt; {</span> n1<span class="hl opt">:</span> n1<span class="hl opt">,</span>
+    n2<span class="hl opt">,</span>
+    <span class="hl opt">[</span><span class="hl str">`</span><span class="hl ipl">${str1}</span><span class="hl str">_</span><span class="hl ipl">${str2}</span><span class="hl str">`</span><span class="hl opt">]: (</span>a<span class="hl opt">,</span> b<span class="hl opt">) =&gt;</span> a<span class="hl opt">+</span>b<span class="hl opt">,</span>
+    <span class="hl kwd">mult</span><span class="hl opt">(</span>x<span class="hl opt">,</span> y<span class="hl opt">) {</span> <span class="hl kwa">return</span> x<span class="hl opt">*</span>y<span class="hl opt">; },</span>
+    arr<span class="hl opt">: [</span> n1<span class="hl opt">,</span> n2<span class="hl opt">, ],</span>
+  <span class="hl opt">}</span>
+<span class="hl opt">{</span>
+  n1<span class="hl opt">:</span> <span class="hl num">42</span><span class="hl opt">,</span>
+  n2<span class="hl opt">:</span> <span class="hl num">33</span><span class="hl opt">,</span>
+  hello_world<span class="hl opt">: [</span>Function<span class="hl opt">:</span> hello_world<span class="hl opt">],</span>
+  mult<span class="hl opt">: [</span>Function<span class="hl opt">:</span> mult<span class="hl opt">],</span>
+  arr<span class="hl opt">: [</span> <span class="hl num">42</span><span class="hl opt">,</span> <span class="hl num">33</span> <span class="hl opt">]</span>
+<span class="hl opt">}</span>
+<span class="hl opt">&gt;</span> </pre></section><section class="umt-slide" data-coord="js-quick-start.umt:556:0"><h2 data-coord="js-quick-start.umt:556:0">JSON</h2><p data-coord="js-quick-start.umt:559:0"><strong data-coord="js-quick-start.umt:559:0">JavaScript Object Notation</strong>: Very simple <a href="https://www.json.org" data-coord="js-quick-start.umt:559:66">specification.</a>  A JSON literal can be one of:
+</p><ul data-coord="js-quick-start.umt:562:0"><li data-coord="js-quick-start.umt:562:0"><p data-coord="js-quick-start.umt:562:4">A primitive literal can be a number, string within double
+quotes, or <code><span class="hl kwa">true</span></code>, <code><span class="hl kwa">false</span></code> or <code><span class="hl kwa">null</span></code>.
+</p></li><li data-coord="js-quick-start.umt:565:0"><p data-coord="js-quick-start.umt:565:4">An array literal consists of  JSON literal values separated
+by comma's.  An optional trailing comma is not allowed.
+</p></li><li data-coord="js-quick-start.umt:568:0"><p data-coord="js-quick-start.umt:568:4">An object literal consists of <samp data-coord="js-quick-start.umt:568:34">key: value</samp> pairs separated
+by comma's.  An optional trailing comma is not allowed.
+The <samp data-coord="js-quick-start.umt:568:131">key</samp> <strong data-coord="js-quick-start.umt:568:137">must</strong> be a string within double-quotes.
+</p></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:572:0"><h2 data-coord="js-quick-start.umt:572:0">JSON Example</h2><pre><span class="hl kwa">{</span>
+  <span class="hl kwc">&quot;john&quot;</span><span class="hl opt">:</span> <span class="hl kwa">{</span>
+     <span class="hl kwc">&quot;name&quot;</span><span class="hl opt">:</span> <span class="hl str">&quot;John Cassidy&quot;</span><span class="hl opt">,</span>
+     <span class="hl kwc">&quot;age&quot;</span><span class="hl opt">:</span> <span class="hl num">42</span><span class="hl opt">,</span>
+     <span class="hl kwc">&quot;kids&quot;</span><span class="hl opt">:</span> <span class="hl kwb">[</span> <span class="hl str">&quot;jane&quot;</span><span class="hl opt">,</span> <span class="hl str">&quot;bill&quot;</span> <span class="hl kwb">]</span>
+   <span class="hl kwa">}</span><span class="hl opt">,</span>
+  <span class="hl kwc">&quot;mary&quot;</span><span class="hl opt">:</span> <span class="hl kwa">{</span>
+     <span class="hl kwc">&quot;name&quot;</span><span class="hl opt">:</span> <span class="hl str">&quot;Mary Jones&quot;</span><span class="hl opt">,</span>
+     <span class="hl kwc">&quot;age&quot;</span><span class="hl opt">:</span> <span class="hl num">42</span><span class="hl opt">,</span>
+     <span class="hl kwc">&quot;kids&quot;</span><span class="hl opt">:</span> <span class="hl kwb">[</span> <span class="hl str">&quot;lucy&quot;</span><span class="hl opt">,</span> <span class="hl str">&quot;sue&quot;</span> <span class="hl kwb">]</span>
+   <span class="hl kwa">}</span>
+<span class="hl kwa">}</span></pre></section><section class="umt-slide" data-coord="js-quick-start.umt:591:0"><h2 data-coord="js-quick-start.umt:591:0">JSON Evaluation</h2><ul data-coord="js-quick-start.umt:594:0"><li data-coord="js-quick-start.umt:594:0"><p data-coord="js-quick-start.umt:594:4">Can be easily parsed by standard JS library using
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" data-coord="js-quick-start.umt:594:157">JSON.parse().</a>
+</p></li><li data-coord="js-quick-start.umt:598:0"><p data-coord="js-quick-start.umt:598:4">A JS object can easily be converted to a JSON string using
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" data-coord="js-quick-start.umt:598:170">JSON.stringify().</a>  Usually, JS objects without a JSON
+representation are silently ignored or represented as a <code><span class="hl kwa">null</span></code>
+when within an array.
+</p></li><li data-coord="js-quick-start.umt:604:0"><p data-coord="js-quick-start.umt:604:4">Excellent data format for exchanging structured data between
+heterogeneous systems.
+</p></li><li data-coord="js-quick-start.umt:607:0"><p data-coord="js-quick-start.umt:607:4">Restricted format.
+</p></li><li data-coord="js-quick-start.umt:609:0"><p data-coord="js-quick-start.umt:609:4">Comments are not allowed.  Makes it a bad choice as a
+configuration format (unfortunately, many JS tools use
+it as a configuration format).
+</p></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:653:0"><h2 data-coord="js-quick-start.umt:653:0">Gotchas</h2><ul data-coord="js-quick-start.umt:656:0"><li data-coord="js-quick-start.umt:656:0"><p data-coord="js-quick-start.umt:656:4"><code><span class="hl kwa">return</span></code> with return-expression on the next line will
+result in <code><span class="hl kwb">undefined</span></code> being returned.  If inconvenient
+to begin return-expression on same line as <code><span class="hl kwa">return</span></code>
+keyword, use:
+</p><pre>    <span class="hl kwa">return</span> <span class="hl opt">(</span>
+      longExpr
+    <span class="hl opt">);</span></pre></li><li data-coord="js-quick-start.umt:667:0"><p data-coord="js-quick-start.umt:667:4">Never use <samp data-coord="js-quick-start.umt:667:14">==</samp> and <samp data-coord="js-quick-start.umt:667:23">!=</samp> for checking equality.  Surprising
+type converions.  Always use <samp data-coord="js-quick-start.umt:667:96">===</samp> and <samp data-coord="js-quick-start.umt:667:106">!==</samp>; no conversions.
+</p><pre>    <span class="hl opt">&gt;</span> <span class="hl kwa">null</span> <span class="hl opt">==</span> <span class="hl kwb">undefined</span>
+    <span class="hl kwa">true</span>
+    <span class="hl opt">&gt;</span> <span class="hl kwa">null</span> <span class="hl opt">===</span> <span class="hl kwb">undefined</span>
+    <span class="hl kwa">false</span>
+    <span class="hl opt">&gt;</span> <span class="hl str">&apos;&apos;</span> <span class="hl opt">==</span> <span class="hl num">0</span>
+    <span class="hl kwa">true</span>
+    <span class="hl opt">&gt;</span> <span class="hl str">&apos;&apos;</span> <span class="hl opt">===</span> <span class="hl num">0</span>
+    <span class="hl kwa">false</span>
+    <span class="hl opt">&gt;</span></pre></li></ul></section><section class="umt-slide" data-coord="js-quick-start.umt:682:0"><h2 data-coord="js-quick-start.umt:682:0">Gotcha's from C Legacy</h2><ul data-coord="js-quick-start.umt:685:0"><li data-coord="js-quick-start.umt:685:0"><p data-coord="js-quick-start.umt:685:4">Need <code><span class="hl kwa">break</span></code> after <code><span class="hl kwa">case</span></code> to avoid fall-thru.
+</p><pre>      <span class="hl kwa">switch</span> <span class="hl opt">(</span>type<span class="hl opt">) {</span>
+        <span class="hl kwa">case</span> <span class="hl str">&apos;number&apos;</span><span class="hl opt">:</span>
+          x <span class="hl opt">=</span> <span class="hl num">1</span><span class="hl opt">;</span>
+          <span class="hl slc">//need a break statement here</span>
+        <span class="hl kwa">case</span> <span class="hl str">&apos;string&apos;</span><span class="hl opt">;</span>
+          x <span class="hl opt">=</span> <span class="hl num">42</span><span class="hl opt">;</span>
+          <span class="hl kwa">break</span><span class="hl opt">;</span>
+      <span class="hl opt">}</span></pre></li><li data-coord="js-quick-start.umt:698:0"><p data-coord="js-quick-start.umt:698:4">Integer literals starting with leading 0 are treated as octal:
+</p><pre>    <span class="hl opt">&gt;</span>  <span class="hl num">010</span>
+    <span class="hl num">8</span></pre></li></ul></section></section>
+</div> <!-- #content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../assets/scripts/slide-controls.js"></script>
+<script src="../../assets/scripts/loginAction.js"></script>
+</body>
+</html>

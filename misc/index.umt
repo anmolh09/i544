@@ -1,0 +1,50 @@
+                 M i s c e l l a n e o u s
+
+This directory will contains miscellaneous information relevant to
+this course.
+
+  
+  + .<academic-honesty-statement/academic-honesty-policy.html>
+      "Academic Honesty Policy": (
+      .<./academic-honesty-statement/academic-honesty-policy.umt>
+      "text",
+      .<./academic-honesty-statement/academic-honesty-policy.pdf>
+      "PDF").
+      
+  + .<academic-honesty-statement/academic-honesty-statement.html>
+    "Academic Honesty Statement": All students are required to submit
+    ( .<./academic-honesty-statement/academic-honesty-statement.umt>
+    "text",
+    .<./academic-honesty-statement/academic-honesty-statement.pdf>
+    "PDF").
+
+  + .<./doodles> Doodles: material hacked in class.
+
+  + .<./fail2ban/fail2ban.html> "Fail2Ban Connectivity Issues".
+    .<./fail2ban/fail2ban.pdf> PDF.
+
+  + .<grading-guidelines/grading-guidelines.html> "Grading Guidelines" provided
+    to the TA/grader which may also be useful for students too.
+    ( .<./grading-guidelines/grading-guidelines.umt> "text",
+    .<./grading-guidelines/grading-guidelines.pdf> "PDF").
+
+  + .<vm-setup/index.html> "Virtual Machine Setup":
+     Directions for setting up the virtual machine you will be using
+     for this course. 
+  
+%%%
+
+  + Listing of .<ports/ports.html> services running on
+    `zdu.binghamton.edu`.  ( .<./ports/ports.umt> "source",
+    .<./ports/ports.pdf> "PDF").
+    
+
+  + .<gui-remote-access/gui-remote-access.html> "GUI Remote Access"
+    Other formats: .<gui-remote-access/gui-remote-access.pdf> PDF,
+    .<gui-remote-access/gui-remote-access.umt> source.
+
+  + .<./videos/index.html> "Class videos": Usually made available the
+    day after the class.
+  
+%%%
+

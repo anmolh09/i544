@@ -1,0 +1,492 @@
+                    S y l l a b u s
+
+
+
+
+                         Instructor Info
+                         ===============
+ 
+          Zerksis D. Umrigar .;
+          *Zoom Link*: .<https://binghamton.zoom.us/my/umrigar> "" .;
+          *Zoom Office Hours*: Mon, Wed: 3:35 - 4:35p. .;
+          *Email*: .<mailto:umrigar+cs544@binghamton.edu> umrigar+cs544@binghamton.edu
+
+  + Do *not* use the generic `umrigar@bing...` email address; *always*
+    use the course specific `umrigar+cs544@bing...` email address.
+          
+  + I will always try to reply to email within 24 hours (often much
+    sooner).  To ensure prompt attention, alway used the `+cs544`
+    email address.
+
+%%%
+
+			Zoom Classes
+			============
+
+  + I usually attempt to have your mic muted when you join the class,
+    but you can unmute at any time.
+
+  + Please feel free to interrupt at any time with questions.
+    You can do so using your mic or a chat window I should have
+    open. I prefer the former as it is more interactive.
+
+  + I record each class session and publish links to the video
+    recordings available in the .<misc> misc directory, usually by the
+    next day.
+
+  + Please feel free to let me know if I forget to start recording
+    or am making any other technology mistakes.
+
+  + Usually at the start of class or after an interruption, I will
+    ask you if you can hear me.  Please respond using your mic as
+    that lets me know everything is working okay on my end.
+
+  + If there is a technology problem on my end during class, I will
+    try to restart the meeting ASAP.  I will try to send out an email
+    to the course mailing list if the problem looks like it may take
+    more than a couple of minutes to resolve.
+
+%%%
+
+                           Zoom Office Hours
+                           =================
+
+  + Office hours will be set up with a waiting room; i.e. students can
+    feel free to share their work with me.
+
+  + If I feel that what is being discussed is of general interest and
+    there are students in the waiting room, I may go ahead and let them in.
+    
+  + If there are no other students in the zoom meeting room, I may not
+    notice your arrival right away.  Please say something to grab my
+    attention and give me a couple of minutes to respond.
+
+
+                        Graders
+                        =======
+
+  + Graders  responsible for *all* grading.
+
+  + All questions regarding the grading of an assignment should *first* be
+    addressed to the grader.
+
+  + Usually, I will backup a grader's grading decision unless there is a 
+    clear mistake.
+
+
+		       Project Grading
+		       ===============
+
+           *Vikas Magar* .;
+	   *Zoom Link*: .<https://binghamton.zoom.us/j/4160971613?pwd=aUwzK3N4L0xmL2tFS1BEWlBTeUdZZz09> "" .;
+	   *Office Hours*: Wed: 1:00 - 2:00p .;
+	   *Email*: .<mailto:vmagar1@binghamton.edu> vmagar1@binghamton.edu .;
+	   *Github ID*: `vikasmagar512` .;
+	   *Grading Responsibilities*: All projects.
+
+	   	    	Homework and Exam Grading
+			=========================
+
+           *Sohini Mandal* .;
+	   *Zoom Link*: .<https://binghamton.zoom.us/j/76052132047?pwd=UFUvWTR3VXFKcXFPdjhOUHErVzRYQT09> "" .;
+	   *Office Hours*: Fri: 2:00 - 3:00p .;
+	   *Email*: .<mailto:smandal5@binghamton.edu> smandal5@binghamton.edu .;
+	   .% *Github ID*: `Sohini0102` .; %
+	   *Grading Responsibilities*: All homework, midterm + final.
+
+
+                           Texts
+                           =====
+
+
+No text, the course will make heavy use of online resources.  However, the book
+"JavaScript: The Definitive Guide" by David Flanagan, 8th Edition is strongly
+recommended.
+
+                         Evaluation
+                         ==========
+
+  + Pop quizzes will test on material covered recently.
+
+  + 4-5 projects.
+
+  + 4 homeworks.
+
+  + Paper (544 only). 
+
+  + Midterm: During regular class time at a time to be announced,
+
+  + Final: During last class.
+
+                                Grading
+                                =======
+
+```
+      Pop Quizzes (lowest dropped):  12%
+      Projects (lowest dropped)      35%
+      Homeworks (lowest dropped)     444: 25%; 544: 22%
+      Paper                          544 only: 3%
+      Midterm:                       13%
+      Final:                         15%
+```
+
+
+       + All exams and quizzes will be online and hence will be
+         open-book, open-notes. You are allowed to use any material,
+         but are not allowed to collaborate with any other people.
+
+       + A pop quiz will usually have 5 questions with 2 points per
+         question + 2 points for attempting the quiz.
+         
+                    Assignment of Final Letter Grades
+                    =================================
+
+    + Letter grades will be assigned strictly monotonically based on
+      the numeric course grade.
+
+    + A letter grade of A will be given only for consistent superior work.
+
+    + You will get an F only if you miss turning in a lot of work
+      or submit consistently very poor quality work.
+
+    + If you have an issue with the grading of a particular assignment, it
+      is *imperative* that you see the grader before the final exam.
+
+    + All letter grades are final unless there is some kind of clerical
+      error.
+
+    + TA .<../../misc/grading-guidelines/grading-guidelines.pdf>
+      "Grading Guidelines" are available.
+
+
+                        Academic Honesty
+                        ================
+
+  Cheating of any type will be penalized heavily.
+
+    + Minimal penalty: zero on assignment and letter grade dropped by
+      one slot: i.e. an A becomes an A-, a B- becomes a C+, etc.  You
+      will also need to sign a Watson college document which will be
+      added to your file.
+
+    + Permissible to collaborate to understand course material,
+      homework questions or project assignments. *Not permissible to
+      discuss solutions.*
+
+      + If you feel you may have inadvertently crossed the line, then
+        let us know; will not be considered cheating.
+
+      + If submitting an assignment late after the solution has been
+        posted, you should obviously not be looking at the solution.
+
+    + All registered students must sign and complete an
+      .<../../misc/academic-honesty-statement/academic-honesty-statement.pdf>
+      "Academic Honesty Statement."
+
+	 		Mask Policy
+			===========
+
+The university requires masks when indoors:
+
+  + If you forget your face covering or it does not meet these
+    requirements, you will be asked to leave the room immediately. You
+    may not return until you meet the requirement.  If there is a
+    pop quiz during that class, you will miss the quiz.
+
+  + If a student does not comply with the requirements, the remainder
+    of the class session will be canceled. The dean’s office will be
+    notified and will work with the Student Records office to issue a
+    failing grade (“F”) for the course regardless of when in the
+    semester the incident occurs. The dean’s office will also inform
+    the Office of Student Conduct.
+
+
+                                Projects
+                                ========
+
+
+Usually 5 projects,  some of which will build on each other.
+
+  # Basic server side JavaScript.
+
+  # Server side JavaScript using a database.
+
+  # Expose server side code using web services.
+
+  # Access web services in browser to display a simple app.
+
+  # Access web services in browser to display a more complex app.
+
+
+                                Homework
+                                ========
+
+4 homework assignments:
+
+  + Some questions will be simple exercises based on what was covered
+    in class.
+
+  + Some questions will require original thinking.
+
+  + Some questions will require using external resources like the
+    web.
+
+
+                           Quizzes and Exams
+                           =================
+
+  + Each student will be given a personalized exam/quiz with
+    random variations of questions in a random order.
+
+  + Will be administered using a "personal home page" accessed
+    using the *Login* link on the course web site (access details
+    will be sent out shortly).
+
+  + Quizzes will be multiple choice, usually based on
+    .<../../exercises> Exercises.
+
+  + Midterm and final will be ."essay type" and will need to be
+    submitted using mycourses.
+
+  + Difficult but not impossible to cheat.
+
+  + Basically on a honor system.
+
+  + If you successfully cheat you will really be cheating yourself and
+    damaging your self worth.
+
+  + If cheating is detected, then action *will be taken*.
+
+                                Paper
+                                =====
+
+  + 544 only.
+
+  + A brief 3-4 page description of some related topic which was not
+    covered in the course.
+
+  + More detailed specs will be made available around mid-semester.
+
+
+                
+                        Late Submission Policy
+                        ======================
+
+       + You are allowed to submit assignments late by up
+         to 3 days.
+
+       + You may not use more than 7 late days over all assignments
+         over the entire semester.
+
+       + A day will count as 24 hours, irrespective of holidays or
+         weekends.
+
+       + Late submissions will not be accepted for some assignments,
+         especially before an exam or towards the end of the
+         semester.
+
+       %%%
+       + Late homeworks can be turned in during class or during office
+         hours to either me or the grader.  Alternatively, they can be
+         submitted via my department mailbox or under my door, with
+         the late submission date clearly mentioned on the submission.
+         Please ensure that your course number (CS 544) and section
+         (A or B) are also clearly mentioned.
+       %%%
+
+
+                                Course Web Site
+                                ===============
+       
+
+    + All course material on course web site at  
+      .<http://zdu.binghamton.edu/cs544> "".
+
+    + Course web site mirrored at 
+      .<http://cs.binghamton.edu/~umrigar/cs544> "".  Dynamic portions
+      of the web site will not be mirror'd.
+
+    + Website password protected against bots.  You will be provided
+      the user-id and password in an email.
+
+    + Slides usually available an hour before class.  PDF's look
+      better and will be used in class, but links from PDF version of
+      slides do not always work.  Slides may be updated up to one week
+      after class to fix mistakes or make enhancements.
+
+    + Course web site available via `git` repository at
+      `ssh://`"user"`@remote.cs.binghamton.edu/~umrigar/git-repos/cs544.git`.
+      Useful for tracking changes.
+
+
+                        Course Mailing List
+                        ===================
+
+    + All students registered for the course should have been
+      subscribed to the .<mailto:cs544@cs.binghamton.edu> CS544
+      mailing list.
+
+    + To change the email address via which you are subscribed to
+      the list or would like to edit your subscription options, please
+      visit .<https://www.cs.binghamton.edu/mailman/listinfo/cs544> "".
+                  
+
+
+                Catalog Description
+                ===================
+
+
+"An in-depth understanding of programming for the World Wide Web:
+detailed coverage of widely used language(s) for web programming,
+asynchronous programming, principles of web architecture, web
+protocols, web design patterns, client-side programming, templating,
+server-side programming, a technical history of the web, web
+security. Students are expected to have experience with a modern
+programming language and will be assigned programming projects using
+current state-of-the-art web technologies."
+
+*Prerequisite CS 444*: CS 320 or CS 350 or CS 375. 
+
+Proficiency in programming, with at least some exposure to
+object-oriented programming.
+
+
+			    Objectives
+			    ==========
+
+After successful completitons of this course, students should
+expect to:
+
+  + Have had exposure to some of the intricacies of JavaScript.
+
+  + Understand asynchronous programming.
+
+  + Have a solid grasp of the basic technology powering the
+    World Wide Web.
+
+  + Have experience developing RESTful web services.
+
+  + Use modern client side technologies for consuming the web services.
+
+  + Experience in implementing programming projects of medium
+    complexity.
+
+                Some Topics
+                ===========
+
+  + Javascript: 4-5 weeks.
+
+  + Asynchronous programming.
+
+  + Technical history of the web.
+
+  + HTTP protocol.
+
+  + Web architecture, Representational State Transfer (REST).
+
+  + Web services.
+
+  + Browser technologies.
+
+Will build out from server to browser.
+
+
+               Less Emphasis
+               =============
+
+  + HTML
+
+  + CSS
+
+  + Particular web frameworks (we will cover some frameworks
+    relatively superficially).
+
+
+                No Coverage
+                ===========
+
+  + Portable code which runs across multiple browsers/platforms.
+    We will simply target stable versions of `nodejs` and `chrome`.
+
+  + Device-specific capabilities.
+
+
+     	      	  	    Virtual Machines
+			    ================
+
+  + Each student will be assigned a Linux-based virtual machine
+    which can be used for course projects and other related work.
+
+  + Each VM comes preinstalled with all the software needed for the
+    course.  List of installed software is
+    .<../../misc/vm-setup/setup.sh> available if you prefer to use
+    your own computing environment. *However, it is your responsibility
+    to ensure that submitted code runs within your VM environment*.
+
+  + Each student has `sudo` access to their VM.  This makes it
+    possible for the student to install any other required software.
+
+  + Imperative that students set up GUI access to their VM as that
+    will be needed for subsequent projects.  The recommended software
+    is x2go.
+
+                   ABET Accreditation Outcomes
+                   ===========================
+
+For ABET "Networking & Communications", this course will cover:
+
+  + The HTTP protocol.
+
+  + HTTP caching.
+
+  + Handling of HTTP errors.
+
+This will be measured using project 3.
+
+                        Problems
+                        ========
+
+  + If you are having problems, please see me ASAP; *do not wait till
+    the end of the semester*.
+
+  + Flexible regarding deadlines under exceptional circumstances.
+
+  + If you are experiencing undue personal or academic stress at any
+     time during the semester or need to talk with someone about a
+     personal problem or situation, I encourage you to seek support as
+     soon as possible. I am available to talk with you about stresses
+     related to your work in my class.
+
+                       Contact Info for Help
+                       =====================
+
+
+:Dean of Students Office:
+  607-777-2804
+   
+:Decker Student Health Services Center:
+  607-777-2221
+
+:University Police:
+  On campus emergency, 911
+
+:University Counseling Center:
+  607-777-2772
+
+:Interpersonal Violence Prevention:
+  607-777-3062
+
+:Harpur Advising:
+  607-777-6305
+
+:Office of International Student & Scholar Services:
+  607-777-2510
+
+:University Ombudsman:
+  Main campus: 607-777-2388; University Downtown Center office 607-777-2388
+
+:Services for Students with Disabilities:
+  607-777-2686 (Voice, TTY)
+
+
+
