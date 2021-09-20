@@ -71,7 +71,7 @@ makeAccounts.DEFAULT_COUNT = DEFAULT_COUNT; //for testing
 class Accounts {
   constructor() {
     //TODO
-        this._accounts =[] 
+        this._accounts =[]
   }
 
   /** Return ID of a newly created account having holder ID set to
@@ -83,8 +83,17 @@ class Accounts {
    */
   newAccount(params={}) {
     //TODO
-    let newAccount = { id:genId() , holderId : params.holderId , balance : 0}
+    if(!params.holderId){
+      let errors = new AppErrors();
+      errors.add("holderId not specified",{ 'code' : 'BAD_REQ'})
+      return errors ;
+    }
+    let newAccount = new Account( genId() , params.holderId ,0)
+    // console.log('newAccount.info()',newAccount.info());
     this._accounts.push(newAccount);
+
+    // let returnedAccount = this._accounts.filter ( e => newAccount.id === e.id)
+    // console.log('rreturned account ',returnedAccount);
 
     return newAccount.id;
       // return '';
@@ -97,18 +106,35 @@ class Accounts {
    */
   account(params) {
     //TODO
-    return _accounts.filter ( e => params.id == e.id)
-    // return {};
+    if(!params.id){
+      let errors = new AppErrors();
+      errors.add("id not specified",{ 'code' : 'BAD_REQ'})
+      return errors ;
+    }
+
+    let foundAccount = this._accounts.filter ( e => params.id === e.id)
+    // new Account().info()
+    // console.log('foundAccount ',foundAccount)
+
+    if(foundAccount.length===0){
+      let errors = new AppErrors();
+      errors.add("no account having ID id",{ 'code' : 'NOT_FOUND'})
+      return errors ;
+    }
+    return foundAccount[0];
   }
 
-  
+
 }
 
 class Account {
-  constructor(holderId) {
+
+  constructor(id,holderId,balance) {
     // TODO
-    this._holderId =  holderId
-    this.transactions = {};
+    this.id = id
+    this.holderId =  holderId
+    this.balance = balance
+    this.transactions = [];
   }
 
   /** Return object { id, holderId, balance } where id is account ID,
@@ -121,13 +147,13 @@ class Account {
   info(params={}) {
     //TODO
 
-    return {};
+    return {id:this.id , holderId:this.holderId , balance:this.balance};
   }
 
   /** Return ID of a newly created transaction.  When called, params must be 
    *  an object containing at least { amount, date, memo } where:
    * 
-   *    amount is a string /^\d+\.\d\d$/ representing a number, 
+   *    amount is a string /^[-+]?\d+\.\d\d$/ representing a number, 
    *    date is a YYYY-MM-DD string representing a valid date
    *    memo is a non-empty string.
    *
@@ -139,11 +165,32 @@ class Account {
    *                 restrictions on format.
    */
   newAct(params={}) {
-    //TODO
-    let act = new Transaction( params.amount , params.date  ,params.memo)
-    let newAct = { id :genId() , ...act};
-    transactions.push(newAct)
-    return newAct.id;
+    const {   amount, date, memo  } =  params  ;
+
+    let errors = new AppErrors();
+    if(!date || !amount || !memo){
+
+      errors.add("required parameter missing",{ 'code' : 'BAD_REQ'})
+      return errors ;
+    }
+
+    let fdate = getDate(date,errors)
+    if(fdate.errors){
+      return fdate;
+    }
+    let famount = getCents(amount,errors)
+    if(famount.errors){
+      return famount;
+    }
+
+    let act = new Transaction( genId() , params.amount , params.date  ,params.memo , Number(this.balance).toFixed(2) + Number(params.amount).toFixed(2))
+
+    this.balance =  Number(this.balance) + Number(params.amount)
+    this.balance  = Number(this.balance).toFixed(2)
+    this.balance  = Number(this.balance)
+    this.transactions.push(act)
+
+    return act.id;
   }
 
   /** Return list of transactions satisfying params for an account.
@@ -185,8 +232,21 @@ class Account {
    *                 not meet their requirements.
    */
   query(params={}) {
-    //TODO
-    return [];
+
+    const { actId, date, memoText, count, index } = params
+
+    return this.transactions
+        .filter(tr => {
+          if (actId)
+            return tr.actId === actId;
+          else return true;
+        })
+        .filter(tr => {
+          if (memoText)
+            return tr.memo.indexOf(memoText.toLowerCase()) !== -1
+          else return true;
+        })
+
   }
 
   /**
@@ -215,17 +275,20 @@ class Account {
    */
   statement(params={}) {
     //TODO
-    return [];
+    return this.transactions.sort( (e1,e2 )=> new Date(e2.date) - new Date(e1.date) );
+
   }
 
 }
 
 class Transaction {
   //TODO
-  constructor(params){
-    this._amount =  params.amount;
-    this._date = params.date;
-    this._memo = params.memo 
+  constructor(id,amount,date,memo,balance){
+    this.id = id
+    this.amount =  amount
+    this.date = date
+    this.memo = memo
+    this.balance = balance
   }
 }
 
