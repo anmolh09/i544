@@ -1,0 +1,352 @@
+                J a v a s c r i p t    I n t r o d u c t i o n
+
+		   Overview
+		   ========
+
+  + History.
+
+  + Supported programming paradigms.
+
+  + Partial list of features.
+
+  + JS platforms.
+
+
+                    Brief History
+                    =============
+
+  + Written by Brendan Eich within 10 days in May, 1995 at Netscape
+    Communications.  Name chosen based on marketing considerations
+    to cash in on the popularity of Java.
+
+  + Microsoft released `jscript` in 1996.  Incompatibilities
+    introduced ("embrace and extend").
+
+  + Standardized as `EcmaScript`  in June 1997  (ECMA-262).
+
+  + JavaScript got a bad reputation and was regarded as a poor
+    programming language used for doing trivial things in the browser.
+    Complexities caused by browser incompatibilities and the browser
+    *Document Object Model* (DOM) were blamed on the language.
+
+  + Changed with the emergence of *Asynchronous JAvascript with Xml*
+    (AJAX) in 2005.
+
+                    Brief History Continued
+                    =======================
+
+  + *JavaScript Object Notation* (JSON) popularized by Douglas
+    Crockford emerged as a popular alternative to XML as a
+    specification for data interchange between heterogeneous systems.
+
+  + Renaissance in js development.  Browser incompatibilities and DOM
+    complexities hidden by the use of libraries like `prototype`,
+    `jquery` and `dojo`.
+
+  + `Node.js` released by Ryan Dahl in 2009.  Popularized the
+    use of js on the server.
+
+  + Succession of different ECMA standards: es 3, es 5.  Currently,
+    evolving as an ."evergreen" language with standard updates being
+    released yearly: es 2015 .... 2019.
+
+  + Allows use of a single programming language across the entire web
+    stack.  Most popular programming language in terms of deployments.
+
+
+                      Multi-Paradigm Language
+		      =======================
+
+JavaScript supports programming using multiple paradigms:
+
+  + Imperative / Procedural.
+
+  + Object-oriented.
+
+  + Functional.
+
+
+			Imperative Programming
+			======================
+
+  + Imperative programming gives a step-by-step description
+    to a computer *how to solve* a problem.
+
+  + AKA *procedural programming* as program is a how-to
+    "procedure" to solve a problem.
+
+  + Involved mutating shared state.
+
+  + Maps very closely to operation of computer; relatively low
+    abstraction.
+
+			Object-Oriented Programming
+			===========================
+
+  + Package data and functions associated with that data
+    together into "objects".
+
+  + Objects can provide encapsulation.
+
+  + Usually some kind of inheritance (JS uses a non-traditional
+    model of inheritance).
+
+  + Classes are not essential to JS OO programming.
+
+
+    	    	    	  Functional Programming
+			  ======================
+
+JS supports multiple degrees of functional programming:
+
+  + *Pure functions*: the result of a function depends
+    only on its arguments; it is not allowed to
+    do anything other than return a result.  It
+    cannot change any global state, including I/O.
+
+    It is possible to write pure functions even
+    in a language like C.
+
+  + *First-class functions*.  Functions can be treated
+    like any other datatype: stored in variables,
+    passed between functions.
+
+  + *Lack of mutation*; clumsy but not impossible in JS.  Forced in
+    languages like Haskell.
+
+  
+			
+
+                         Some Language Features
+                         ======================
+
+  + Dynamically typed: variables are untyped, but values have types.
+    Permits the use of *duck typing*.
+
+  + Initially interpreted, now compiled using techniques like
+    runtime compilation.
+
+  + Possible to evaluate strings representing code at runtime using
+    `eval()`.
+
+  + Allows reentering a function invocation using
+    .<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator>
+    "generators".
+
+  + Borrows concepts from Scheme, Perl and Self.
+
+  + Standard library is highly asynchronous.
+
+
+    	     	     JavaScript Platforms
+		     ====================
+
+JavaScript runs on two main platforms:
+
+  # *Browser*: Platform provides interfaces to numerous browser
+    technologies like the "Document Object Model" DOM and browser
+    storage.
+
+  # *Server*: Exemplified by `nodejs`.  Platform provides access to
+    filesystem, processes, etc.
+
+%%%
+    	     	     Example Program
+		     ===============
+
+  + Non-trivial program to grep one-or-more files.
+
+  + Command-line nodejs program.
+
+  + Invoked with arguments specifying regex and one-or-more files.
+
+  + Both synchronous and asynchronous versions.
+
+
+    	 	     	Edited Log of Operation
+			=======================
+
+```
+$ ./sync-grep.mjs 
+usage: sync-grep.mjs REGEX FILE...
+$ ./sync-grep.mjs '\' sync-grep.mjs
+bad regex \: Invalid regular expression: /\/: \ at end of pattern
+$ ./sync-grep.mjs '\[\d\]' sync-grep.mjs
+sync-grep.mjs:16: 	  Path.basename(process.argv[1])); //@basename
+sync-grep.mjs:20:     regex = new RegExp(process.argv[2]);
+sync-grep.mjs:23:     abort("bad regex %s: %s", process.argv[2],
+$ ./sync-grep.mjs '\[\d\]' sync-grep.mjs x
+sync-grep.mjs:16: 	  Path.basename(process.argv[1])); //@basename
+sync-grep.mjs:20:     regex = new RegExp(process.argv[2]);
+sync-grep.mjs:23:     abort("bad regex %s: %s", process.argv[2],
+cannot read x: ENOENT: no such file or directory, open 'x'
+$
+```
+  
+
+    	    	      Code for Synchronous Grep
+		      =========================
+
+In .<code/sync-grep.mjs?colorize=true> sync-grep.mjs:
+
+.include("code/sync-grep.mjs", end_label=".1.")
+
+                      Commentary on Previous Code
+		      ===========================
+
+  :First Line:
+    On Unix systems, a line starting with "hash-bang" `#!` specifies
+    running the file through an interpreter.  In this case, the
+    interpreter is the `env` program which runs its argument `nodejs`
+    with a specified environment. In this case no additional
+    environment is specified; the `env` program is merely used to find
+    `nodejs` on the user's `PATH`.
+
+  :@modules:
+    Inclusion of standard modules.  `import` is a new JavaScript
+    feature which has just made it in to nodejs.
+
+                      Commentary on Previous Code Continued
+		      =====================================
+
+  :@rest-args:
+    If last formal parameter is prefixed with a `...`, then that parameter's
+    will be an array.  In the example, `...args` will set `args` to an
+    array containing all the arguments to `abort()`.
+
+  :@spread-args:
+    If a variable which is an array is prefixed with a `...` in a
+    function call, then that array gets spread into the call such
+    that each element is a separate argument in the call.
+
+
+    	    	      Code for Synchronous Grep Continued
+		      ===================================
+
+.include("code/sync-grep.mjs", begin_label=".1.", end_label=".2.", lang=js)
+
+                      Commentary on Previous Code
+		      ===========================
+
+  :@argv:
+    `process.argv[]` contains the program's command-line arguments.
+    `argv[0]` contains the path to the interpreter, i.e. the path
+    to the `nodejs` executable; `argv[1]` contains the path of
+    the JavaScript file being run, i.e. the path to `sync-grep.mjs`
+    file.  The remaining arguments are the actual arguments
+    provided to the program. In this case, a `REGEX` and at least
+    one `FILE` name argument are required.
+
+  :@let:
+    The modern way of declaring variables in JavaScript is using `let`.
+    Does not have the surprises associated with the older `var` declarations.
+
+  :@basename:
+     Returns the last component of its path parameter.
+
+
+    	    	      Code for Synchronous Grep Continued
+		      ===================================
+
+.include("code/sync-grep.mjs", begin_label=".2.", end_label=".3.", lang=js)
+
+    	    	      Code for Synchronous Grep Continued
+		      ===================================
+
+.include("code/sync-grep.mjs", begin_label=".3.")
+
+                      Commentary on Previous Code
+		      ===========================
+
+  :@for-of:
+    The modern way to loop through elements of an array in order
+    is .~for (variable of array) { ... }~
+
+  :@regex:
+    `line.match(regex)` returns ."true" iff some contents in
+    `line` matched the regular expression `regex`.
+
+  :@exception:
+    The `catch` will trigger if an exception occurs.  JavaScript
+    automatically scopes the `err` variable in `catch(err)` to
+    only the `catch`-block.
+
+
+		      Asynchronous Code
+		      =================
+
+Most modern computer systems allow execution of code while waiting for
+external events like I/O completion.  Some alternatives:
+
+      # Blocking synchronous I/O with explicit concurrency constructs
+      	like threads or processes.  Problems with synchronizing access
+      	to shared data.
+
+      # Asynchronous I/O with a single thread of execution with an
+        event loop which runs event handlers when events occur.  Each
+	event handler *runs to completion* before the next event handler
+	is run by the event loop.  Reduces synchronization problems;
+	no synchronization problems while an event handler is running but
+	need to handle synchronization between event handlers.
+
+JavaScript prefers (2).
+
+
+			Asynchronous Grep
+			=================
+
+  + Only change from code for synchronous grep is the `grep()`
+    function; rest of code is identical and not discussed further.
+
+  + When a file is open'd, it is passed a callback event handler which
+    should handle both success and failure of the open.  The `open()`
+    call will return immediately before the file is open'd; the event
+    handler will be run when the status of the file open is known.
+
+  + The code uses nodejs's `readline` module.  Normally used for
+    reading from a terminal but can also be used to read from
+    files.
+
+  + The code uses explicit callback event handlers for `readline`
+    completing reading of a line or encountering an error.
+
+  
+    	    	      Code for Asynchronous Grep
+		      ==========================
+
+.include("code/async-grep.mjs", begin_label=".1.", end_label=".2.", lang=js)
+
+    	    	      Code for Asynchronous Grep Continued
+		      ====================================
+
+.include("code/async-grep.mjs", begin_label=".2.", end_label=".3.", lang=js)
+
+			 Commentary on Previous Code
+			 ===========================
+
+  :@open:
+    The callback takes two arguments: an error object `err` which
+    is ."true" if the open fails and a file descriptor `fd` which
+    will contain a descriptor for the file if the `open()` succeeds.
+    Note the use of an anonymous function to specify the callback.
+
+  :@crlfDelay:
+    If the time interval between input of a `'\r'` and `'\n'` is less than
+    the value of this parameter, they will be collapsed into a single
+    `'\n'` character.
+
+  :@line:
+    The `'line'` event fires for each line read and the event
+    handler is run.  Note the use of JavaScript's fat-arrow
+    notation to specify the callback.
+
+  :@closure:
+    The `lineN++` within the callback is referring to the `lineN`
+    variable defined outside the callback.  It is able to do so
+    because JavaScript supports "closures".
+
+  :@error:
+    The `'error'` event fires if an error is occurred while
+    reading a line.
+
+%%%

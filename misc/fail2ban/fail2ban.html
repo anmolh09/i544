@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 544: Fail2ban Connectivity Issues</title>
+    <link href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+       rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" async=""></script>    
+
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hw/index.html">Homework</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="fail2ban.umt:1:0"><h1 data-coord="fail2ban.umt:1:0">Fail2ban Connectivity Issues</h1><p data-coord="fail2ban.umt:4:0">There is a security feature called fail2ban deployed on the CS machines
+which monitors login failures.  If there are \(N\) login failures from a
+particular IP address, then that IP is banned from logging in for the
+next 24 hours. \(N\) is a relatively small value like 3.
+</p><p data-coord="fail2ban.umt:9:0">The really bad aspect of the operation of fail2ban is that it fails silently
+and the login attempt just hangs without any explanation.  This can be
+extremely frustrating.
+</p><p data-coord="fail2ban.umt:13:0">Scenarious where fail2ban is triggered:
+</p><ul data-coord="fail2ban.umt:15:0"><li data-coord="fail2ban.umt:15:0"><p data-coord="fail2ban.umt:15:4">You are confused about your password and try too many incorrect
+passwords.
+</p></li><li data-coord="fail2ban.umt:18:0"><p data-coord="fail2ban.umt:18:4">Since the ban is by IP address, it could be triggered by someone
+sharing your IP address.  So for example, if you are sharing your
+internet connection with another CS student and your housemate's
+login attempts fail, then your login could get banned.
+</p></li><li data-coord="fail2ban.umt:23:0"><p data-coord="fail2ban.umt:23:4">I once had a flaky key on my keyboard and was unknowingly typing
+my password incorrectly.
+</p></li></ul><p data-coord="fail2ban.umt:26:0">The fixes I know of:
+</p><ol data-coord="fail2ban.umt:28:0"><li data-coord="fail2ban.umt:28:0"><p data-coord="fail2ban.umt:28:4">Wait 24 hours (very frustrating).
+</p></li><li data-coord="fail2ban.umt:30:0"><p data-coord="fail2ban.umt:30:4">Try to use a different IP address:
+</p><ul data-coord="fail2ban.umt:32:0"><li data-coord="fail2ban.umt:32:0"><p data-coord="fail2ban.umt:32:8">If you are using a home ISP, try logging in using your phone's
+hotspot instead.
+</p></li><li data-coord="fail2ban.umt:35:0"><p data-coord="fail2ban.umt:35:8"><em data-coord="fail2ban.umt:35:87"><a href="https://www.google.com/search?q=forcing+different+IP+address+on+ISP" data-coord="fail2ban.umt:35:87">Restart/reboot your router</a></em>.
+</p></li></ul></li><li data-coord="fail2ban.umt:38:0"><p data-coord="fail2ban.umt:38:4">Use the
+<em data-coord="fail2ban.umt:38:141"><a href="https://www.binghamton.edu/its/about/organization/operations-and-infrastructure/networking/off-campus-connecting.html" data-coord="fail2ban.umt:38:141">campus VPN</a></em> to connect.
+</p></li></ol><p data-coord="fail2ban.umt:42:0"><em data-coord="fail2ban.umt:42:22"><a href="email-20210303.txt" data-coord="fail2ban.umt:42:22">SysAdmin Email</a></em> from Mar 3, 2021.
+</p></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>

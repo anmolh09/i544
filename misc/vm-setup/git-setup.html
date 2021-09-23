@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 544: Git Setup</title>
+    <link href="git-setup/hl-fine_blue.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hw/index.html">Homework</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="git-setup.umt:1:0"><h1 data-coord="git-setup.umt:1:0">Git Setup</h1><p data-coord="git-setup.umt:3:0">You will be using <a href="https://git-scm.com/doc" data-coord="git-setup.umt:3:45">git</a> for accessing all
+course material as well as for project submissions:
+</p><ul data-coord="git-setup.umt:6:0"><li data-coord="git-setup.umt:6:0"><p data-coord="git-setup.umt:6:4">All course material is maintained on a git repository
+hosted on a CS department machine.  You will be mirroring
+this repository on your VM.
+</p><p data-coord="git-setup.umt:10:4">You should access course files only via this mirror.
+<strong data-coord="git-setup.umt:10:61">DO NOT DOWNLOAD MATERIAL DIRECTLY FROM THE WEB SITE</strong>.
+</p></li><li data-coord="git-setup.umt:13:0"><p data-coord="git-setup.umt:13:4">You will be submitting your course projects using a private
+git repository on <a href="https://github.com" data-coord="git-setup.umt:13:108">github.com.</a>
+</p></li><li data-coord="git-setup.umt:16:0"><p data-coord="git-setup.umt:16:4">Project submission will be done from a clone of your github
+repository on your VM.
+</p></li></ul><p data-coord="git-setup.umt:19:0">This document assumes that you have already
+<em data-coord="git-setup.umt:19:73"><a href="../vm-setup/vm-setup.html" data-coord="git-setup.umt:19:73">set up your VM</a></em>.
+</p><p data-coord="git-setup.umt:22:0">This document provides step-by-step directions for mirroring the
+course repository and setting up your github repository.  You can
+obtain basic familiarity with <samp data-coord="git-setup.umt:22:161">git</samp> by looking at the copious
+documentation and tutorials available on the web.  This
+<a href="https://missing.csail.mit.edu/2020/version-control/" data-coord="git-setup.umt:22:304">presentation</a>
+is recommended.
+</p><section data-coord="git-setup.umt:30:0"><h2 data-coord="git-setup.umt:30:0">Mirror Course Git Repository on your VM</h2><ol data-coord="git-setup.umt:33:0"><li data-coord="git-setup.umt:33:0"><p data-coord="git-setup.umt:33:4"><span id="mirror" data-coord="git-setup.umt:33:14">On</span> your VM, create a public-private key-pair:
+</p><pre>    $ ssh-keygen </pre><p data-coord="git-setup.umt:40:4">If you accept the defaults, you will create a private key in
+<samp data-coord="git-setup.umt:40:69">~/.ssh/id_rsa</samp> and the corresponding public key in
+<samp data-coord="git-setup.umt:40:125">~/.ssh/id_rsa.pub</samp>.  The former should be retained on
+your VM whereas the latter may be distributed to machines
+to which you would like to access from your VM.
+</p></li><li data-coord="git-setup.umt:46:0"><p data-coord="git-setup.umt:46:4">Copy the public member of the above key-pair to <samp data-coord="git-setup.umt:46:52">remote.cs</samp>:
+</p><p data-coord="git-setup.umt:48:6"><samp data-coord="git-setup.umt:48:6">$ ssh-copy-id -i ~/.ssh/id_rsa</samp> <em data-coord="git-setup.umt:48:39">LOGIN</em><samp data-coord="git-setup.umt:48:50">@remote.cs.binghamton.edu</samp>
+</p><p data-coord="git-setup.umt:51:4">where <em data-coord="git-setup.umt:51:10">LOGIN</em> is your login-id on <samp data-coord="git-setup.umt:51:38">remote.cs</samp>.
+</p><p data-coord="git-setup.umt:53:4">You will be prompted for your password on <samp data-coord="git-setup.umt:53:46">remote.cs</samp>.
+</p><p data-coord="git-setup.umt:55:4">Verify that you can ssh from your VM to <samp data-coord="git-setup.umt:55:44">remote.cs</samp> without having
+to provide your password.
+</p></li><li data-coord="git-setup.umt:58:0"><p data-coord="git-setup.umt:58:4">Create a <samp data-coord="git-setup.umt:58:13">~/projects</samp> top-level directory to hold all your
+cloned repositories:
+</p><pre>    $ mkdir <span class="hl kwb">-p</span> ~<span class="hl opt">/</span>projects
+    $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>projects</pre></li><li data-coord="git-setup.umt:67:0"><p data-coord="git-setup.umt:67:4">Clone the course web site:
+</p><p data-coord="git-setup.umt:70:6"><samp data-coord="git-setup.umt:70:6">$ git clone</samp> <em data-coord="git-setup.umt:70:20">LOGIN</em><samp data-coord="git-setup.umt:70:31">@remote.cs.binghamton.edu:~umrigar/git-repos/cs544.git</samp> 
+</p><p data-coord="git-setup.umt:72:4">where <em data-coord="git-setup.umt:72:10">LOGIN</em> is your login-id on <samp data-coord="git-setup.umt:72:38">remote.cs</samp>.  All the files
+contained within the course web site should be copied into a
+<samp data-coord="git-setup.umt:72:135">cs544</samp> sub-directory.
+</p><p data-coord="git-setup.umt:76:4">If you need to type in your <samp data-coord="git-setup.umt:76:32">remote.cs</samp> password, you have not
+set up your ssh key correctly.  Please review the earlier step
+to see where you may have gone wrong.
+</p></li><li data-coord="git-setup.umt:80:0"><p data-coord="git-setup.umt:80:4">Go into the <samp data-coord="git-setup.umt:80:16">cs544</samp> directory.  You should then see all the course
+web site files.  
+</p></li><li data-coord="git-setup.umt:83:0"><p data-coord="git-setup.umt:83:4">Create a symlink to the <samp data-coord="git-setup.umt:83:28">cs544</samp> directory in your home directory:
+</p><pre>    $ <span class="hl kwb">cd</span>
+    $ <span class="hl kwc">ln</span> <span class="hl kwb">-s</span> projects<span class="hl opt">/</span>cs544 .</pre><p data-coord="git-setup.umt:91:4">This will ensure that scripts can find the directory.
+</p></li></ol><p data-coord="git-setup.umt:93:0"><strong data-coord="git-setup.umt:93:0">You should never be writing into this directory.</strong>
+</p><section data-coord="git-setup.umt:95:0"><h3 data-coord="git-setup.umt:95:0">Automatically Tracking cs544 Changes</h3><p data-coord="git-setup.umt:98:0">You should set up a cron job to update your <samp data-coord="git-setup.umt:98:44">~/cs544</samp> directory from
+the course git repository:
+</p><pre>$ EDITOR<span class="hl opt">=</span>YOUR_FAVORITE_EDITOR crontab <span class="hl kwb">-e</span></pre><p data-coord="git-setup.umt:106:0">where <samp data-coord="git-setup.umt:106:6">YOUR_FAVORITE_EDITOR</samp> is the command you use to start your
+preferred editor.  It should open up showing you an initial <samp data-coord="git-setup.umt:106:126">crontab</samp>
+file.  Add the following line at the end:
+</p><pre>BB <span class="hl opt">* * * *</span> <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>cs544<span class="hl opt">;</span> git pull <span class="hl opt">&gt; /</span>dev<span class="hl opt">/</span>null</pre><p data-coord="git-setup.umt:115:0">where <samp data-coord="git-setup.umt:115:6">BB</samp> is your B-number modulo 60.  Ensure that you have a newline
+at the end of this line.  Save the file and exit your editor.
+</p><p data-coord="git-setup.umt:118:0">The cron job should update your repository every hour at <samp data-coord="git-setup.umt:118:57">BB</samp> minutes
+past the hour (by specifying the minutes using part of your B-number,
+we ensure that students do not all update at the same time, potentially
+causing an overload).  
+</p><p data-coord="git-setup.umt:123:0">You should treat this directory as a <strong data-coord="git-setup.umt:123:37">read-only directory</strong>.
+</p></section><section data-coord="git-setup.umt:126:0"><h3 data-coord="git-setup.umt:126:0">Manually Tracking cs544 Changes</h3><p data-coord="git-setup.umt:129:0">If necessary, you can also manually update your <samp data-coord="git-setup.umt:129:48">~/cs544</samp> directory:
+</p><pre>     $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>cs544
+     $ git pull</pre><p data-coord="git-setup.umt:137:0">You can get a summary of all git changes by running a Ruby script:
+</p><pre>$ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>cs544
+$ bin<span class="hl opt">/</span>git-changes.rb .</pre><p data-coord="git-setup.umt:145:0">This will output a summary of all git changes since the last time you
+ran the script (it records the time via a timestamp stored in
+<samp data-coord="git-setup.umt:145:132">~/cs544/.last-login</samp>).
+</p><p data-coord="git-setup.umt:149:0">If you want to see all the commits in a particular directory like <samp data-coord="git-setup.umt:149:66">hw/hw1</samp>:
+</p><pre>$ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>cs544
+$ git log <span class="hl kwb">--oneline --</span> hw<span class="hl opt">/</span>hw1
+dcdef92 minor hw1 changes
+<span class="hl num">05</span>fc1a1 added hw1<span class="hl opt">;</span> minor correction to prj1
+$</pre><p data-coord="git-setup.umt:160:0">Your commit id's and messages will differ.
+</p><p data-coord="git-setup.umt:162:0">If you want to see the details of a particular commit, use:
+</p><pre>$ git log <span class="hl kwb">--stat</span> dcdef92^<span class="hl opt">!</span></pre><p data-coord="git-setup.umt:169:0">To see the diff's for a particular commit-id:
+</p><pre>$ git show dcdef92</pre><p data-coord="git-setup.umt:176:0">To restrict the diff's to a particular path:
+</p><pre>$ git show dcdef92 <span class="hl kwb">--</span> hw<span class="hl opt">/</span>hw<span class="hl num">1</span><span class="hl opt">/</span>hw1.umt</pre></section></section><section data-coord="git-setup.umt:183:0"><h2 data-coord="git-setup.umt:183:0">Setting Up Your Github Repository</h2><p data-coord="git-setup.umt:186:0">We will also be using git for project submissions:
+</p><ul data-coord="git-setup.umt:188:0"><li data-coord="git-setup.umt:188:0"><p data-coord="git-setup.umt:188:4">You will be submitting your course projects to a private
+git repository on <a href="https://github.com" data-coord="git-setup.umt:188:105">github.com</a> which
+you share with the TA.
+</p></li><li data-coord="git-setup.umt:192:0"><p data-coord="git-setup.umt:192:4">Projects/labs submissions will be done from a clone of your
+github repository on your VM.
+</p><section data-coord="git-setup.umt:197:0"><h3 data-coord="git-setup.umt:197:0">Quick Start</h3><p data-coord="git-setup.umt:200:0">If you know what you are doing, this <samp data-coord="git-setup.umt:200:37">tl;dr</samp> section should largely suffice:
+</p><ol data-coord="git-setup.umt:202:0"><li data-coord="git-setup.umt:202:0"><p data-coord="git-setup.umt:202:4">Set up a personal github account and create a <strong data-coord="git-setup.umt:202:50">private</strong> <samp data-coord="git-setup.umt:202:60">i444</samp> or
+<samp data-coord="git-setup.umt:202:74">i544</samp> git repository, depending on the course you are registered
+for.  Choose the github options to generate a <samp data-coord="git-setup.umt:202:190">.gitignore</samp> for
+<samp data-coord="git-setup.umt:202:211">node</samp> and initialize your repository with a <samp data-coord="git-setup.umt:202:256">README</samp>.
+</p></li><li data-coord="git-setup.umt:207:0"><p data-coord="git-setup.umt:207:4">Set up the TA to have access to your repository:
+</p><ol data-coord="git-setup.umt:209:0"><li data-coord="git-setup.umt:209:0"><p data-coord="git-setup.umt:209:9">Github user id <samp data-coord="git-setup.umt:209:24">vikasmagar512</samp>
+</p></li></ol><p data-coord="git-setup.umt:211:4">As there are many similar names and some people may have multiple
+accounts, <strong data-coord="git-setup.umt:211:84">make 100% sure that you have the correct github
+    accounts</strong> (the above <em data-coord="git-setup.umt:211:158">ID</em> must match).
+</p></li><li data-coord="git-setup.umt:215:0"><p data-coord="git-setup.umt:215:4">Clone your github repository into the <samp data-coord="git-setup.umt:215:42">~/projects</samp> directory on your
+workstation.  Create a symlink to your cloned repository in your
+home directory.
+</p></li><li data-coord="git-setup.umt:219:0"><p data-coord="git-setup.umt:219:4">Use a <samp data-coord="git-setup.umt:219:10">submit</samp> subdirectory within the cloned directory for
+working on projects.  If submitting late, email the TA for
+that project.
+</p></li></ol><p data-coord="git-setup.umt:223:0">The following sections explain each of the above steps in detail.
+</p></section></li></ul></section><section data-coord="git-setup.umt:226:0"><h2 data-coord="git-setup.umt:226:0">Setting Up A Git Hub Repository</h2><p data-coord="git-setup.umt:229:0">Each student needs to set up a <strong data-coord="git-setup.umt:229:31">private</strong> git repository called <samp data-coord="git-setup.umt:229:63">i444</samp>
+or <samp data-coord="git-setup.umt:229:73">i544</samp> (depending on the course you are registered for) on github.
+It will be referred to as <em data-coord="git-setup.umt:229:166">iX44</em> in the sequel.  This repository needs
+to be shared with your CS 444/544 TA and will be used for
+submitting projects for grading.
+</p><ol data-coord="git-setup.umt:235:0"><li data-coord="git-setup.umt:235:0"><p data-coord="git-setup.umt:235:4">Go to <a href="https://github.com" data-coord="git-setup.umt:235:32">github.com.</a>
+</p></li><li data-coord="git-setup.umt:237:0"><p data-coord="git-setup.umt:237:4">Click on <samp data-coord="git-setup.umt:237:13">Sign Up</samp>, and complete the form.  You may choose any
+appropriate <strong data-coord="git-setup.umt:237:83">Username</strong>, but it is strongly recommended that you
+use the user-name associated with your <samp data-coord="git-setup.umt:237:178">binghamton.edu</samp> email (if
+it is available).
+</p><p data-coord="git-setup.umt:242:4">Please ensure that you provide your <samp data-coord="git-setup.umt:242:40">binghamton.edu</samp> email address
+in the <strong data-coord="git-setup.umt:242:82">Email address</strong> field.  This may make it slightly easier
+for the TA to associate your github account with your BU id.
+</p></li><li data-coord="git-setup.umt:246:0"><p data-coord="git-setup.umt:246:4">Please complete all necessary steps to complete your registration
+on github after satisfying their captcha and submitting the form.
+</p></li><li data-coord="git-setup.umt:249:0"><p data-coord="git-setup.umt:249:4">Set up your account appropriately.  On the github page, access
+your account using the user icon on the top right of the page and
+selecting <em data-coord="git-setup.umt:249:151">Settings</em>.  Select <strong data-coord="git-setup.umt:249:171">SSH and GPG keys</strong> from the left
+hand menu, then click <strong data-coord="git-setup.umt:249:230">New SSH key</strong>.
+</p><p data-coord="git-setup.umt:254:4">On your terminal <samp data-coord="git-setup.umt:254:21">cat ~/.ssh/id_rsa.pub</samp> and then copy-and-paste
+the output of that command into the provided <strong data-coord="git-setup.umt:254:118">Key</strong> box.  Submit
+the form to set up your new key.
+</p></li><li data-coord="git-setup.umt:259:0"><p data-coord="git-setup.umt:259:4">To set up a project for the course, click on the green <strong data-coord="git-setup.umt:259:59">New</strong>
+button on your <em data-coord="git-setup.umt:259:106"><a href="https://github.com" data-coord="git-setup.umt:259:106">github home page</a></em>.
+</p><ol data-coord="git-setup.umt:262:0"><li data-coord="git-setup.umt:262:0"><p data-coord="git-setup.umt:262:8">Fill in the repository name as <samp data-coord="git-setup.umt:262:39">i444</samp> or <samp data-coord="git-setup.umt:262:49">i544</samp> exactly
+(this is absolutely essential).
+</p></li><li data-coord="git-setup.umt:265:0"><p data-coord="git-setup.umt:265:8">Provide a suitable description for the repository.
+</p></li><li data-coord="git-setup.umt:267:0"><p data-coord="git-setup.umt:267:8">Make sure that you set up your repository as <strong data-coord="git-setup.umt:267:53">Private</strong>.
+</p></li><li data-coord="git-setup.umt:269:0"><p data-coord="git-setup.umt:269:8">Select <samp data-coord="git-setup.umt:269:15">Initialize this repository with a README</samp>.
+</p></li><li data-coord="git-setup.umt:271:0"><p data-coord="git-setup.umt:271:8">Specify a <samp data-coord="git-setup.umt:271:18">.gitignore</samp> file for <samp data-coord="git-setup.umt:271:40">node</samp>.
+</p></li></ol><p data-coord="git-setup.umt:273:4">Hit the <strong data-coord="git-setup.umt:273:12">Create repository</strong> button.
+</p></li><li data-coord="git-setup.umt:275:0"><p data-coord="git-setup.umt:275:4">Go to your repository using the link you will now find on your github
+homepage. Go to <samp data-coord="git-setup.umt:275:94">Settings-&gt;Collaborators</samp> from the left-hand side
+navigation.  Add the TA as a collaborator:
+</p><ol data-coord="git-setup.umt:279:0"><li data-coord="git-setup.umt:279:0"><p data-coord="git-setup.umt:279:9">Github user id <samp data-coord="git-setup.umt:279:24">vikasmagar512</samp>
+</p></li></ol><p data-coord="git-setup.umt:281:4">As there are many similar names and some people may have multiple
+accounts, <strong data-coord="git-setup.umt:281:84">make 100% sure that you have the correct github
+    accounts</strong> (the above <em data-coord="git-setup.umt:281:158">ID</em> must match).
+</p><p data-coord="git-setup.umt:285:4">This will provide the TA access to your repository once the
+invitation to collaborate is accepted.
+</p><section data-coord="git-setup.umt:289:0"><h3 data-coord="git-setup.umt:289:0">Initializing Your Repository on your VM</h3><p data-coord="git-setup.umt:292:0">Clone your github repository into your <samp data-coord="git-setup.umt:292:39">~/projects</samp> directory:
+</p><p data-coord="git-setup.umt:294:2"><samp data-coord="git-setup.umt:294:2">$ mkdir -p ~/projects</samp> <br data-coord="git-setup.umt:294:26"/>
+<samp data-coord="git-setup.umt:294:31">$ cd ~/projects</samp> <br data-coord="git-setup.umt:294:49"/>
+<samp data-coord="git-setup.umt:294:54">$ git clone</samp> <em data-coord="git-setup.umt:294:68">YOUR_GITHUB_PROJECT_URL</em> <br data-coord="git-setup.umt:294:94"/>
+</p><p data-coord="git-setup.umt:298:0">You can copy and paste <samp data-coord="git-setup.umt:298:23">YOUR_GITHUB_PROJECT_URL</samp> from your github
+project page.  Click the green <strong data-coord="git-setup.umt:298:97">Clone or download</strong> button and then
+copy the <strong data-coord="git-setup.umt:298:142">Clone with SSH</strong> url into your clipboard by using the copy
+widget on the right of the url.
+</p><p data-coord="git-setup.umt:303:0">If you get an error when doing so, verify that you have correctly uploaded
+your public ssh key to github.
+</p><p data-coord="git-setup.umt:307:0">Create a symlink to your github project in your home directory:
+</p><pre data-coord="git-setup.umt:310:0">    $ cd ~
+    $ ln -s ~/projects/i?44 .
+</pre><p data-coord="git-setup.umt:314:0">If you <samp data-coord="git-setup.umt:314:7">cd</samp> over to your <samp data-coord="git-setup.umt:314:25">iX44</samp> directory and do a <samp data-coord="git-setup.umt:314:51">ls -a</samp> you should
+see both the <samp data-coord="git-setup.umt:314:83">README.md</samp> and <samp data-coord="git-setup.umt:314:99">.gitignore</samp> files.  Feel free to add
+names/patterns into <samp data-coord="git-setup.umt:314:157">.gitignore</samp> file for files which should be
+ignored by git.  For example, if you are using emacs as your text
+editor, you may want to add in a line containing <samp data-coord="git-setup.umt:314:316">*~</samp> to tell git to
+ignore emacs backup files.
+</p><p data-coord="git-setup.umt:321:0">Make sure that all updates have been pushed over to github:
+</p><pre>$ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>i?<span class="hl num">44</span>
+$ git status <span class="hl kwb">-s</span> <span class="hl slc">#see if there are changes you want to commit</span>
+$ git commit <span class="hl kwb">-a -m</span> <span class="hl str">&apos;SOME COMMIT MSG&apos;</span> <span class="hl slc">#commit if necessary</span>
+$ git push <span class="hl slc">#push changes to github</span></pre></section><section data-coord="git-setup.umt:331:0"><h3 data-coord="git-setup.umt:331:0">Working On and Submitting Projects</h3><p data-coord="git-setup.umt:334:0"><span id="prjSubmit" data-coord="git-setup.umt:334:13">A</span> common git workflow is to work on new program features
+in separate git branches and merge each feature branch in to the
+master <samp data-coord="git-setup.umt:334:142">main</samp> branch when the feature is complete.  This course will
+expose you to this workflow by regarding each project/lab as a
+separate feature and using a separate branch for developing each lab
+or project.
+</p><p data-coord="git-setup.umt:341:0">The following lists the steps necessary to work on your first project
+<samp data-coord="git-setup.umt:341:70">prj1</samp>.  You will need to adapt those steps for subsequent projects.
+The git commit comments specified by the <samp data-coord="git-setup.umt:341:180">-m</samp> option are only examples;
+you may replace them with more suitable comments.
+</p><ol data-coord="git-setup.umt:346:0"><li data-coord="git-setup.umt:346:0"><p data-coord="git-setup.umt:346:4">Create a branch and a new directory for working on your project:
+</p><pre>    $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>i?<span class="hl num">44</span>                <span class="hl slc">#goto local clone of github</span>
+    $ git checkout <span class="hl kwb">-b</span> prj1-sol <span class="hl slc">#create new branch</span>
+    $ mkdir <span class="hl kwb">-p</span> submit          <span class="hl slc">#ensure you have a submit dir</span>
+    $ <span class="hl kwb">cd</span> submit                <span class="hl slc">#enter project dir</span>
+    $ <span class="hl kwc">cp</span> <span class="hl kwb">-r</span> ~<span class="hl opt">/</span>cs544<span class="hl opt">/</span>projects<span class="hl opt">/</span>prj<span class="hl num">1</span><span class="hl opt">/</span>prj1-sol .  <span class="hl slc">#copy provided files</span>
+    $ <span class="hl kwb">cd</span> prj1-sol              <span class="hl slc">#change over to new project dir</span></pre></li><li data-coord="git-setup.umt:358:0"><p data-coord="git-setup.umt:358:4">Set up this project as an npm package:
+</p><pre>    npm init <span class="hl kwb">-y</span>              <span class="hl slc">#create package.json</span>
+    npm <span class="hl kwc">install</span> <span class="hl kwb">--save-dev</span> \ <span class="hl slc">#install development dependencies</span>
+      mocha chai             <span class="hl slc">#for testing</span></pre><p data-coord="git-setup.umt:367:4">Replace the contents of the <samp data-coord="git-setup.umt:367:32">script</samp> property in the newly
+created <samp data-coord="git-setup.umt:367:75">package.json</samp> with
+</p><pre>    <span class="hl str">&quot;test&quot;</span><span class="hl opt">:</span> <span class="hl str">&quot;mocha test/&quot;</span><span class="hl opt">,</span>
+    <span class="hl str">&quot;debug-test&quot;</span><span class="hl opt">:</span> <span class="hl str">&quot;mocha --inspect-brk test/&quot;</span></pre><p data-coord="git-setup.umt:375:4">[Be careful with adhering to JSON syntax.]
+</p><p data-coord="git-setup.umt:377:4">This will set up testing scripts.  You should now be able to run
+the provided parser and scanner tests using the command <samp data-coord="git-setup.umt:377:129">npm run
+    test</samp>.
+</p></li><li data-coord="git-setup.umt:381:0"><p data-coord="git-setup.umt:381:4">Commit into git:
+</p><pre>    $ git add .   <span class="hl slc">#add contents of directory to git </span>
+    $ git commit <span class="hl kwb">-m</span> <span class="hl str">&apos;started prj1&apos;</span> <span class="hl slc">#commit locally</span>
+    $ git push <span class="hl kwb">-u</span> origin prj1-sol  <span class="hl slc">#push branch with changes</span>
+                                   <span class="hl slc">#to github</span></pre><p data-coord="git-setup.umt:391:4">[To avoid loosing work, you should get into the habit of
+periodically <samp data-coord="git-setup.umt:391:78">commit</samp>'ting your work and <samp data-coord="git-setup.umt:391:106">push</samp>'ing it
+to github.]
+</p></li><li data-coord="git-setup.umt:396:0"><p data-coord="git-setup.umt:396:4">If your project requires external js modules:
+</p><pre>    $ npm <span class="hl kwc">install</span> MODULE...
+    $ git commit <span class="hl kwb">-a -m</span> <span class="hl str">&apos;added dependencies&apos;</span>
+    $ git push</pre><p data-coord="git-setup.umt:405:4">This will create a <samp data-coord="git-setup.umt:405:23">node_modules</samp> directory and a <samp data-coord="git-setup.umt:405:54">package-lock.json</samp>
+file.  The latter file should be committed to git, but the <samp data-coord="git-setup.umt:405:137">node_modules</samp>
+directory should not be.  If you have used the <samp data-coord="git-setup.umt:405:203">.gitignore</samp> file provided
+by github, that directory should be ignored by git.
+</p></li><li data-coord="git-setup.umt:411:0"><p data-coord="git-setup.umt:411:4">Work on your project.  You should get into the habit of committing and
+pushing frequently, making it easy for you to recover from unsuccessful
+changes or a crashed VM.  Some git commands which may prove useful:
+</p><ul data-coord="git-setup.umt:415:0"><li data-coord="git-setup.umt:415:0"><p data-coord="git-setup.umt:415:8">List local branches using <samp data-coord="git-setup.umt:415:34">git branch -l</samp>.  The current branch
+will have an asterisk next to it.
+</p></li><li data-coord="git-setup.umt:418:0"><p data-coord="git-setup.umt:418:8">Switch the current branch to branch <samp data-coord="git-setup.umt:418:44">B</samp> using <samp data-coord="git-setup.umt:418:54">git checkout B</samp>.
+</p></li><li data-coord="git-setup.umt:420:0"><p data-coord="git-setup.umt:420:8">Add new files, directories and changes to the git staging
+area using <samp data-coord="git-setup.umt:420:85">git add</samp>.
+</p><pre>        $ git add <span class="hl opt">*</span>.mjs <span class="hl slc">#add all js files in current dir</span>
+        $ git add .     <span class="hl slc">#all all files, dirs, changes in</span>
+                        <span class="hl slc">#current dir to git staging area</span></pre></li><li data-coord="git-setup.umt:430:0"><p data-coord="git-setup.umt:430:8">Commit changes locally.
+</p><pre>        $ git commit <span class="hl kwb">-m</span> <span class="hl str">&apos;MSG&apos;</span>    <span class="hl slc">#commit staging area</span>
+                                 <span class="hl slc">#with message MSG</span>
+        $ git commit <span class="hl kwb">-a -m</span> <span class="hl str">&apos;MSG&apos;</span> <span class="hl slc">#commit staging area</span>
+                                 <span class="hl slc">#and all changes</span></pre></li><li data-coord="git-setup.umt:440:0"><p data-coord="git-setup.umt:440:8">Push all committed local changes to remote github repository
+using <samp data-coord="git-setup.umt:440:83">git push</samp>.
+</p></li></ul></li><li data-coord="git-setup.umt:443:0"><p data-coord="git-setup.umt:443:4"><span id="prj-submit" data-coord="git-setup.umt:443:18">Once</span> your project is complete, move it over to the main
+branch and submit it by pushing it to github:
+</p><pre>    $ git checkout main <span class="hl slc">#go to main branch</span>
+    $ git status <span class="hl kwb">-s</span> <span class="hl slc">#should show no outstanding changes;</span>
+                    <span class="hl slc">#otherwise add and commit till git status</span>
+                    <span class="hl slc">#shows no outstanding changes</span>
+    $ git checkout prj1-sol <span class="hl slc">#go to project branch</span>
+    $ git status <span class="hl kwb">-s</span> <span class="hl slc">#should show no outstanding changes;</span>
+                    <span class="hl slc">#otherwise add and commit till git status</span>
+                    <span class="hl slc">#shows no outstanding changes</span>
+    $ git merge main   <span class="hl slc">#merge any changes from main.</span>
+                       <span class="hl slc">#should not cause any conflicts</span>
+                       <span class="hl slc">#since all and only prj1 changes are</span>
+                       <span class="hl slc">#in this branch</span>
+    $ git commit <span class="hl kwb">-m</span> <span class="hl str">&apos;merge main&apos;</span> <span class="hl slc">#commit</span>
+    $ git push                     <span class="hl slc">#and push changes </span>
+    $ git checkout main <span class="hl slc">#back to main branch</span>
+    $ git merge prj1-sol <span class="hl slc">#should be a fast-foward merge</span>
+    $ git commit <span class="hl kwb">-m</span> <span class="hl str">&apos;merge prj1-sol&apos;</span>
+    $ git push  <span class="hl slc">#submit project</span></pre><p data-coord="git-setup.umt:468:4">You should use the github web interface to verify that the
+project has been submitted correctly to github.
+</p><p data-coord="git-setup.umt:471:4">If you are sufficiently paranoid (in general, you should be
+paranoid when working with computers <samp data-coord="git-setup.umt:471:105">:-(</samp> ), you will verify that
+it is possible to run your project using only what you submitted
+to github:
+</p><pre>    $ mkdir <span class="hl kwb">-p</span> ~<span class="hl opt">/</span>tmp
+    $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>tmp
+    $ git clone YOUR_GITHUB_PROJECT_URL
+    $ <span class="hl kwb">cd</span> i?<span class="hl num">44</span><span class="hl opt">/</span>submit<span class="hl opt">/</span>prj1-sol
+    $ npm ci <span class="hl slc">#build your project</span></pre><p data-coord="git-setup.umt:485:4">You can now test your project.  If everything is ok:
+</p><pre>    $ <span class="hl kwb">cd</span> ~<span class="hl opt">/</span>tmp
+    $ <span class="hl kwc">rm</span> <span class="hl kwb">-rf</span> i?<span class="hl num">44</span>  <span class="hl slc">#rm cloned project</span></pre><p data-coord="git-setup.umt:493:4">If you discover errors in your project after your initial
+submission, you can resubmit; the project submission time
+will be the time of the last submit.
+</p></li><li data-coord="git-setup.umt:497:0"><p data-coord="git-setup.umt:497:4">Once you are happy with your project submission, you can
+clean up the project branch:
+</p><pre>    $ git push <span class="hl kwb">-d</span> origin prj1-sol <span class="hl slc">#rm remote branch</span>
+    $ git branch <span class="hl kwb">-d</span> prj1-sol      <span class="hl slc">#rm local branch</span></pre></li></ol><p data-coord="git-setup.umt:506:0">If you  submit late, please email the TA.
+</p></section></li></ol></section><section data-coord="git-setup.umt:508:0"><h2 data-coord="git-setup.umt:508:0">References</h2><p data-coord="git-setup.umt:512:0"><em data-coord="git-setup.umt:512:24"><a href="https://git-scm.com/" data-coord="git-setup.umt:512:24">Official Git Site</a></em>.
+</p><p data-coord="git-setup.umt:514:0">Scott Chacon, Ben Straub, <em data-coord="git-setup.umt:514:60"><a href="https://git-scm.com/book/en/v2" data-coord="git-setup.umt:514:60">Pro Git</a></em>.
+</p><p data-coord="git-setup.umt:516:0"><em data-coord="git-setup.umt:516:28"><a href="https://git-scm.com/docs" data-coord="git-setup.umt:516:28">Reference Documentation</a></em>
+</p><p data-coord="git-setup.umt:518:0">Anish Athalye, <em data-coord="git-setup.umt:518:70"><a href="https://missing.csail.mit.edu/2020/version-control/" data-coord="git-setup.umt:518:70">Version Control (Git)</a></em>; Part of <em data-coord="git-setup.umt:518:137"><a href="https://missing.csail.mit.edu/" data-coord="git-setup.umt:518:137">MIT Missing Semester</a></em>; Highly recommended.
+</p></section></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>

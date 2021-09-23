@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" /> 
+    <title>CS 544: Course VM Setup</title>
+    <link href="vm-setup/hl-fine_blue.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hw/index.html">Homework</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <section data-coord="vm-setup.umt:1:0"><h1 data-coord="vm-setup.umt:1:0">Course VM Setup</h1><p data-coord="vm-setup.umt:4:0">Each student is being given a virtual machine which is dedicated to this
+course.  You may use it for any activities relevant to this course or
+your CS interests.
+</p><p data-coord="vm-setup.umt:8:0">The VM can only be accessed using ssh from <strong data-coord="vm-setup.umt:8:43">within</strong> the campus
+network.  In fact, because of university firewall restrictions it may
+not even be accessible when logged on to the university's wifi
+network.  To avoid access restrictions, it is advisable to <strong data-coord="vm-setup.umt:8:255">always</strong>
+access your VM via the <samp data-coord="vm-setup.umt:9:25">remote.cs</samp> cluster, or a machine in one
+of the CS labs (I believe it can also be accessed if you use the
+campus VPN).
+</p><p data-coord="vm-setup.umt:16:0">The VM runs Ubuntu 20.04.  Software which will be required by the
+course is <a href="./setup.sh" data-coord="vm-setup.umt:16:90">pre-installed,</a> but it is possible that you may
+need to install additional software during the course of the semester.
+</p><p data-coord="vm-setup.umt:20:0">You should make sure that you perform each of the following steps:
+</p><ol data-coord="vm-setup.umt:22:0"><li data-coord="vm-setup.umt:22:0"><p data-coord="vm-setup.umt:22:4"><em data-coord="vm-setup.umt:22:18"><a href="#pw-change" data-coord="vm-setup.umt:22:18">Initial password change</a></em>.
+</p></li><li data-coord="vm-setup.umt:24:0"><p data-coord="vm-setup.umt:24:4"><em data-coord="vm-setup.umt:24:20"><a href="#x2go-access" data-coord="vm-setup.umt:24:20">GUI access to your VM using x2go</a></em>.
+</p></li><li data-coord="vm-setup.umt:26:0"><p data-coord="vm-setup.umt:26:4">Optionally, set up <em data-coord="vm-setup.umt:26:38"><a href="#vnc-access" data-coord="vm-setup.umt:26:38">GUI access to your VM using vnc</a></em>.
+</p></li></ol><p data-coord="vm-setup.umt:28:0">Once you have set up your VM, you should <em data-coord="vm-setup.umt:28:62"><a href="./git-setup.html" data-coord="vm-setup.umt:28:62">set up git</a></em>.
+</p><p data-coord="vm-setup.umt:31:0">[This document uses the term "workstation" to refer to the computer
+to which your keyboard and mouse are attached to.]
+</p><section data-coord="vm-setup.umt:35:0"><h2 data-coord="vm-setup.umt:35:0">Initial Password Change</h2><p data-coord="vm-setup.umt:38:0"><span id="pw-change" data-coord="vm-setup.umt:38:13">You</span> should have received an email giving you the IP address <samp data-coord="vm-setup.umt:38:73">VM-IP</samp> of
+your VM, your login id <samp data-coord="vm-setup.umt:38:107">VM-ID</samp> and your initial password <samp data-coord="vm-setup.umt:38:141">VM-PW</samp>.
+Since your password has been exposed in an unsecure email, it <strong data-coord="vm-setup.umt:38:212">must be
+changed</strong> ASAP.  Hence you should <strong data-coord="vm-setup.umt:38:254">immediately</strong> login to your VM and
+change your password to some <samp data-coord="vm-setup.umt:38:318">VM-NEW-PW</samp> of your choosing.
+</p><ol data-coord="vm-setup.umt:44:0"><li data-coord="vm-setup.umt:44:0"><p data-coord="vm-setup.umt:44:4">Log in to <samp data-coord="vm-setup.umt:44:14">remote.cs</samp> from your workstation using <samp data-coord="vm-setup.umt:44:54">ssh</samp>
+(watch out for <a href="../fail2ban/fail2ban.html" data-coord="vm-setup.umt:44:108">fail2ban).</a>
+</p><p data-coord="vm-setup.umt:47:4">If your workstation runs Linux or OS/X, you can do so using a
+command-line <samp data-coord="vm-setup.umt:47:83">ssh</samp> client.  If your workstation runs Windows, you
+should use
+<em data-coord="vm-setup.umt:47:224"><a href="https://docs.microsoft.com/en-us/windows/terminal/get-started" data-coord="vm-setup.umt:47:224">Windows Terminal</a></em> from the MS store.  There is even an
+<em data-coord="vm-setup.umt:47:397"><a href="https://chrome.google.com/webstore/detail/secure-shell-app/pnhechapfaindjhompbnflcldabbghjo/related?hl=en" data-coord="vm-setup.umt:47:397">ssh app</a></em> which you can install for your Chrome browser; this
+should work for all OS's which support Chrome.
+</p><p data-coord="vm-setup.umt:56:4">[Irrespective of the course you are registered for, you will
+notice that your VM has a name starting with <samp data-coord="vm-setup.umt:56:114">CS544</samp>; it
+was set up this way for convenience by the sysadmin and should
+not make any difference to you.]
+</p></li><li data-coord="vm-setup.umt:61:0"><p data-coord="vm-setup.umt:61:4">Once logged in to <samp data-coord="vm-setup.umt:61:22">remote.cs</samp>, log in to your VM.
+</p></li><li data-coord="vm-setup.umt:63:0"><p data-coord="vm-setup.umt:63:4">Use the <samp data-coord="vm-setup.umt:63:12">passwd</samp> command on your VM, to change your password.
+</p></li></ol><p data-coord="vm-setup.umt:65:0">Once you have logged in to remote.cs as in (1) above, the following
+log shows how you would perform steps (2) and (3):
+</p><pre>remote02<span class="hl opt">:</span>~$ <span class="hl kwc">ssh</span> VM-ID&#64;VM-IP
+The authenticity of <span class="hl kwc">host</span> <span class="hl str">&apos;VM-IP (VM-IP)&apos;</span> can<span class="hl str">&apos;t be established.</span>
+<span class="hl str">ECDSA key fingerprint is ...</span>
+<span class="hl str">Are you sure you want to continue connecting (yes/no)? yes</span>
+<span class="hl str">Warning: Permanently added &apos;</span>VM-IP<span class="hl str">&apos; (ECDSA) to the list of known hosts.</span>
+<span class="hl str">VM-ID&#64;VM-IP&apos;</span>s password<span class="hl opt">:</span> VM-PW   <span class="hl slc">#will not be echoed</span>
+Welcome to Ubuntu <span class="hl num">20.04</span> ...
+...
+VM-ID&#64;COURSE-VM-ID<span class="hl opt">:</span>~$ passwd  <span class="hl slc">#passwords not echoed below</span>
+Changing password <span class="hl kwa">for</span> VM-ID.
+<span class="hl opt">(</span>current<span class="hl opt">)</span> UNIX password<span class="hl opt">:</span> VM-PW
+Enter new UNIX password<span class="hl opt">:</span> VM-NEW-PW
+Retype new UNIX password<span class="hl opt">:</span> VM-NEW-PW</pre></section><section data-coord="vm-setup.umt:85:0"><h2 data-coord="vm-setup.umt:85:0">Setting Your npm Shell</h2><p data-coord="vm-setup.umt:88:0">To set the shell used by npm to bash, use the following command:
+</p><pre>$ npm config <span class="hl kwb">set</span> script-shell <span class="hl opt">/</span>usr<span class="hl opt">/</span>bin<span class="hl opt">/</span>bash</pre><p data-coord="vm-setup.umt:95:0">This will update your <samp data-coord="vm-setup.umt:95:22">~/.npmrc</samp> and npm will use bash to run scripts in
+the future.
+</p></section><section data-coord="vm-setup.umt:98:0"><h2 data-coord="vm-setup.umt:98:0">GUI Access to your VM</h2><p data-coord="vm-setup.umt:102:0">If you only use <samp data-coord="vm-setup.umt:102:16">ssh</samp>, you basically obtain only command-line access
+to your VM.  But you will need GUI access to your VM as the course
+progresses.  The most convenient access is provided by x2go.
+This section also lists some alternatives in case you just cannot
+get x2go to work.
+</p><section data-coord="vm-setup.umt:110:0"><h3 data-coord="vm-setup.umt:110:0">X2Go Access (Required)</h3><ol data-coord="vm-setup.umt:114:0"><li data-coord="vm-setup.umt:114:0"><p data-coord="vm-setup.umt:114:4"><span id="x2go-access" data-coord="vm-setup.umt:114:19">Install</span> a
+<em data-coord="vm-setup.umt:114:82"><a href="https://wiki.x2go.org/doku.php/download:start" data-coord="vm-setup.umt:114:82">X2Go client</a></em> for
+the workstation you are using to access your VM if one is not
+already installed (note that a <samp data-coord="vm-setup.umt:114:201">x2goclient</samp> command is available
+on <samp data-coord="vm-setup.umt:114:242">remote.cs</samp>).
+</p></li><li data-coord="vm-setup.umt:120:0"><p data-coord="vm-setup.umt:120:4">Start the <samp data-coord="vm-setup.umt:120:14">x2goclient</samp>.
+</p></li><li data-coord="vm-setup.umt:122:0"><p data-coord="vm-setup.umt:122:4">Create a session for connecting to your VM by clicking <em data-coord="vm-setup.umt:122:59">Session</em>
+-&gt; <em data-coord="vm-setup.umt:122:76">New session</em>.  Fill in the following fields:
+</p><dl data-coord="vm-setup.umt:125:0"><dt data-coord="vm-setup.umt:125:7">Session name</dt><dd data-coord="vm-setup.umt:126:0"><p data-coord="vm-setup.umt:126:10"><samp data-coord="vm-setup.umt:126:10">webprog-vm</samp>
+</p></dd><dt data-coord="vm-setup.umt:128:7">Host</dt><dd data-coord="vm-setup.umt:129:0"><p data-coord="vm-setup.umt:129:9">Your VM's IP address <samp data-coord="vm-setup.umt:129:30">VM-IP</samp>
+</p></dd><dt data-coord="vm-setup.umt:131:7">Login</dt><dd data-coord="vm-setup.umt:132:0"><p data-coord="vm-setup.umt:132:9">Your login id <samp data-coord="vm-setup.umt:132:23">VM-ID</samp>.
+</p></dd><dt data-coord="vm-setup.umt:134:7">Session type</dt><dd data-coord="vm-setup.umt:135:0"><p data-coord="vm-setup.umt:135:9"><samp data-coord="vm-setup.umt:135:9">XFCE</samp>.
+</p></dd></dl><p data-coord="vm-setup.umt:137:4">Unless you are configuring your client on <samp data-coord="vm-setup.umt:137:46">remote.cs</samp>, set
+yourself up to always tunnel in through <samp data-coord="vm-setup.umt:137:107">remote.cs</samp>.  Click on the
+<samp data-coord="vm-setup.umt:137:138">Use Proxy server for SSH connection</samp> checkbox and make the
+following changes in the dialog:
+</p><dl data-coord="vm-setup.umt:142:0"><dt data-coord="vm-setup.umt:142:7">Host</dt><dd data-coord="vm-setup.umt:143:0"><p data-coord="vm-setup.umt:143:9"><samp data-coord="vm-setup.umt:143:9">remote01.cs.binghamton.edu</samp>; you could also specify
+one of the other remotes.
+</p><p data-coord="vm-setup.umt:146:9">You could also specify the <samp data-coord="vm-setup.umt:146:36">Host</samp> by simply providing the
+cluster name <samp data-coord="vm-setup.umt:146:82">remote.cs.binghamton.edu</samp>.  The advantage is
+that you will be able to tunnel in to your VM, even if the
+specified <samp data-coord="vm-setup.umt:146:201">remote</samp> is down; the disadvantage is that you
+would get errors from <samp data-coord="vm-setup.umt:146:272">x2go</samp> when you connect to different
+<samp data-coord="vm-setup.umt:146:311">remote</samp> machines in the cluster with different ssh host
+keys.
+</p></dd></dl><p data-coord="vm-setup.umt:154:4">If you use the same user-id and password on your VM as on
+<samp data-coord="vm-setup.umt:154:66">remote.cs</samp>, you may want to check <samp data-coord="vm-setup.umt:154:101">Same login as on X2Go Server</samp>
+and/or <samp data-coord="vm-setup.umt:154:143">Same password as on X2Go Server</samp>, where <samp data-coord="vm-setup.umt:154:184">X2Go Server</samp>
+refers to your VM.
+</p></li><li data-coord="vm-setup.umt:159:0"><p data-coord="vm-setup.umt:159:4">You should now be able to use the above session to access your VM
+using a GUI.  If you are using different passwords on <samp data-coord="vm-setup.umt:159:128">remote.cs</samp>
+and your VM, you will have to enter the passwords separately for
+each.
+</p><p data-coord="vm-setup.umt:164:4">If you are familiar with the handling of ssh keys, you can use
+<samp data-coord="vm-setup.umt:164:71">ssh-keygen</samp> and <samp data-coord="vm-setup.umt:164:88">ssh-copy-id</samp> to set up your VM for password-less
+login.
+</p></li></ol><p data-coord="vm-setup.umt:168:0">The following is a screenshot taken a few years ago of my <samp data-coord="vm-setup.umt:168:58">x2go</samp>
+configuration for accessing my VM from off-campus:
+</p><img src="webprog-x2go-config.png"/><p data-coord="vm-setup.umt:173:0">With the above setup, I would need to type in passwords for both my VM
+and <samp data-coord="vm-setup.umt:173:75">remote.cs</samp> when connecting to my VM.  Note that by using ssh keys
+it is possible to set things up so that neither password is required.
+</p></section><section data-coord="vm-setup.umt:178:0"><h3 data-coord="vm-setup.umt:178:0">VNC Access (optional)</h3><p data-coord="vm-setup.umt:181:0"><a href="https://www.tightvnc.com/" id="vnc-access" data-coord="vm-setup.umt:181:43">VNC</a> allows remote access to
+graphical desktops.  It is not as efficient as x2go which is optimized
+for X11, but has the advantage that it can be used to access non-X11
+desktops like a Windows desktop.
+</p><ol data-coord="vm-setup.umt:186:0"><li data-coord="vm-setup.umt:186:0"><p data-coord="vm-setup.umt:186:4">Connect to your VM using <samp data-coord="vm-setup.umt:186:29">ssh</samp>.
+</p></li><li data-coord="vm-setup.umt:188:0"><p data-coord="vm-setup.umt:188:4">Set up a <a href="./vnc-xstartup" data-coord="vm-setup.umt:188:31">~/.vnc/xstartup</a> script on your VM to
+start <samp data-coord="vm-setup.umt:188:78">xfce4</samp>.
+</p></li><li data-coord="vm-setup.umt:191:0"><p data-coord="vm-setup.umt:191:4">Start up a VNC server on your VM.
+</p><ol data-coord="vm-setup.umt:193:0"><li data-coord="vm-setup.umt:193:0"><p data-coord="vm-setup.umt:193:9">Run <samp data-coord="vm-setup.umt:193:13">vncpasswd</samp> to set up a password <samp data-coord="vm-setup.umt:193:46">VNC-PW</samp> for your VNC
+sessions.
+</p></li><li data-coord="vm-setup.umt:196:0"><p data-coord="vm-setup.umt:196:9">Run <samp data-coord="vm-setup.umt:196:13">vncserver</samp> to start up the VNC server.  Note the VNC
+port <samp data-coord="vm-setup.umt:196:81">VNC-PORT</samp> on which the server starts (usually 1).
+</p></li></ol></li><li data-coord="vm-setup.umt:199:0"><p data-coord="vm-setup.umt:199:4">Install a VNC viewer for the workstation you are using to access
+your VM if one is not already installed.
+</p></li><li data-coord="vm-setup.umt:202:0"><p data-coord="vm-setup.umt:202:4">Run the VNC viewer to connect to <samp data-coord="vm-setup.umt:202:37">VM-IP:VNC-PORT</samp>.  Provide your
+VNC password <samp data-coord="vm-setup.umt:202:86">VNC-PW</samp> when prompted.  You should see your desktop.
+</p></li></ol><p data-coord="vm-setup.umt:205:0">You can kill your vnc server using <samp data-coord="vm-setup.umt:205:35">vncserver -kill :VNC-PORT</samp>.  If
+you would like to set a size for its window, specify the <samp data-coord="vm-setup.umt:205:125">-geometry</samp>
+argument.  See the <em data-coord="vm-setup.umt:205:200"><a href="https://www.tightvnc.com/vncserver.1.php" data-coord="vm-setup.umt:205:200">man page</a></em>
+for more information.
+</p></section><section data-coord="vm-setup.umt:210:0"><h3 data-coord="vm-setup.umt:210:0">Xming X Server for Windows (optional)</h3><p data-coord="vm-setup.umt:214:0">Instead of running a full remote session, you can run a X11 server on
+your Windows workstation.
+<a href="http://www.straightrunning.com/XmingNotes/" data-coord="vm-setup.umt:214:142">xming</a> appears to be a
+popular X11 server running under Window.  Apparently,
+<a href="http://www.straightrunning.com/XmingNotes/IDH_DISPLAY.htm" data-coord="vm-setup.umt:214:279">xlaunch</a>
+is a wizard for starting xming sessions.  Since I do not use Windows,
+I have not tried this and YMMV.
+</p><p data-coord="vm-setup.umt:222:0">If you are using this method, you will need to tunnel X11 through
+<samp data-coord="vm-setup.umt:222:66">remote.cs</samp>.  To find out what you will need to do, please start
+out by looking at a <em data-coord="vm-setup.umt:222:162"><a href="#tunnel" data-coord="vm-setup.umt:222:162">subsequent section</a></em> of this document.
+</p></section><section data-coord="vm-setup.umt:226:0"><h3 data-coord="vm-setup.umt:226:0">vSphere Web Client</h3><ol data-coord="vm-setup.umt:229:0"><li data-coord="vm-setup.umt:229:0"><p data-coord="vm-setup.umt:229:4"><span id="vsphere" data-coord="vm-setup.umt:229:15">Go</span> to this URL: <em data-coord="vm-setup.umt:229:66"><a href="https://csvb-vc.pods.bu.int/ui/" data-coord="vm-setup.umt:229:66">&lt;https://csvb-vc.pods.bu.int/ui/&gt;</a></em>.
+(this <strong data-coord="vm-setup.umt:229:80">must</strong> be done from within the campus network).
+</p></li><li data-coord="vm-setup.umt:232:0"><p data-coord="vm-setup.umt:232:4">Click through the security warnings.
+</p></li><li data-coord="vm-setup.umt:234:0"><p data-coord="vm-setup.umt:234:4">Login with your regular BU username and password.
+Enter <samp data-coord="vm-setup.umt:234:64">BU\</samp> before your username
+</p></li><li data-coord="vm-setup.umt:237:0"><p data-coord="vm-setup.umt:237:4">Once the vsphere-client loads, click on the <samp data-coord="vm-setup.umt:237:48">Menu</samp> drop down and then
+click <samp data-coord="vm-setup.umt:237:84">VMs and Templates</samp>
+</p></li><li data-coord="vm-setup.umt:240:0"><p data-coord="vm-setup.umt:240:4">On the left-hand side of the interface you can expand the
+tree. Keep expanding the levels until you see a VM whose name is based
+on your user ID.  You should see a summary of your VM.
+</p></li><li data-coord="vm-setup.umt:244:0"><p data-coord="vm-setup.umt:244:4">Use the provided link to open a <strong data-coord="vm-setup.umt:244:36">web console</strong> to the VM which will
+allow you to interact with it as if you were sitting in front of
+it using a console which runs within your web browser.
+</p></li></ol><p data-coord="vm-setup.umt:248:0">Note that unlike the x2go or vnc options, the vSphere web client will
+not persist your session on your VM.
+</p></section></section><section data-coord="vm-setup.umt:251:0"><h2 data-coord="vm-setup.umt:251:0">Restarting your VM</h2><p data-coord="vm-setup.umt:254:0"><span id="restart" data-coord="vm-setup.umt:254:11">In</span> case you accidentally shutdown your VM or simply find it
+unreachable, you can use your VM's web console to restart it.
+Specifically, use the <em data-coord="vm-setup.umt:254:155">vSphere web console</em> to access your VM's
+console; then use the <samp data-coord="vm-setup.umt:254:219">Actions-&gt;Power</samp> menu item to restart your VM.
+Instructions for connecting to the VM's console are in the above
+<em data-coord="vm-setup.umt:254:342"><a href="#vsphere" data-coord="vm-setup.umt:254:342">vSphere Web Client section</a></em>.
+</p></section><section data-coord="vm-setup.umt:261:0"><h2 data-coord="vm-setup.umt:261:0">Debugging VM Connectivity Issues</h2><p data-coord="vm-setup.umt:264:0"><span id="debug" data-coord="vm-setup.umt:264:9">If</span> you cannot connect via x2go to your VM, please try the
+following:
+</p><ol data-coord="vm-setup.umt:267:0"><li data-coord="vm-setup.umt:267:0"><p data-coord="vm-setup.umt:267:4">Verify that your internet connection is working by accessing
+some web site not related to the university.
+</p></li><li data-coord="vm-setup.umt:270:0"><p data-coord="vm-setup.umt:270:4">Use ssh to connect to <samp data-coord="vm-setup.umt:270:26">remote.cs</samp>.  If you are unable to do so,
+check to see whether you may have triggered <a href="../fail2ban/fail2ban.html" data-coord="vm-setup.umt:270:149">fail2ban.</a>  If all else fails, go to the
+<em data-coord="vm-setup.umt:270:238"><a href="https://www2.cs.binghamton.edu/~sysadmin/" data-coord="vm-setup.umt:270:238">CS SysAdmin</a></em> page
+for assistance.  
+</p></li><li data-coord="vm-setup.umt:276:0"><p data-coord="vm-setup.umt:276:4">From <samp data-coord="vm-setup.umt:276:9">remote.cs</samp>, ssh to your VM using its IP address.  If this
+succeeds, then there is a problem with x2go.  If this fails, then
+your VM is down; <a href="#restart" data-coord="vm-setup.umt:276:171">restart</a> it using the <a href="#vsphere" data-coord="vm-setup.umt:276:208">vsphere</a> web client.
+</p></li><li data-coord="vm-setup.umt:281:0"><p data-coord="vm-setup.umt:281:4">If the problem appears to be x2go, try shutting down your
+x2goserver using the power button on your x2goclient or
+by restarting your VM as per the previous step.
+</p><p data-coord="vm-setup.umt:285:4">Some students using OS/X have found that:
+</p><ol data-coord="vm-setup.umt:287:0"><li data-coord="vm-setup.umt:287:0"><p data-coord="vm-setup.umt:287:8">Rebooting your mac may help.
+</p></li><li data-coord="vm-setup.umt:289:0"><p data-coord="vm-setup.umt:289:8">More drastic: <strong data-coord="vm-setup.umt:289:22">Reinstalling</strong> x2go and xquartz solves x2go problems.
+</p></li></ol></li><li data-coord="vm-setup.umt:291:0"><p data-coord="vm-setup.umt:291:4">One workaround for OS/X.  If you have xquartz installed, but x2go
+is not installed or not working, you can display GUI applications
+running on <samp data-coord="vm-setup.umt:291:155">remote.cs</samp> on your mac by using the <samp data-coord="vm-setup.umt:291:192">-Y</samp> option when
+connecting to <samp data-coord="vm-setup.umt:291:227">remote.cs</samp> using your OS/X terminal.
+</p></li><li data-coord="vm-setup.umt:296:0"><p data-coord="vm-setup.umt:296:4">If your x2go client refuses to connect to your VM while tunneling in
+through <samp data-coord="vm-setup.umt:296:85">remote.cs</samp>, turn off the ssh proxy option in the x2go client
+configuration and try using the campus VPN instead.
+</p></li></ol><p data-coord="vm-setup.umt:300:0">If all else fails, please send me an email giving your VM's IP
+and describe your workstation's environment.  Please
+<strong data-coord="vm-setup.umt:300:116">detail the responses to each of the above steps</strong>.
+</p></section><section data-coord="vm-setup.umt:304:0"><h2 data-coord="vm-setup.umt:304:0">Administering Your VM</h2><p data-coord="vm-setup.umt:307:0">Your VM-ID account has administrative privileges.  You can run any
+administrative CLI command by preceeding that command by <samp data-coord="vm-setup.umt:307:124">sudo</samp> at
+which point you will be prompted for your current password.  If you
+run an administrative task using the GUI, you will again be
+prompted for your current VM password.
+</p><p data-coord="vm-setup.umt:313:0">Besides your account, you will find that the VM has 2 additional
+accounts.  You should <strong data-coord="vm-setup.umt:313:87">not</strong> touch these accounts.  If something
+goes wrong with your VM, we may be able to use these accounts to
+get back in to your VM and attempt to fix the problem.
+</p><p data-coord="vm-setup.umt:318:0">You can install additional system-wide software packages using
+the command line using <a href="https://linux.die.net/man/8/apt" data-coord="vm-setup.umt:318:121">apt</a>
+or using a GUI-program found on the system menu.
+</p><p data-coord="vm-setup.umt:322:0">The VM has text editors/IDEs like Visual Studio <samp data-coord="vm-setup.umt:322:48">code</samp>, <samp data-coord="vm-setup.umt:322:56">emacs</samp>,
+<samp data-coord="vm-setup.umt:322:65">gedit</samp>, <samp data-coord="vm-setup.umt:322:74">nano</samp>, <samp data-coord="vm-setup.umt:322:82">sublime</samp> and <samp data-coord="vm-setup.umt:322:96">vim</samp> already installed.  However, you
+may want to use the above package manager to install a text editor or
+IDE of your choice.
+</p><p data-coord="vm-setup.umt:327:0">It is a good idea to keep the software on your VM up-to-date.  Every
+few weeks, you should update:
+</p><pre data-coord="vm-setup.umt:331:0">$ sudo apt update
+$ sudo apt upgrade
+</pre><p data-coord="vm-setup.umt:335:0">Check whether you need to reboot:
+</p><pre data-coord="vm-setup.umt:338:0">$ cat /var/run/reboot-required
+</pre><p data-coord="vm-setup.umt:341:0">If this file exists, the above command will tell you whether a reboot
+is required.  To reboot, first backup all work, shutdown all applications
+running within your VM and then simply reboot:
+</p><pre data-coord="vm-setup.umt:347:0">$ sudo shutdown -r now
+</pre><p data-coord="vm-setup.umt:350:0">Your GUI session will lock up.  You will need to escape out of it; you
+should be able to get back in within a couple of minutes.  If something
+goes wrong please use the <em data-coord="vm-setup.umt:350:181"><a href="#vsphere" data-coord="vm-setup.umt:350:181">vsphere console</a></em> to debug.
+</p></section><section data-coord="vm-setup.umt:357:0"><h2 data-coord="vm-setup.umt:357:0">Off-Campus Access to your VM</h2><p data-coord="vm-setup.umt:360:0"><span id="tunnel" data-coord="vm-setup.umt:360:10">You</span> will need to tunnel in to your VM in order to access
+your VM from off campus or even from within the network.  If you
+followed the instructions provided for setting up your X2Go session,
+it should already be set up to tunnel through <samp data-coord="vm-setup.umt:360:247">remote.cs</samp>.  The
+following instructions provide details for VNC and command-line access
+and assume the use of Unix-based (Linux, OS/X) workstations.
+</p><section data-coord="vm-setup.umt:368:0"><h3 data-coord="vm-setup.umt:368:0">VNC Access</h3><p data-coord="vm-setup.umt:371:0">Assuming your VNC server is running on VNC port 1 (which corresponds
+to TCP port 5901), set up a tunnel via <samp data-coord="vm-setup.umt:371:108">remote.cs</samp> using a script like
+the following:
+</p><pre>SERVER<span class="hl opt">=</span>VM-IP<span class="hl opt">:</span><span class="hl num">5901</span>
+LOCAL_PORT<span class="hl opt">=</span><span class="hl num">5901</span>
+TUNNEL<span class="hl opt">=</span>YOUR-REMOTE-CS-LOGIN&#64;remote.cs.binghamton.edu
+
+<span class="hl kwc">ssh</span> <span class="hl kwb">-fAX -L</span><span class="hl kwd">$LOCAL_PORT</span><span class="hl opt">:</span><span class="hl kwd">$SERVER $TUNNEL</span> <span class="hl kwb">-N</span></pre><p data-coord="vm-setup.umt:384:0">You should then be able to set up vnc access to your VM using
+a command like
+</p><pre data-coord="vm-setup.umt:388:0">vncviewer localhost:1 &amp;
+</pre></section><section data-coord="vm-setup.umt:391:0"><h3 data-coord="vm-setup.umt:391:0">Command-Line Access</h3><p data-coord="vm-setup.umt:394:0">Set up a tunnel via <samp data-coord="vm-setup.umt:394:20">remote.cs</samp> using a script like the following:
+</p><pre>SERVER<span class="hl opt">=</span>VM-IP<span class="hl opt">:</span><span class="hl num">22</span>
+LOCAL_PORT<span class="hl opt">=</span><span class="hl num">2222</span>
+TUNNEL<span class="hl opt">=</span>YOUR-REMOTE-CS-LOGIN&#64;remote.cs.binghamton.edu
+
+<span class="hl kwc">ssh</span> <span class="hl kwb">-fAX -L</span><span class="hl kwd">$LOCAL_PORT</span><span class="hl opt">:</span><span class="hl kwd">$SERVER $TUNNEL</span> <span class="hl kwb">-N</span></pre><p data-coord="vm-setup.umt:405:0">You should then be able to set up ssh access to your VM using
+a command like
+</p><pre data-coord="vm-setup.umt:409:0">   ssh -p 2222 VM-ID@localhost
+</pre></section></section></section>
+    </div> <!-- #content -->
+    <script src="../../assets/scripts/loginAction.js"></script>
+  </body>
+</html>

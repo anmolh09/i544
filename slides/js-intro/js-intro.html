@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang='en-US'>
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="../../assets/styles/article.css" rel="stylesheet" type="text/css" />
+  <title>CS 544: Javascript Introduction</title>
+
+</head>
+<body>
+    <nav>
+      <ul>
+	<li><a href="../../index.html" class="material-icons">house</a></li>
+	<li><a href="../../docs/index.html">Docs</a></li>
+	<li><a href="../../exercises/index.html">Exercises</a></li>
+	<li><a href="../../hws/index.html">Homeworks</a></li>
+	<li><a href="../../misc/index.html">Misc</a></li>
+	<li><a href="../../projects/index.html">Projects</a></li>
+	<li><a href="../../slides/index.html">Slides</a></li>
+	<li><a id="loginAction"></a></li>
+      </ul>
+    </nav>
+  <div class="slide-controls" style="display: none;">
+    <span class="float-left">
+      <span class="first-control">
+	<a href="#">
+	  <img src="../../assets/images/go-first.png">
+	</a>
+      </span>
+      <span class="previous-control">
+	<a href="#">
+	  <img src="../../assets/images/go-previous.png">
+	</a>
+      </span>
+    </span>
+    <span class="float-right">
+      <span class="next-control">
+	<a href="#">
+	  <img src="../../assets/images/go-next.png">
+	</a>
+      </span>
+      <span class="last-control">
+	<a href="#">
+	  <img src="../../assets/images/go-last.png">
+	</a>
+      </span>
+    </span>
+    <div class="slide-end">&nbsp;<br></div> <!-- hack -->
+  </div>
+<div class="content">
+<section data-coord="js-intro.umt:1:0"><h1 data-coord="js-intro.umt:1:0">Javascript Introduction</h1><section class="umt-slide" data-coord="js-intro.umt:3:0"><h2 data-coord="js-intro.umt:3:0">Overview</h2><ul data-coord="js-intro.umt:6:0"><li data-coord="js-intro.umt:6:0"><p data-coord="js-intro.umt:6:4">History.
+</p></li><li data-coord="js-intro.umt:8:0"><p data-coord="js-intro.umt:8:4">Supported programming paradigms.
+</p></li><li data-coord="js-intro.umt:10:0"><p data-coord="js-intro.umt:10:4">Partial list of features.
+</p></li><li data-coord="js-intro.umt:12:0"><p data-coord="js-intro.umt:12:4">JS platforms.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:15:0"><h2 data-coord="js-intro.umt:15:0">Brief History</h2><ul data-coord="js-intro.umt:18:0"><li data-coord="js-intro.umt:18:0"><p data-coord="js-intro.umt:18:4">Written by Brendan Eich within 10 days in May, 1995 at Netscape
+Communications.  Name chosen based on marketing considerations
+to cash in on the popularity of Java.
+</p></li><li data-coord="js-intro.umt:22:0"><p data-coord="js-intro.umt:22:4">Microsoft released <samp data-coord="js-intro.umt:22:23">jscript</samp> in 1996.  Incompatibilities
+introduced ("embrace and extend").
+</p></li><li data-coord="js-intro.umt:25:0"><p data-coord="js-intro.umt:25:4">Standardized as <samp data-coord="js-intro.umt:25:20">EcmaScript</samp>  in June 1997  (ECMA-262).
+</p></li><li data-coord="js-intro.umt:27:0"><p data-coord="js-intro.umt:27:4">JavaScript got a bad reputation and was regarded as a poor
+programming language used for doing trivial things in the browser.
+Complexities caused by browser incompatibilities and the browser
+<strong data-coord="js-intro.umt:27:207">Document Object Model</strong> (DOM) were blamed on the language.
+</p></li><li data-coord="js-intro.umt:32:0"><p data-coord="js-intro.umt:32:4">Changed with the emergence of <strong data-coord="js-intro.umt:32:34">Asynchronous JAvascript with Xml</strong>
+(AJAX) in 2005.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:35:0"><h2 data-coord="js-intro.umt:35:0">Brief History Continued</h2><ul data-coord="js-intro.umt:38:0"><li data-coord="js-intro.umt:38:0"><p data-coord="js-intro.umt:38:4"><strong data-coord="js-intro.umt:38:4">JavaScript Object Notation</strong> (JSON) popularized by Douglas
+Crockford emerged as a popular alternative to XML as a
+specification for data interchange between heterogeneous systems.
+</p></li><li data-coord="js-intro.umt:42:0"><p data-coord="js-intro.umt:42:4">Renaissance in js development.  Browser incompatibilities and DOM
+complexities hidden by the use of libraries like <samp data-coord="js-intro.umt:42:123">prototype</samp>,
+<samp data-coord="js-intro.umt:42:140">jquery</samp> and <samp data-coord="js-intro.umt:42:153">dojo</samp>.
+</p></li><li data-coord="js-intro.umt:46:0"><p data-coord="js-intro.umt:46:4"><samp data-coord="js-intro.umt:46:4">Node.js</samp> released by Ryan Dahl in 2009.  Popularized the
+use of js on the server.
+</p></li><li data-coord="js-intro.umt:49:0"><p data-coord="js-intro.umt:49:4">Succession of different ECMA standards: es 3, es 5.  Currently,
+evolving as an "evergreen" language with standard updates being
+released yearly: es 2015 ... 2019.
+</p></li><li data-coord="js-intro.umt:53:0"><p data-coord="js-intro.umt:53:4">Allows use of a single programming language across the entire web
+stack.  Most popular programming language in terms of deployments.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:57:0"><h2 data-coord="js-intro.umt:57:0">Multi-Paradigm Language</h2><p data-coord="js-intro.umt:60:0">JavaScript supports programming using multiple paradigms:
+</p><ul data-coord="js-intro.umt:62:0"><li data-coord="js-intro.umt:62:0"><p data-coord="js-intro.umt:62:4">Imperative / Procedural.
+</p></li><li data-coord="js-intro.umt:64:0"><p data-coord="js-intro.umt:64:4">Object-oriented.
+</p></li><li data-coord="js-intro.umt:66:0"><p data-coord="js-intro.umt:66:4">Functional.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:69:0"><h2 data-coord="js-intro.umt:69:0">Imperative Programming</h2><ul data-coord="js-intro.umt:72:0"><li data-coord="js-intro.umt:72:0"><p data-coord="js-intro.umt:72:4">Imperative programming gives a step-by-step description
+to a computer <strong data-coord="js-intro.umt:72:78">how to solve</strong> a problem.
+</p></li><li data-coord="js-intro.umt:75:0"><p data-coord="js-intro.umt:75:4">AKA <strong data-coord="js-intro.umt:75:8">procedural programming</strong> as program is a how-to
+<em data-coord="js-intro.umt:75:60">procedure</em> to solve a problem.
+</p></li><li data-coord="js-intro.umt:78:0"><p data-coord="js-intro.umt:78:4">Involved mutating shared state.
+</p></li><li data-coord="js-intro.umt:80:0"><p data-coord="js-intro.umt:80:4">Maps very closely to operation of computer; relatively low
+abstraction.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:83:0"><h2 data-coord="js-intro.umt:83:0">Object-Oriented Programming</h2><ul data-coord="js-intro.umt:86:0"><li data-coord="js-intro.umt:86:0"><p data-coord="js-intro.umt:86:4">Package data and functions associated with that data
+together into <em data-coord="js-intro.umt:86:75">objects</em>.
+</p></li><li data-coord="js-intro.umt:89:0"><p data-coord="js-intro.umt:89:4">Objects can provide encapsulation.
+</p></li><li data-coord="js-intro.umt:91:0"><p data-coord="js-intro.umt:91:4">Usually some kind of inheritance (JS uses a non-traditional
+model of inheritance).
+</p></li><li data-coord="js-intro.umt:94:0"><p data-coord="js-intro.umt:94:4">Classes are not essential to JS OO programming.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:97:0"><h2 data-coord="js-intro.umt:97:0">Functional Programming</h2><p data-coord="js-intro.umt:100:0">JS supports multiple degrees of functional programming:
+</p><ul data-coord="js-intro.umt:102:0"><li data-coord="js-intro.umt:102:0"><p data-coord="js-intro.umt:102:4"><strong data-coord="js-intro.umt:102:4">Pure functions</strong>: the result of a function depends
+only on its arguments; it is not allowed to
+do anything other than return a result.  It
+cannot change any global state, including I/O.
+</p><p data-coord="js-intro.umt:107:4">It is possible to write pure functions even
+in a language like C.
+</p></li><li data-coord="js-intro.umt:110:0"><p data-coord="js-intro.umt:110:4"><strong data-coord="js-intro.umt:110:4">First-class functions</strong>.  Functions can be treated
+like any other datatype: stored in variables,
+passed between functions.
+</p></li><li data-coord="js-intro.umt:114:0"><p data-coord="js-intro.umt:114:4"><strong data-coord="js-intro.umt:114:4">Lack of mutation</strong>; clumsy but not impossible in JS.  Forced in
+languages like Haskell.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:120:0"><h2 data-coord="js-intro.umt:120:0">Some Language Features</h2><ul data-coord="js-intro.umt:123:0"><li data-coord="js-intro.umt:123:0"><p data-coord="js-intro.umt:123:4">Dynamically typed: variables are untyped, but values have types.
+Permits the use of <strong data-coord="js-intro.umt:123:92">duck typing</strong>.
+</p></li><li data-coord="js-intro.umt:126:0"><p data-coord="js-intro.umt:126:4">Initially interpreted, now compiled using techniques like
+runtime compilation.
+</p></li><li data-coord="js-intro.umt:129:0"><p data-coord="js-intro.umt:129:4">Possible to evaluate strings representing code at runtime using
+<samp data-coord="js-intro.umt:129:72">eval()</samp>.
+</p></li><li data-coord="js-intro.umt:132:0"><p data-coord="js-intro.umt:132:4">Allows reentering a function invocation using
+<em data-coord="js-intro.umt:132:152"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator" data-coord="js-intro.umt:132:152">generators</a></em>.
+</p></li><li data-coord="js-intro.umt:136:0"><p data-coord="js-intro.umt:136:4">Borrows concepts from Scheme, Perl and Self.
+</p></li><li data-coord="js-intro.umt:138:0"><p data-coord="js-intro.umt:138:4">Standard library is highly asynchronous.
+</p></li></ul></section><section class="umt-slide" data-coord="js-intro.umt:141:0"><h2 data-coord="js-intro.umt:141:0">JavaScript Platforms</h2><p data-coord="js-intro.umt:144:0">JavaScript runs on two main platforms:
+</p><ol data-coord="js-intro.umt:146:0"><li data-coord="js-intro.umt:146:0"><p data-coord="js-intro.umt:146:4"><strong data-coord="js-intro.umt:146:4">Browser</strong>: Platform provides interfaces to numerous browser
+technologies like the <em data-coord="js-intro.umt:146:90">Document Object Model</em> DOM and browser
+storage.
+</p></li><li data-coord="js-intro.umt:150:0"><p data-coord="js-intro.umt:150:4"><strong data-coord="js-intro.umt:150:4">Server</strong>: Exemplified by <samp data-coord="js-intro.umt:150:29">nodejs</samp>.  Platform provides access to
+filesystem, processes, etc.
+</p></li></ol></section></section>
+</div> <!-- #content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../assets/scripts/slide-controls.js"></script>
+<script src="../../assets/scripts/loginAction.js"></script>
+</body>
+</html>
