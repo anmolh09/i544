@@ -1,6 +1,6 @@
-import { AppErrors } from 'cs544-js-utils';
+import {AppErrors} from 'cs544-js-utils';
 
-import { getDate, getPositiveInt, getCents, genId } from './util.mjs';
+import {genId, getCents, getDate} from './util.mjs';
 
 /**
 API to maintain bank accounts.  The API data model includes the
@@ -82,21 +82,16 @@ class Accounts {
    *    BAD_REQ:     holderId not specified.
    */
   newAccount(params={}) {
-    //TODO
+
     if(!params.holderId){
       let errors = new AppErrors();
       errors.add("holderId not specified",{ 'code' : 'BAD_REQ'})
       return errors ;
     }
     let newAccount = new Account( genId() , params.holderId ,0)
-    // console.log('newAccount.info()',newAccount.info());
     this._accounts.push(newAccount);
 
-    // let returnedAccount = this._accounts.filter ( e => newAccount.id === e.id)
-    // console.log('rreturned account ',returnedAccount);
-
     return newAccount.id;
-      // return '';
   }
 
   /** Return account for params.id.
@@ -111,10 +106,7 @@ class Accounts {
       errors.add("id not specified",{ 'code' : 'BAD_REQ'})
       return errors ;
     }
-
     let foundAccount = this._accounts.filter ( e => params.id === e.id)
-    // new Account().info()
-    // console.log('foundAccount ',foundAccount)
 
     if(foundAccount.length===0){
       let errors = new AppErrors();
@@ -140,7 +132,7 @@ class Account {
   /** Return object { id, holderId, balance } where id is account ID,
    *  holderId is ID of holder and balance is a Number giving the
    *  current account balance after the chronologically last
-   *  transaction. 
+   *  transaction.
    *
    *  Error Codes: None.
    */
@@ -150,22 +142,22 @@ class Account {
     return {id:this.id , holderId:this.holderId , balance:this.balance};
   }
 
-  /** Return ID of a newly created transaction.  When called, params must be 
+  /** Return ID of a newly created transaction.  When called, params must be
    *  an object containing at least { amount, date, memo } where:
-   * 
-   *    amount is a string /^[-+]?\d+\.\d\d$/ representing a number, 
+   *
+   *    amount is a string /^[-+]?\d+\.\d\d$/ representing a number,
    *    date is a YYYY-MM-DD string representing a valid date
    *    memo is a non-empty string.
    *
    *  representing the properties of the transaction to be created.
    *
    *  Error Codes:
-   *    BAD_REQ:     params does not specifytransaction amount, 
-   *                 date or memo; or amount, date do not meet 
+   *    BAD_REQ:     params does not specifytransaction amount,
+   *                 date or memo; or amount, date do not meet
    *                 restrictions on format.
    */
   newAct(params={}) {
-    const {   amount, date, memo  } =  params  ;
+    const { amount, date, memo  } =  params  ;
 
     let errors = new AppErrors();
     if(!date || !amount || !memo){
@@ -183,11 +175,14 @@ class Account {
       return famount;
     }
 
-    let act = new Transaction( genId() , params.amount , params.date  ,params.memo , Number(this.balance).toFixed(2) + Number(params.amount).toFixed(2))
-
     this.balance =  Number(this.balance) + Number(params.amount)
+
     this.balance  = Number(this.balance).toFixed(2)
     this.balance  = Number(this.balance)
+
+    let newBalance = Number(this.balance)
+    let act = new Transaction( genId() , params.amount , params.date  ,params.memo , newBalance )
+
     this.transactions.push(act)
 
     return act.id;
@@ -198,7 +193,7 @@ class Account {
    *  transactions with the same date are ordered in the order they
    *  were added to the account.  When called, params must specify
    *
-   * { actId?, fromDate?, toDate?, memoText?, count?, index?, }
+   * { actId?, date?, memoText?, count?, index?, }
    *  
    *  The optional parameters which are used to filter the
    *  returned transactions include:
@@ -227,7 +222,7 @@ class Account {
    *    date:    The YYYY-MM-DD date of the transaction.
    *    memo:    The memo associated with the transaction.
    *
-   *  Error Codes:  
+   *  Error Codes:
    *    BAD_REQ:     date, count or index are specified but do
    *                 not meet their requirements.
    */
@@ -235,18 +230,35 @@ class Account {
 
     const { actId, date, memoText, count, index } = params
 
+    let ncount = Number(count) || DEFAULT_COUNT
+    let nindex = Number(index) || 0
+
+    if(date) {
+      let ndate = getDate(date)
+      if (ndate.errors) {
+        return ndate;
+      }
+    }
     return this.transactions
         .filter(tr => {
-          if (actId)
-            return tr.actId === actId;
-          else return true;
+          if (actId) {
+            return tr.id === actId;
+          } else return true;
         })
         .filter(tr => {
           if (memoText)
             return tr.memo.indexOf(memoText.toLowerCase()) !== -1
           else return true;
         })
-
+        .filter(tr => {
+          if (date) {
+            if (tr.date === date) {
+            }
+            return tr.date === date
+          } else return true;
+        })
+        .sort((d1, d2) => (new Date(d1.date) - new Date(d2.date)))
+        .slice(nindex, nindex + ncount);
   }
 
   /**
@@ -259,23 +271,37 @@ class Account {
    *                 the earliest date for the returned transactions.
    *    toDate:      A string specifying a YYYY-MM-DD giving
    *                 the latest date for the returned transactions.
-   * 
+   *
    *  Each transaction is returned as
-   * 
+   *
    *  { id, amount, date, memo, balance }
    *
    *    id:      The ID of the transaction.
    *    amount:  A Number giving the amount for the transaction.
    *    date:    The YYYY-MM-DD date of the transaction.
    *    memo:    The memo associated with the transaction.
-   *    balance: A Number giving the account balance 
+   *    balance: A Number giving the account balance
    *             immediately after the transaction.
-   *  Error Codes:  
+   *  Error Codes:
    *    BAD_REQ:     fromDate or toDate are not valid dates.
    */
   statement(params={}) {
-    //TODO
-    return this.transactions.sort( (e1,e2 )=> new Date(e2.date) - new Date(e1.date) );
+
+    const { fromDate, toDate, id } = params
+
+    return this.transactions
+        .filter( tr => {
+            if(fromDate && toDate){
+              let trDate = new Date(tr.date);
+              if( trDate >= new Date(fromDate) && trDate <= new Date(toDate))
+                return true;
+              else
+                return false;
+            }
+            else
+              return true;
+        })
+        .sort( (e1,e2 ) => new Date(e1.date) - new Date(e2.date) );
 
   }
 
