@@ -7,7 +7,7 @@ export function makeAccountsServices(dao) {
   const checker = makeValidator(CMDS);
   const fn = cmd => params => {
     const valid = checker.validate(cmd, params);
-    console.log('dao :: ',cmd)
+    // console.log('dao :: ',cmd)
     return valid.errors ? valid : dao[cmd].call(dao, valid);
   };
   const services =

@@ -9,7 +9,7 @@ import makeAccountsDao from './accounts-dao.mjs';
 
 export default async function main() {
   const args = process.argv.slice(2);
-  console.log('args :: ',args.length)
+  // console.log('args :: ',args)
   // if (args.length < 2) usage();
   const doClear = args[0] === '-c';
   if (doClear) args.shift();
@@ -21,7 +21,7 @@ export default async function main() {
     await processCommand(service, args[1], args.slice(2));
   }
   finally {
-    console.log('in finally ')
+    // console.log('in finally ')
     if (dao && !dao.errors) await dao.close();
   }
 }
@@ -44,16 +44,19 @@ async function processCommand(accounts, cmd, args) {
   }
   const argPairs = args.map(arg => {
     const [ _, k, v ] = arg.match(/^(\w+)=(.+)$/) ?? [];
+
     return [k, v];
   });
   const params = Object.fromEntries(argPairs);
+  // console.log(accounts,camelCmd,params)
   const ret = await accounts[camelCmd].call(accounts, params);
+
   if (ret && ret.errors) {
     // errors(ret);
     console.error('usage:', help(camelCmd));
   }
   else {
-    console.log(ret);
+    console.log('returned from dao::', ret);
   }
 }
 

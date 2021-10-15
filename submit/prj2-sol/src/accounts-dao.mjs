@@ -28,14 +28,14 @@ import {genId} from './util.mjs';
  *
  */
 export default  function makeAccountsDao(url, options) {
-  //TODO
+
   return AccountDao.make(url)
 
 }
 
 //use in mongo.connect() to avoid warning
 const MONGO_CONNECT_OPTIONS = { useUnifiedTopology: true };
-const ACCOUNTS = 'accounts';
+const ACCOUNTS_COLLECTION = 'accounts';
 const DB_NAME = 'web';
 const RAND_LEN = 2;
 const NEXT_ID_KEY = 'next_id';
@@ -46,16 +46,16 @@ class AccountDao {
   constructor(props) {
     Object.assign(this, props);
 
-    console.log('accountdao this ',this)
+    // console.log('accountdao this ',this)
   }
 
   //factory since async constructor cannot work
   static async make(mongoUrl='mongodb+srv://admin:admin@bing.i75uq.mongodb.net') {
     try {
       const client = await mongo.connect(mongoUrl, MONGO_CONNECT_OPTIONS);
+
       const db = client.db(DB_NAME);
-      const accounts = db.collection(ACCOUNTS);
-      return new AccountDao({client, accounts,db});
+      return new AccountDao({client,db});
     } catch (err) {
       // return errors('DB', err.toString());
     }
@@ -73,16 +73,19 @@ class AccountDao {
     }
   }
 
+
+
   async newAccount(acc) {
     try {
       // const dbUser = toDbUser(user);
       // if (dbUser.errors) return dbUser;
       const nextId = await this.getNextId()
-      console.log('nextid ',nextId)
+      // console.log('nextid ',nextId)
 
-      const ret = await this.db.collection('accounts').insertOne({'id': nextId , ...acc});
+      const ret = await this.db.collection(ACCOUNTS_COLLECTION)
+          .insertOne({'id': nextId , ...acc , balance:0});
       // assert(ret.insertedId === dbUser.id);
-      return ret;
+      return nextId;
     }
     catch (err) {
       // if (isDuplicateError(err)) {
@@ -94,28 +97,120 @@ class AccountDao {
     }
   }
 
-  async query(params = {}){
-
-  }
-
   async newAct(params={}){
-    console.log('in newact',params)
+    // console.log('in newact',params.amount)
     const { amount, date, memo , id } =  params  ;
     const nextId = await this.getNextId('next_act_id')
-    await this.db.collection('accounts').updateOne({id:id},
-        {$push:{ 'transactions':{ actId:nextId, amount, date, memo }}});
+    let decimal = mongo.Decimal128;
+
+    const account = await this.db.collection(ACCOUNTS_COLLECTION).findOne({id:id})
+    // console.log('newact account ',account);
+    let decimalAmt =  Number(amount)/100
+    decimalAmt = Number(decimalAmt.toFixed(2))
+    let newBalance = account.balance + decimalAmt
+    newBalance = Number(newBalance.toFixed(2))
+    const dateObj = new Date(date)
+
+    await this.db.collection(ACCOUNTS_COLLECTION).updateOne({id:id},
+        { $set: {balance : newBalance},
+          $push:{ 'transactions':{ actId:nextId, amount : decimalAmt,date:dateObj, memo, balance: account.balance }}});
+
+    return nextId;
+  }
+
+  async query(params = {}){
+    // console.log('in query',params)
+    const { actId, date, memoText, count, index } = params
+    // console.log(actId.length);
+    // console.log(memoText.length);
+    let filter = {};
+        // {"id" : params.id};
+    if (actId && actId.length>0) {
+      filter['transactions.actId'] =  actId
+    }
+    if (memoText && memoText.length>0){
+      filter['transactions.memo'] = { '$regex' : memoText, '$options' : 'i'}
+    }
+    if (date && date.length>0) {
+      filter['transactions.date'] = new Date(date)
+    }
+    // console.log('filter object ',filter)
+    const account = await this.db.collection(ACCOUNTS_COLLECTION)
+        // .find({"id" : {$eq : params.id}})
+        .find(filter)
+        // ,{"projection" : {"transactions":1,"id":1} })
+        // .project({"transactions.actId":1,"id":1})
+        .limit(count)
+        .toArray()
+
+    const rettr = account[0].transactions || [];
+
+    // console.log('returned from filter query? ',rettr)
+    // console.log('account::: ',account);
+    return rettr
+        .filter(tr => {
+          if (actId && actId.length>0) {
+            return tr.actId === actId;
+          } else return true;
+        })
+        .filter(tr => {
+          if (memoText && memoText.length>0)
+            return tr.memo.toLowerCase().indexOf(memoText.toLowerCase()) !== -1
+          else return true;
+        })
+        .filter(tr => {
+          if (date && date.length>0) {
+            if (tr.date === date) {
+              return tr.date === date
+            }
+          } else return true;
+        })
+        .sort( (e1,e2 ) => new Date(e1.date) - new Date(e2.date) )
+        .slice(index,index + count);
+  }
+
+  async statement(params={}) {
+    // console.log('in statement params',params)
+    const { fromDate, toDate, id } = params
+    let filter = {"id" : params.id};
+    if(fromDate && toDate){
+      filter['transactions.date'] =  { '$lte' : new Date(toDate)  , '$gte': new Date(fromDate)}
+    }
+
+
+    const account = await this.db.collection(ACCOUNTS_COLLECTION)
+        .findOne(filter)
+
+    // console.log('statement return object',account)
+
+
+
+    return account.transactions
+        .filter( tr => {
+          if(fromDate && toDate){
+            let trDate = new Date(tr.date);
+            if( trDate >= new Date(fromDate) && trDate <= new Date(toDate))
+              return true;
+            else
+              return false;
+          }
+          else
+            return true;
+        })
+        .sort( (e1,e2 ) => new Date(e1.date) - new Date(e2.date) );
+
+
 
   }
 
-  async info(params = {}){
-    console.log('in info',params)
-    const account = await this.db.collection('accounts').findOne(params)
 
-    const balance = account.transactions.reduce( (acc,e) =>  acc + e.amount , 0)
-    console.log('amt :: ',balance)
-    const {holderId,id} = account
+async info(params = {}){
+    // console.log('in info',params)
+    const account = await this.db.collection(ACCOUNTS_COLLECTION).findOne(params)
 
-    return {holderId, id, balance};
+  // console.log('info fn:: ',account)
+
+    return account;
   }
 
   async getNextId( id_type ) {
@@ -133,15 +228,12 @@ class AccountDao {
     const id =
         String(seq) + Math.random().toFixed(RAND_LEN)
             .replace(/^0\./, '_');
-    console.log('id:::',Object.getPrototypeOf( id))
-    console.log('id type:::',id instanceof String)
-    console.log('String(id):::',String(id))
+    // console.log('id:::',Object.getPrototypeOf( id))
+    // console.log('id type:::',id instanceof String)
+    // console.log('String(id):::',String(id))
 
 
     return id;
   }
 
 }
-
-
-//TODO

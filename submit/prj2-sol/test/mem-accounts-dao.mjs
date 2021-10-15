@@ -7,9 +7,13 @@ import { assert } from 'chai';
 export default class {
 
   static async setup() {
+
     const mongod = await MongoMemoryServer.create();
-    const uri = mongod.getUri();
-    assert(mongod.instanceInfo, `mongo memory server startup failed`);
+    // const mongod = new MongoMemoryServer();
+
+    // console.log('mongod:: ',mongod);
+    const uri = await mongod.getUri();
+    // assert(mongod.instanceInfo, `mongo memory server startup failed`);
     const dao = await makeAccountsDao(uri);
     dao._mongod = mongod;
     return dao;
@@ -18,7 +22,7 @@ export default class {
   static async tearDown(dao) {
     await dao.close();
     await dao._mongod.stop();
-    assert.equal(dao._mongod.instanceInfo, undefined,
+    assert.equal(dao._mongod.instance, undefined,
 		 `mongo memory server stop failed`);
   }
 

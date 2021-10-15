@@ -13,18 +13,19 @@ describe('basic accounts', () => {
 
   //mocha will run beforeEach() before each test to set up these variables
   let accounts, dao;
-  beforeEach(async function () {
-    dao = await AccountsDao.setup();
+  beforeEach( async () => {
+    dao =   await AccountsDao.setup();
     accounts = makeAccountsServices(dao);
   });
 
   //mocha runs this after each test; we use this to clean up the DAO.
-  afterEach(async function () {
-    await AccountsDao.tearDown(dao);
+  afterEach( async () => {
+     await AccountsDao.tearDown(dao);
   });
   
   it('should return account ID when creating an account', async () => {
     const ret = await accounts.newAccount({holderId: TEST_HOLDER});
+    // console.log('test return :: ',ret)
    expect(ret).to.be.a('string');
   });
   
@@ -40,32 +41,39 @@ describe('basic accounts', () => {
     expect(id1).to.not.equal(id2);
   });
 
-  /* TODO: replace these synchronous project 1 tests with
-     async tests suitable for this project.
+  // /* TODO: replace these synchronous project 1 tests with
+  //    async tests suitable for this project.
 
-  it('should retrieve a created account', () => {
-    const id = accounts.newAccount({ holderId: TEST_HOLDER});
-    expect(accounts.info({id})).to.not.be.undefined.and.not.be.null;
-    expect(accounts.info({id}).id).to.equal(id);    
+  it('should retrieve a created account', async () => {
+    const id = await accounts.newAccount({ holderId: TEST_HOLDER});
+    // console.log(id)
+    const acc = await accounts.info({id})
+    // console.log(acc)
+    expect(acc.id).to.not.be.undefined.and.not.be.null;
+    expect(acc.id).to.equal(id);
   });
 
-  it('should have correct holderId when retrieving a account', () => {
-    const id = accounts.newAccount({ holderId: TEST_HOLDER});
-    expect(accounts.info({id}).holderId).to.equal(TEST_HOLDER);
+  it('should have correct holderId when retrieving a account', async () => {
+    const id = await accounts.newAccount({ holderId: TEST_HOLDER});
+    const acc = await accounts.info({id})
+    // console.log('in test',acc)
+    expect(acc.holderId).to.equal(TEST_HOLDER);
   });
 
-  it('should have a 0 balance when retrieving a newly created account', () => {
-    const id = accounts.newAccount({ holderId: TEST_HOLDER});
-    expect(accounts.info({id}).balance).to.equal(0);
+  it('should have a 0 balance when retrieving a newly created account', async() => {
+    const id = await accounts.newAccount({ holderId: TEST_HOLDER});
+    const acc = await accounts.info({id})
+    // console.log('is balance zero? ',acc)
+    expect(acc.balance).to.equal(0);
   });
 
-  it('should return NOT_FOUND error when retrieving by bad account ID', () => {
-    const id = accounts.newAccount({ holderId: TEST_HOLDER});
-    expect(accounts.info({id: id + 'x'})).to.have.property('errors');
-    expect(accounts.info({id: id + 'x'})?.errors?.[0]?.options?.code).
+  it('should return NOT_FOUND error when retrieving by bad account ID', async () => {
+    const id = await accounts.newAccount({ holderId: TEST_HOLDER});
+    expect(await accounts.info({id: id + 'x'})).to.have.property('errors');
+    expect(await accounts.info({id: id + 'x'})?.errors?.[0]?.options?.code).
       to.equal('NOT_FOUND');
   });
-  */ 
+  // */
 
   
 });
