@@ -1,15 +1,26 @@
-Name:		XXX
-B-Number:	XXX
-Email:		XXX
+Name:		Anmol Haksar
+B-Number:	B00862751
+Email:		ahaksar1@binghamton.edu
 
-Add text here as needed:
+Second-last commit hash of your submission.
+	
+		845a5988b4dcc22f2dc66fccd17eebc7c12f293c
 
-  + Include final submission status; whether or not the project is
-    fully working; if not, what is failing.
+Implemented:
 
-  + The second-last commit hash of your submission.
+	-> Setup mongodb on cloud which is used in the application
 
-  + Any other information you believe is relevant.
-  
+	-> Setup schema of application to have account collection with each document having a array of transactions 
+
+	-> new-account,new-act,info,query and statement functions which fetch data from database
+
+	-> Function which returns next id from database.
+		Used for account id and transaction id generation
+
+	-> Additional test cases in basic-accounts file
 
 
+Bugs:
+	Issues when running on linux machine.Output from my machine is attached
+
+	24 passing, 8 failing test cases
