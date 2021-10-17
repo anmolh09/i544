@@ -17,6 +17,7 @@ describe('query', () => {
   let accounts, id, actIds, dao;
 
   beforeEach(async function () {
+    this.timeout(10000)
     dao = await AccountsDao.setup();
     accounts = makeAccountsServices(dao);
     id = await accounts.newAccount({holderId: TEST_HOLDER});

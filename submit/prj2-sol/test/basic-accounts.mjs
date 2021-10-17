@@ -13,17 +13,20 @@ describe('basic accounts', () => {
 
   //mocha will run beforeEach() before each test to set up these variables
   let accounts, dao;
-  beforeEach( async () => {
+  beforeEach( async function () {
+    this.timeout(10000)
     dao =   await AccountsDao.setup();
+    // console.log('dao',dao)
     accounts = makeAccountsServices(dao);
+    // console.log(accounts)
   });
 
   //mocha runs this after each test; we use this to clean up the DAO.
-  afterEach( async () => {
+  afterEach( async function () {
      await AccountsDao.tearDown(dao);
   });
   
-  it('should return account ID when creating an account', async () => {
+  it('should return account ID when creating an account', async function ()  {
     const ret = await accounts.newAccount({holderId: TEST_HOLDER});
     // console.log('test return :: ',ret)
    expect(ret).to.be.a('string');

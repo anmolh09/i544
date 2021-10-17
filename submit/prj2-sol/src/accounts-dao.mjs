@@ -1,5 +1,6 @@
-import mongo from 'mongodb';
+import mongo,{MongoClient} from 'mongodb';
 import {genId} from './util.mjs';
+import { AppError } from './util.mjs';
 
 
 /** Return DAO for DB URL url and options. Only option is
@@ -27,7 +28,7 @@ import {genId} from './util.mjs';
  *  the returned DAO.]
  *
  */
-export default  function makeAccountsDao(url, options) {
+export default function makeAccountsDao(url, options) {
 
   return AccountDao.make(url)
 
@@ -45,19 +46,19 @@ class AccountDao {
 
   constructor(props) {
     Object.assign(this, props);
-
-    // console.log('accountdao this ',this)
   }
 
   //factory since async constructor cannot work
   static async make(mongoUrl='mongodb+srv://admin:admin@bing.i75uq.mongodb.net') {
     try {
-      const client = await mongo.connect(mongoUrl, MONGO_CONNECT_OPTIONS);
+      const client = new MongoClient(mongoUrl);
+      // const client = await mongo.connect(mongoUrl, MONGO_CONNECT_OPTIONS);
+      await client.connect();
 
       const db = client.db(DB_NAME);
       return new AccountDao({client,db});
     } catch (err) {
-      // return errors('DB', err.toString());
+      return errors('DB', err.toString());
     }
   }
 
@@ -236,4 +237,11 @@ async info(params = {}){
     return id;
   }
 
+}
+function errors(code, msg) {
+  return { errors: [ new AppError(msg, {code}) ] };
+}
+
+function isDuplicateError(err) {
+  return (err.code === 11000);
 }

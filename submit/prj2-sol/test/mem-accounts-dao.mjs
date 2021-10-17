@@ -9,12 +9,10 @@ export default class {
   static async setup() {
 
     const mongod = await MongoMemoryServer.create();
-    // const mongod = new MongoMemoryServer();
-
-    // console.log('mongod:: ',mongod);
-    const uri = await mongod.getUri();
+    const uri =  mongod.getUri();
     // assert(mongod.instanceInfo, `mongo memory server startup failed`);
     const dao = await makeAccountsDao(uri);
+    // console.log(dao)
     dao._mongod = mongod;
     return dao;
   }

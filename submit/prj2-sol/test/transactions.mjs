@@ -12,6 +12,7 @@ describe('transaction creation', () => {
 
   let dao, accounts, act0, id;
   beforeEach(async function () {
+      this.timeout(10000)
     dao = await AccountsDao.setup();
     accounts = makeAccountsServices(dao);
     id = await accounts.newAccount({holderId: TEST_HOLDER});
