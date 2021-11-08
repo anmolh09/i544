@@ -1,0 +1,28 @@
+{
+  "name": "user-ws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/",
+    "debug-test": "mocha --inspect-brk src/test/",
+    "syntax-check": "shopt -s globstar; for f in **/*.mjs; do node -c $f; done;"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cs544-js-utils": "file:../../../../cs544/lib/cs544-js-utils",
+    "cs544-node-utils": "file:../../../../cs544/lib/cs544-node-utils",
+    "express": "^4.17.1",
+    "http-status": "^1.5.0",
+    "mongodb": "^3.6.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "mongodb-memory-server": "^6.9.6",
+    "supertest": "^6.1.6"
+  }
+}
