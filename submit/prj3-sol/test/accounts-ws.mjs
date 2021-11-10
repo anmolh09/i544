@@ -94,7 +94,7 @@ describe('web services', () => {
       expect(res2.status).to.equal(STATUS.OK);
       const newAccount = {id, holderId: TEST_HOLDER, balance: 0.00};
       expect(res2.body.result).to.deep.equal(newAccount);
-    });
+    }).timeout(50000);
 
     it ('must return correct self link for retrieved account', async () => {
       const res1 = await createAccount(TEST_HOLDER);

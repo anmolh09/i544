@@ -5,9 +5,11 @@ import { DEFAULT_COUNT } from './defs.mjs';
 import cors from 'cors';
 import express from 'express';
 //HTTP status codes
-import STATUS from 'http-status';  
+import STATUS from 'http-status';
 import assert from 'assert';
 import bodyParser from 'body-parser';
+
+const DEFAULT_LIMIT = 5;
 
 export default function serve(model, base='') {
   const app = express();
@@ -27,14 +29,174 @@ function setupRoutes(app) {
   app.use(bodyParser.json());
 
   //TODO: add routes as necessary
-  
+  app.get(base, doSearch(app));  //GET /accounts
+  app.post(base, doCreate(app)); // POST /accounts
+
+  app.get(`${base}/:id`, doGet(app));  //GET /accounts/Account_id
+  app.post(`${base}/:id/transactions`, doCreateTr(app)); //POST /accounts/ACCOUNT_ID/transactions
+
+  app.get(`${base}/:id/transactions/:actId`, doGetSingleTr(app));  //GET /account/ACCOUNT_ID/transactions/ACT_ID
+
+  app.get(`${base}/:id/transactions`, doSearchAllTr(app)); //GET /accounts/ACCOUNT_ID/transactions
+
+  app.get(`${base}/:id/statements/:from/:to`, doStatement(app)); //GET /accounts/ACCOUNT_ID/statements/fromDate/toDate
+
   //must be last
   app.use(do404(app));
   app.use(doErrors(app));
 }
 
 //TODO: add handler creating functions.
+function doStatement(app) {
+  return (async function(req, res) {
+    try {
+      const id = req.params.id;
+      const fromDate = req.params.from;
+      const toDate = req.params.to;
+      const result = await app.locals.model.statement({ id , fromDate, toDate});
+      if (result.errors) throw result;
+      res.json(addSelfLinks(req, result));
+    }
+    catch(err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
 
+
+function doSearchAllTr(app) {
+  return (async function(req, res) {
+    try {
+      const id = req.params.id;
+      const q = Object.assign({}, req.query || {});
+      const offset = getNonNegInt(q, 'index', 0);
+      if (offset.errors) throw offset;
+      const limit = getNonNegInt(q, 'count', DEFAULT_LIMIT);
+      if (limit.errors) throw limit;
+      const options = { index : offset, count: limit + 1 };
+      const result = await app.locals.model.query({id ,...q ,...options});
+      if (result.errors) throw result;
+      res.json(addPagingLinks(req, result));
+    }
+    catch (err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
+
+function doGetAllTr(app) {
+  return (async function(req, res) {
+    try {
+      const id = req.params.id;
+      const actId = req.params.actId;
+      const result = await app.locals.model.query({ id , actId});
+      if (result.errors) throw result;
+      res.json(addSelfLinks(req, result));
+    }
+    catch(err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
+
+function doGetSingleTr(app) {
+  return (async function(req, res) {
+    try {
+      const id = req.params.id;
+      const actId = req.params.actId;
+      const result = await app.locals.model.query({ id , actId});
+      if(result?.length === 0) {
+        res.status(STATUS.NOT_FOUND);
+      }
+      else if (result.errors) throw result;
+      res.json(addSelfLinks(req, result[0]));
+    }
+    catch(err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
+
+
+function doCreateTr(app) {
+  return (async function(req, res) {
+    try {
+      const obj = req.body;
+
+      // const result = await app.locals.model.create(obj);
+      const result = await app.locals.model.newAct(obj);
+      if (result.errors) throw result;
+      const location = requestUrl(req) + '/' + result;
+      res.append('Location', location);
+      res.sendStatus(STATUS.CREATED);
+    }
+    catch(err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
+
+
+
+function doSearch(app) {
+  return (async function(req, res) {
+    try {
+      const q = Object.assign({}, req.query || {});
+      const offset = getNonNegInt(q, 'index', 0);
+      if (offset.errors) throw offset;
+      const limit = getNonNegInt(q, 'count', DEFAULT_LIMIT);
+      if (limit.errors) throw limit;
+      const options = { index : offset, count: limit + 1 };
+      const result = await app.locals.model.searchAccounts({...q, ...options});
+      if (result.errors) throw result;
+      res.json(addPagingLinks(req, result));
+    }
+    catch (err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
+
+
+function doCreate(app) {
+  return (async function(req, res) {
+    try {
+      const obj = req.body;
+
+      // const result = await app.locals.model.create(obj);
+      const result = await app.locals.model.newAccount(obj);
+      if (result.errors) throw result;
+      const location = requestUrl(req) + '/' + result;
+      res.append('Location', location);
+      res.sendStatus(STATUS.CREATED);
+      res.json(addSelfLinks(req,result,result))
+    }
+    catch(err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
+function doGet(app) {
+  return (async function(req, res) {
+    try {
+      const id = req.params.id;
+      const result = await app.locals.model.info({ id: id });
+      if (result.errors) throw result;
+      res.json(addSelfLinks(req, result));
+    }
+    catch(err) {
+      const mapped = mapResultErrors(err);
+      res.status(mapped.status).json(mapped);
+    }
+  });
+}
 /* Typical handler creating function is of the form:
 
 function SOME_NAME(app) {
@@ -194,10 +356,26 @@ function cdThisDir() {
   try {
     const path = new URL(import.meta.url).pathname;
     const dir = Path.dirname(path);
-    process.chdir(dir);
+    process.chdir("C:/Users/Anmol/Desktop/bing/web_programming/projects/i544/submit/prj3-sol/src");
+    // process.chdir(dir);
   }
   catch (err) {
     console.error(`cannot cd to this dir: ${err}`);
     process.exit(1);
+  }
+}
+
+function getNonNegInt(query, key, defaultVal) {
+  const n = query[key];
+  if (n === undefined) {
+    return defaultVal;
+  }
+  else if (!/^\d+$/.test(n)) {
+    const message = `${key} "${n}" must be a non-negative integer`;
+    return {errors: [{ message, options: { code: 'BAD_VAL', widget: key}}]};
+  }
+  else {
+    delete query[key];
+    return Number(n);
   }
 }
