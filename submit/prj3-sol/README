@@ -2,14 +2,14 @@ Name:		Anmol Haksar
 B-Number:	B00862751
 Email:		ahaksar1@binghamton.edu
 
-Add text here as needed:
+Hash commit:
+	d308198ca7188daf3e36cb4e42d2cc01e88f880c
 
-  + Include final submission status; whether or not the project is
-    fully working; if not, what is failing.
+Implemented:
 
-  + The second-last commit hash of your submission.
-
-  + Any other information you believe is relevant.
+	-> All rest methods
   
 
-
+Bugs:
+	-> in web services test cases, all are working apart from 2 test cases
+	-> Issues when running on linux machine.(mongo menory server startup issues).Developed on windows system
