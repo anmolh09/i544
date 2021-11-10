@@ -356,8 +356,8 @@ function cdThisDir() {
   try {
     const path = new URL(import.meta.url).pathname;
     const dir = Path.dirname(path);
-    process.chdir("C:/Users/Anmol/Desktop/bing/web_programming/projects/i544/submit/prj3-sol/src");
-    // process.chdir(dir);
+    // process.chdir("C:/Users/Anmol/Desktop/bing/web_programming/projects/i544/submit/prj3-sol/src");
+    process.chdir(dir);
   }
   catch (err) {
     console.error(`cannot cd to this dir: ${err}`);

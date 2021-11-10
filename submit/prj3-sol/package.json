@@ -12,8 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "cs544-js-utils": "file:../../lib/cs544-js-utils",
-    "cs544-node-utils": "file:../../lib/cs544-node-utils",
+    "cs544-js-utils": "file:../../cs544/lib/cs544-js-utils",
+    "cs544-node-utils": "file:../../cs544/lib/cs544-node-utils",
     "express": "^4.17.1",
     "http-status": "^1.5.0",
     "mongodb": "^3.6.3"
