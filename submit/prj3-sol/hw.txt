@@ -1,0 +1,14 @@
+
+a.
+Yes.As REST principles include having Uniform Resource Locators so that the client can get the same data when it hits the same URI again
+
+b.
+Yes.Javascript in the head delays the rendering of the page until after the scripts have loaded so it is put in end of body section.But if we require JavaScript contained within HTML tags to be available as soon as the html is rendered we need to put it in <head>.
+If you are adding click-events to elements, they will not be clickable until a bit after the elements themselves are visible.
+ref:: https://stackoverflow.com/questions/2451417/whats-pros-and-cons-putting-javascript-in-head-and-putting-just-before-the-bod
+
+d.
+No.If the property is own property of the object then the 2 objects will have separate values of the properties.
+However, if the property is set on the prototype of the objects then the objects will share that value
+
+
