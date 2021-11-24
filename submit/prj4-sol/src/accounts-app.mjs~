@@ -67,7 +67,8 @@ function makeAccountsClass(services, ws, extendFn) {
     setNavHandlers() {
     	  this.shadowRoot.querySelector(".nav-create")
           .addEventListener('click',() => this.select('create'))
-
+		  console.log( this.shadowRoot.querySelector(".nav-create"));
+		    console.log( this.shadowRoot.querySelector(".nav-"));
       this.shadowRoot.querySelector(".nav-search")
           .addEventListener('click',() => this.select('search'))
       //TODO
@@ -90,6 +91,7 @@ function makeAccountsClass(services, ws, extendFn) {
       f.addEventListener("click", function(event){
             event.preventDefault()
           });
+          
       this.shadowRoot.querySelector("#create-form button[type='submit']").
       addEventListener("click",async () => {
           const d = new FormData(f)
@@ -105,12 +107,16 @@ function makeAccountsClass(services, ws, extendFn) {
 				console.log('acc',acc);
 				const elem = makeAccountDetail(acc.result.id,acc.result.holderId,acc.result.balance)
 				console.log('elem',elem);
-				this.shadowRoot.querySelector('#detail-section').appendChild(elem);
+				this.shadowRoot.querySelector('#detail-section').append(elem);
 				this.select('detail')
-     		 }
-     	 });
+				this.setNavHandlers();
+				 const ex = this.shadowRoot.querySelector(".extendFn")
+				 ex.addEventListener("click",() => console.log(ex.getAttribute('data-id'),ex.getAttribute('id'));
+     		 
+     	 }
 
-    }
+    });
+ }
      async gethttp(path,q={}) {
   	
 
