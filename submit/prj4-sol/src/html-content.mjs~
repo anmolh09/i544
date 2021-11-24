@@ -22,7 +22,6 @@ export function makeSearchResult(id, holderId, selfHref) {
  *  account having id, holderId and balance.
  */
 export function makeAccountDetail(id, holderId, balance) {
-	console.log(id,holderId,balance)
   console.assert(typeof balance === 'number',
 		 `account balance "${balance}" has type ${typeof balance}`);
   const balanceText = balance.toFixed(2);

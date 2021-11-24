@@ -105,7 +105,7 @@ function makeAccountsClass(services, ws, extendFn) {
 				console.log('acc',acc);
 				const elem = makeAccountDetail(acc.result.id,acc.result.holderId,acc.result.balance)
 				console.log('elem',elem);
-				this.shadowRoot.querySelector('#detail-section').append(elem);
+				this.shadowRoot.querySelector('#detail-section').appendChild(elem);
 				this.select('detail')
      		 }
      	 });
