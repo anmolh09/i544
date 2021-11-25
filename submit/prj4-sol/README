@@ -1,15 +1,11 @@
-Name:		XXX
-B-Number:	XXX
-Email:		XXX
+Name:		Anmol Haksar
+B-Number:	B00862751
+Email:		ahaksar1@binghamton.edu
 
-Add text here as needed:
+Hash commit:
+	8ded31f4c7e3f2d90bec3c1f86566e7987fe2b81
 
-  + Include final submission status; whether or not the project is
-    fully working; if not, what is failing.
-
-  + The second-last commit hash of your submission.
-
-  + Any other information you believe is relevant.
-  
-
-
+Bugs:
+	-> nav links work on search and create pages
+	nav links on details page dont seem to work despite same code being present
+	
