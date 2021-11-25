@@ -34,7 +34,7 @@ function makeAccountsClass(services, ws, extendFn) {
       this.attachShadow({mode: 'open'});
       //must always use this.shadowRoot to add to component
       this.shadowRoot.innerHTML = HTML;
-      this.select('create');
+      this.select('search');
       this.setNavHandlers();
       this.setCreateHandler();
       this.setSearchHandler();
@@ -84,9 +84,9 @@ function makeAccountsClass(services, ws, extendFn) {
       //TODO
       const f = this.shadowRoot.querySelector("#create-form")
      // console.log(f)
-     const u = 'https://zdu.binghamton.edu:2345/accounts/1671_30';
-     const r =  this.gethttp(u);
-     console.log(r);
+     //const u = 'https://zdu.binghamton.edu:2345/accounts/1671_30';
+     //const r =  this.gethttp(u);
+     //console.log(r);
 
       f.addEventListener("click", function(event){
             event.preventDefault()
@@ -109,7 +109,12 @@ function makeAccountsClass(services, ws, extendFn) {
 				console.log('elem',elem);
 				this.shadowRoot.querySelector('#detail-section').append(elem);
 				this.select('detail')
-				this.setNavHandlers();
+					  this.shadowRoot.querySelector(".nav-create")
+          .addEventListener('click',() => this.select('create'))
+		  console.log( this.shadowRoot.querySelector(".nav-create"));
+		    console.log( this.shadowRoot.querySelector(".nav-"));
+      this.shadowRoot.querySelector(".nav-search")
+          .addEventListener('click',() => this.select('search'))
 				 const ex = this.shadowRoot.querySelector(".extendFn")
 				 ex.addEventListener("click",() => extendFn(ex.getAttribute('data-id'),ex.getAttribute('id')));
      		 
@@ -117,11 +122,32 @@ function makeAccountsClass(services, ws, extendFn) {
 
     });
  }
+ 
+ 	async setDetails(selfurl){
+ 			const acc = await this.gethttp(selfurl);
+				console.log('acc',acc);
+				const elem = makeAccountDetail(acc.result.id,acc.result.holderId,acc.result.balance)
+				console.log('elem',elem);
+				this.shadowRoot.querySelector('#detail-section').append(elem);
+				this.select('detail')
+		//		this.setNavHandlers();
+				this.shadowRoot.querySelector(".nav-create")
+          .addEventListener('click',() => this.select('create'))
+		  console.log( this.shadowRoot.querySelector(".nav-create"));
+		    console.log( this.shadowRoot.querySelector(".nav-"));
+      this.shadowRoot.querySelector(".nav-search")
+          .addEventListener('click',() => this.select('search'))
+				 const ex = this.shadowRoot.querySelector(".extendFn")
+				 ex.addEventListener("click",() => extendFn(ex.getAttribute('data-id'),ex.getAttribute('id')));
+     		 
+ 	}
+ 	
+ 	
      async gethttp(path,q={}) {
   	
 
 
-//console.log(url)
+console.log('get httpppp',path)
   	  const response =
         await  fetch(path, {
           method: 'GET',
@@ -142,7 +168,15 @@ function makeAccountsClass(services, ws, extendFn) {
     /** Create handler for blur event on search-form input widgets.
      */
     setSearchHandler() {
-      //TODO
+    	  const id = this.shadowRoot.querySelector("#search-id")
+    	  const hid = this.shadowRoot.querySelector("#search-holderId")
+    	  
+    	  id.addEventListener('blur' ,() => this.search())
+ 		  hid.addEventListener('blur', () => this.search())
+    	  
+    	  
+    	  
+    	  
     }
 
     /** Perform an accounts search.  If url is defined (it would be
@@ -155,7 +189,46 @@ function makeAccountsClass(services, ws, extendFn) {
      *  each account result in the results.
      */
     async search(url=undefined) {
-      //TODO
+    	this.shadowRoot.querySelector('#search-results').innerHTML = ''
+    	let acc;
+    	if(url){
+    		 acc =  await this.gethttp(url);
+    	
+    	}
+    	else{
+     	  const f = this.shadowRoot.querySelector("#search-form")
+		  const d = new FormData(f)
+        console.log(d)
+        const formData = Object.fromEntries(d)
+        console.log(formData)
+        acc = await services.searchAccounts(formData);    	
+		  console.log('search response ',acc)
+          
+    	}
+    	if(acc.result.length!=0){
+    		const scroll = makeScrollElement(acc.links);
+			console.log(scroll)    		
+			const navs = scroll.querySelectorAll("a")
+			if(navs[0]){
+							navs[0].addEventListener('click', ()=> this.search(navs[0].getAttribute('data-ws-href')))
+			}
+			if(navs[1]){
+							navs[1].addEventListener('click', ()=> this.search(navs[1].getAttribute('data-ws-href')))
+			}
+			this.shadowRoot.querySelector('#search-results').append(scroll);
+    		acc.result.map(a => {
+				    			const elem = makeSearchResult(a.result.id,a.result.holderId,a.links[0].href)
+								//console.log('elem',elem);
+								const link = elem.querySelector("a")
+								link.addEventListener('click', () => this.setDetails(link.getAttribute('data-ws-href')))
+								this.shadowRoot.querySelector('#search-results').append(elem);
+    			
+    			
+    			})
+      }
+      else{
+			  this.shadowRoot.querySelector('#search-results').innerHTML = 'No results'    
+      }
     }
 
     //TODO: add auxiliary methods as necessary

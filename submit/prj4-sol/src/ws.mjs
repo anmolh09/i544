@@ -64,7 +64,29 @@ class Ws {
    * If there are no results, then the returned object should have its
    * result property set to the empty list [].
    */
-  async searchAccounts(params={}) {
+  async searchAccounts(qparams={}) {
+console.log(this._urlBase, BASE)
+  	
+  	const url = new URL( BASE,this._urlBase);
+for (const [k, v] of Object.entries(qparams)) {
+  url.searchParams.set(k, v);
+}
+console.log(url)
+
+const response =
+        await  fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+    if (response.ok) { //status is 2xx
+    console.log(response)
+      return await response.json();
+    }
+    else { //return response errors
+      return await response.json();
+    }
     //TODO
   }
 
